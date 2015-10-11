@@ -1,22 +1,12 @@
 var React = require('react-native')
-var App = require('./app/containers/App')
-
-//var user = require('./app/mocks/user')
-//var userInfo = require('./app/mocks/userInfo')
-//var UserService = require('./app/services/UserService')
-//Object.assign(user, userInfo)
-
-
-// on run
-require('./app/configs/onRun')
-
-
 
 var {
     Component,
-    AppRegistry
+    AppRegistry,
+    View
     } = React
 
+var CNodeToolbar=require('./androidApp/components/Toolbar')
 
 class Noder extends Component {
 
@@ -27,7 +17,10 @@ class Noder extends Component {
 
   render() {
     return (
-        <App></App>
+       <View>
+           <CNodeToolbar>
+           </CNodeToolbar>
+       </View>
     )
   }
 }
