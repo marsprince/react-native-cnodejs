@@ -6,7 +6,7 @@ var {
     View
     } = React
 
-var CNodeToolbar=require('./androidApp/components/Toolbar')
+var HomePage=require('./androidApp/components/HomePage')
 
 class Noder extends Component {
 
@@ -17,10 +17,8 @@ class Noder extends Component {
 
   render() {
     return (
-       <View>
-           <CNodeToolbar>
-           </CNodeToolbar>
-       </View>
+        <HomePage>
+        </HomePage>
     )
   }
 }

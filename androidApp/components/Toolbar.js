@@ -22,17 +22,16 @@ class cnodeToolbar extends Component {
     constructor(props) {
         super(props);
         this.state={
-            tab:"×îÐÂ"
+            tab:"æœ€æ–°"
         }
     }
     render()
     {
         return (
-            <ToolbarAndroid>
-                logo={require('image!launcher_icon')}
+            <ToolbarAndroid
                 navIcon={require('image!ic_menu_black_24dp')}
                 style={styles.toolbar}
-                title={this.state.tab}
+                >
             </ToolbarAndroid>
         )
     }
