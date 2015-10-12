@@ -13,7 +13,7 @@ var {
 var styles=StyleSheet.create({
         toolbar: {
             backgroundColor: '#E9EAED',
-            height: 40,
+            height: 56,
         },
     }
 );
@@ -37,4 +37,4 @@ class cnodeToolbar extends Component {
     }
 }
 
-module.exports=cnodeToolbar
+module.exports=cnodeToolbar;

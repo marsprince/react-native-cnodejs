@@ -9,6 +9,7 @@
     "moment": "^2.10.6",
     "query-string": "^2.4.0",
     "react-native": "^0.12.0",
-    "react-native-scrollable-tab-view": "^0.1.10"
+    "react-native-scrollable-tab-view": "^0.1.10",
+    "redux":"v3.0.2"
   }
 }
