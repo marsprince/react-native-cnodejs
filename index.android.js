@@ -6,7 +6,7 @@ var {
     View
     } = React
 
-var HomePage=require('./androidApp/components/HomePage')
+var APP=require('./androidApp/components/App')
 
 class Noder extends Component {
 
@@ -17,8 +17,8 @@ class Noder extends Component {
 
   render() {
     return (
-        <HomePage>
-        </HomePage>
+        <App>
+        </App>
     )
   }
 }
