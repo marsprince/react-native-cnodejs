@@ -27,11 +27,12 @@ class cnodeToolbar extends Component {
     }
     render()
     {
+        const { openDrawer} = this.props;
         return (
             <ToolbarAndroid
                 navIcon={require('image!ic_menu_black_24dp')}
                 style={styles.toolbar}
-                onIconClicked={() => this.props.actions.openDrawer}
+                onIconClicked={openDrawer}
                 >
             </ToolbarAndroid>
         )

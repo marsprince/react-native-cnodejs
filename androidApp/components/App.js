@@ -1,37 +1,23 @@
-var React = require('react-native')
-var Redux = require('redux')
-var HomePage = require('./HomePage')
+import React, { Component } from 'react-native';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { Provider } from 'react-redux/native';
+import thunk from 'redux-thunk';
 
-var reducer = require('../reducers')
+import * as reducers from '../reducers';
+import HomePage from './HomePage';
 
-var {
-    Provider
-    } = require('redux/react-native')
-
-
-var {
-    createStore
-    } = Redux
-
-var {
-    Component,
-    View
-    } = React
-
-var store = createStore(reducer)
-
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const reducer = combineReducers(reducers);
+const store = createStoreWithMiddleware(reducer);
 
 class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                {function () {
-                    return <HomePage />
-                }}
+                {() => <HomePage />}
             </Provider>
-        )
+        );
     }
 }
 
-
-module.exports = App
+module.exports=App

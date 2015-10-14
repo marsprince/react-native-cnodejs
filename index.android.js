@@ -6,7 +6,7 @@ var {
     View
     } = React
 
-var APP=require('./androidApp/components/App')
+var App=require('./androidApp/components/App')
 
 class Noder extends Component {
 

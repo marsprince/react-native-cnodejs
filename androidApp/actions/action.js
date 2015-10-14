@@ -4,7 +4,7 @@
 
 var types = require('../constants/ActionTypes')
 
-exports.openDrawer = function openLoginModal() {
+exports.openDrawer = function openDrawerModal() {
     return {
         type: types.OPEN_DRAWER,
         isDrawerOpen: true

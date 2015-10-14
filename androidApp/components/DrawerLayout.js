@@ -22,8 +22,11 @@ var DRAWER_WIDTH_LEFT = 56;
 class cnodeDrawerLayout extends Component{
     constructor(props) {
         super(props);
-
     }
+    componentDidMount () {
+        if(this.props.isDrawerOpen) this.drawer.openDrawer();
+    }
+
     _renderNavigation(){
         return (
             <View>
