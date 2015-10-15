@@ -23,13 +23,13 @@ var styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 10,
+    paddingBottom: 30,
   },
 
   tabs: {
     height: 50,
     flexDirection: 'row',
-    marginTop: 20,
+    marginTop: 1,
     borderWidth: 1,
     borderTopWidth: 0,
     borderLeftWidth: 0,

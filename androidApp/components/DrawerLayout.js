@@ -16,13 +16,14 @@ var {
 
 var Toolbar=require('./Toolbar');
 var Scroll=require('./ScrollableTabView');
+var NavigationList=require('./NavigationList')
 
-var DRAWER_WIDTH_LEFT = 156;
+var DRAWER_WIDTH_LEFT =  require('Dimensions').get('window').width  / 4;
 var styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    toolbar: {
+    navigationList: {
         backgroundColor: '#E9EAED',
         flex:1
     },
@@ -34,8 +35,6 @@ class cnodeDrawerLayout extends Component{
     }
     componentDidUpdate()
     {
-        console.log(this.props.actions.openDrawer)
-
         if(this.props.state.drawerState.isDrawerOpen) this.drawer.openDrawer()
     }
     _renderNavigation(){
@@ -50,9 +49,8 @@ class cnodeDrawerLayout extends Component{
     }
     _renderNavigationView(){
         return (
-            <Text style={styles.toolbar}>
-                view
-            </Text>
+            <NavigationList>
+            </NavigationList>
         )
     }
     render()
