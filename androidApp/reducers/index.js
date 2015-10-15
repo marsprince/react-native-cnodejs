@@ -3,10 +3,10 @@
  */
 
 import { combineReducers } from 'redux';
-import drawReducer from './drawerReducer.js';
+import drawerState from './drawerReducer.js';
 
 const rootReducer = combineReducers({
-    drawReducer
+    drawerState
 });
 
 export default rootReducer;

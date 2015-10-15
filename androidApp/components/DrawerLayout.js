@@ -17,20 +17,31 @@ var {
 var Toolbar=require('./Toolbar');
 var Scroll=require('./ScrollableTabView');
 
-var DRAWER_WIDTH_LEFT = 56;
+var DRAWER_WIDTH_LEFT = 156;
+var styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    toolbar: {
+        backgroundColor: '#E9EAED',
+        flex:1
+    },
+});
 
 class cnodeDrawerLayout extends Component{
     constructor(props) {
         super(props);
     }
-    componentDidMount () {
-        if(this.props.isDrawerOpen) this.drawer.openDrawer();
-    }
+    componentDidUpdate()
+    {
+        console.log(this.props.actions.openDrawer)
 
+        if(this.props.state.drawerState.isDrawerOpen) this.drawer.openDrawer()
+    }
     _renderNavigation(){
         return (
             <View>
-                <Toolbar>
+                <Toolbar actions={this.props.actions}>
                 </Toolbar>
                 <Scroll>
                 </Scroll>
@@ -39,7 +50,7 @@ class cnodeDrawerLayout extends Component{
     }
     _renderNavigationView(){
         return (
-            <Text>
+            <Text style={styles.toolbar}>
                 view
             </Text>
         )

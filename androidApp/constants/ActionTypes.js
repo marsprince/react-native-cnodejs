@@ -1,1 +1,0 @@
-exports.OPEN_DRAWER = 'OPEN_DRAWER'

@@ -21,18 +21,14 @@ var styles=StyleSheet.create({
 class cnodeToolbar extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            tab:"最新"
-        }
     }
     render()
     {
-        const { openDrawer} = this.props;
         return (
             <ToolbarAndroid
                 navIcon={require('image!ic_menu_black_24dp')}
                 style={styles.toolbar}
-                onIconClicked={openDrawer}
+                onIconClicked={()=>this.props.actions.openDrawer()}
                 >
             </ToolbarAndroid>
         )

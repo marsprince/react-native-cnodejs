@@ -6,7 +6,8 @@ var {
     View
     } = React
 
-var App=require('./androidApp/components/App')
+var Example=require('./example/containers/app');
+var Cnode=require('./androidApp/containers/app');
 
 class Noder extends Component {
 
@@ -17,8 +18,8 @@ class Noder extends Component {
 
   render() {
     return (
-        <App>
-        </App>
+        <Cnode>
+        </Cnode>
     )
   }
 }
