@@ -15,11 +15,8 @@ var {
     TouchableOpacity,
     } = React;
 
+var ActivityIndicator=require('./ActivityIndicator')
 var styles = StyleSheet.create({
-    navigationList: {
-        backgroundColor: '#E9EAED',
-        flex:1
-    },
     listContainer: {
         flex: 1,
     },
@@ -70,6 +67,27 @@ var styles = StyleSheet.create({
         borderWidth: 1,
         paddingLeft: 8,
     },
+    refresh:{
+
+        width: 36,
+        height: 36,
+        position:'absolute',
+        top:100,
+        right:200,
+
+        borderStyle:'solid',
+        borderRadius : 18,
+        //borderWidth :3,
+        borderTopWidth:3,
+        borderBottomWidth:3,
+        borderRightWidth:3,
+        borderLeftWidth:3,
+        borderColor:'#03ade0',
+        //borderRightWidth:24,
+        //borderRightColor:'#03ade0',
+        //borderRightColor :  '#transparent',
+
+    }
 });
 
 class NavigationList extends Component{
@@ -79,10 +97,7 @@ class NavigationList extends Component{
     render()
     {
         return (
-            <View style={styles.navigationList}>
-               <Text>
-                   cnodejs
-               </Text>
+            <View style={styles.refresh}>
 
             </View>
         )

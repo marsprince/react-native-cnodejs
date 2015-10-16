@@ -49,8 +49,10 @@ class cnodeDrawerLayout extends Component{
     }
     _renderNavigationView(){
         return (
-            <NavigationList>
-            </NavigationList>
+            <View style={styles.navigationList}>
+                <NavigationList>
+                </NavigationList>
+            </View>
         )
     }
     render()
