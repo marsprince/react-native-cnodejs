@@ -13,9 +13,11 @@ var {
     PixelRatio,
     ListView,
     TouchableOpacity,
+    ToastAndroid
     } = React;
 
-var ActivityIndicator=require('./ActivityIndicator')
+var Userinfo=require('./UserInfo')
+var SimpleRow=require('./SimpleRow')
 
 var styles = StyleSheet.create({
 
@@ -45,9 +47,11 @@ class NavigationList extends Component{
     render()
     {
         return (
-            <View >
-                <ActivityIndicator>
-                </ActivityIndicator>
+            <View>
+                <Userinfo>
+                </Userinfo>
+                <SimpleRow text="设置">
+                </SimpleRow>
             </View>
         )
     }

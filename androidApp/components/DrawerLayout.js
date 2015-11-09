@@ -24,7 +24,8 @@ var styles = StyleSheet.create({
         flex: 1,
     },
     navigationList: {
-        backgroundColor: '#E9EAED',
+        //backgroundColor: '#E9EAED',
+        backgroundColor:'white',
         flex:1
     },
 });

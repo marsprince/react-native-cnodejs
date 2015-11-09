@@ -17,15 +17,16 @@ var {
     ScrollView,
 } = React;
 
+var TopicRow=require('./TopicRow');
 var ScrollableTabViewExample = React.createClass({
     render() {
         return (
             <View style={styles.container}>
                 <ScrollableTabView edgeHitWidth={deviceWidth/2} renderTabBar={() => <CustomTabBar />}>
                     <ScrollView tabLabel="最新" style={styles.tabView}>
-                        <View style={styles.card}>
-                            <Text>News</Text>
-                        </View>
+                        <TopicRow >
+
+                        </TopicRow>
                     </ScrollView>
                     <ScrollView tabLabel="分享" style={styles.tabView}>
                         <View style={styles.card}>

@@ -2,7 +2,7 @@ var React = require('react-native')
 var moment = require('moment')
 
 var TopicService = require('../services/TopicService')
-var TopicRow = require('./topicRow')
+var TopicRow = require('./TopicRow')
 
 var window = require('../util/window')
 

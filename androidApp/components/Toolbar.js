@@ -7,7 +7,8 @@ var React=require('react-native');
 var {
     Component,
     ToolbarAndroid,
-    StyleSheet
+    StyleSheet,
+    View
     }=React;
 
 var styles=StyleSheet.create({
@@ -24,13 +25,17 @@ class cnodeToolbar extends Component {
     }
     render()
     {
+        var im={uri:'ic_menu_black_24dp.png'}
         return (
+            <View>
             <ToolbarAndroid
-                navIcon={require('image!ic_menu_black_24dp')}
                 style={styles.toolbar}
+                navIcon={{uri:'http://facebook.github.io/react/img/logo_og.png'}}
+
                 onIconClicked={()=>this.props.actions.openDrawer()}
                 >
             </ToolbarAndroid>
+            </View>
         )
     }
 }
