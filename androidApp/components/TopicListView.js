@@ -6,7 +6,6 @@ var TopicRow = require('./TopicRow')
 
 var window = require('../util/window')
 
-
 var { width, height } = window.get()
 
 var {
@@ -172,64 +171,6 @@ class PageListView extends Component {
         )
     }
 
-
-    _renderTopicFooter(topic) {
-        var renderArr = [];
-        var navs = {
-            ask: '问答',
-            share: '分享',
-            job: '招聘'
-        }
-        var tab = navs[topic.tab] || '分享';
-        var date = moment(topic.last_reply_at).startOf('minute').fromNow();
-
-
-        renderArr.push(
-            <Text
-                key='countText'
-                style={[styles['topicFooter text'],styles['topicFooter count']]}>
-                {topic.reply_count + ' / ' + topic.visit_count}
-            </Text>
-        );
-        renderArr.push(
-            <Text
-                key='tabText'
-                style={[styles['topicFooter text'],styles['topicFooter tab']]}>
-                {tab}
-            </Text>
-        );
-
-        renderArr.push(
-            <Text
-                key='dateText'
-                style={[styles['topicFooter text'],styles['topicFooter date']]}>
-                {date}
-            </Text>
-        );
-
-        if (topic.top) {
-            renderArr.push(
-                <Text
-                    key='topText'
-                    style={[styles['topicFooter text'],styles['topicFooter tab'],styles['topicFooter top']]}>
-                    {'顶'}
-                </Text>
-            );
-        }
-        if (topic.good) {
-            renderArr.push(
-                <Text
-                    key='goodText'
-                    style={[styles['topicFooter text'],styles['topicFooter tab'],styles['topicFooter good']]}>
-                    {'精'}
-                </Text>
-            );
-        }
-        return renderArr;
-
-    }
-
-
     _renderHeader() {
         if (this.state.isLoading && this.state.loadingType == 'update') {
             return this._renderLoading('update')
@@ -237,15 +178,6 @@ class PageListView extends Component {
 
         return null
     }
-
-
-    _renderFooter() {
-        if (this.state.isLoading && this.state.loadingType == 'get') {
-            return this._renderLoading('get')
-        }
-        return null
-    }
-
 
     renderRow(topic, sectionId, rowId, highlightRow) {
         var isVisible = false
@@ -275,11 +207,9 @@ class PageListView extends Component {
                     pagingEnabled={false}
                     removeClippedSubviews={true}
                     dataSource={this.state.ds}
-                    renderRow={this.renderRow.bind(this)}
+                    renderRow={()=>renderRow()}
                     onEndReached={this.onEndReached.bind(this)}
-                    scrollRenderAheadDistance={90}
-                    renderHeader={this._renderHeader.bind(this)}
-                    renderFooter={this._renderFooter.bind(this)}
+
                     />
             </View>
         )

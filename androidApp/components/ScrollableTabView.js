@@ -56,7 +56,6 @@ var styles = StyleSheet.create({
     },
     tabView: {
         width: deviceWidth,
-        padding: 10,
         backgroundColor: 'rgba(0,0,0,0.01)',
     },
     card: {
