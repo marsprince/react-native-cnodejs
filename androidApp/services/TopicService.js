@@ -4,7 +4,6 @@ var Storage = require('./Storage')
 var config = require('../configs/config')
 var tabs = ['good', 'ask', 'all', 'share', 'job']
 
-
 var storage = {}
 
 storage.get = function (tab) {

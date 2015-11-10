@@ -91,6 +91,7 @@ class TopicRow extends Component{
     }
     render()
     {
+        var {topic} =this.props;//https://cnodejs.org/api/v1/topics
         return (
             <TouchableHighlight >
                 <View>
@@ -102,14 +103,14 @@ class TopicRow extends Component{
                                 </Text>
                             </View>
                             <View style={styles.title}>
-                                <Text style={styles.titleText}>
-                                    CNode客户端专题
+                                <Text style={styles.titleText} numberOfLines={1}>
+                                    {topic.title}
                                 </Text>
                             </View>
                         </View>
                         <View style={styles.infoRow}>
                             <View style={styles.avatar}>
-                                <ImageCircle url='https://facebook.github.io/react/img/logo_og.png'
+                                <ImageCircle url={topic.author.avatar_url}
                                              width={40} height={40} borderRadius={20}>
                                 </ImageCircle>
                             </View>
@@ -117,15 +118,15 @@ class TopicRow extends Component{
                             <View style={styles.info}>
                                 <View style={styles.author}>
                                     <Text style={styles.authorText}>
-                                        alsotang
+                                        {topic.author.loginname}
                                     </Text>
                                     <Text style={styles.countText}>
-                                        64/11506
+                                        {topic.reply_count}/{topic.visit_count}
                                     </Text>
                                 </View>
                                 <View style={styles.author}>
                                     <Text style={styles.authorText}>
-                                        创建于：2015-08-08 20:20:33
+                                        创建于：{topic.create_at}
                                     </Text>
                                     <Text style={styles.countText}>
                                         1小时前

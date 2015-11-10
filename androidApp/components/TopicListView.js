@@ -14,7 +14,6 @@ var {
     ScrollView,
     Component,
     Text,
-    StatusBarIOS,
     Image,
     ListView,
     ActivityIndicatorIOS,
@@ -45,19 +44,45 @@ class PageListView extends Component {
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
         this.page = 1
         this.listRows = {}
+        this.data=[]
         this.state = {
-            ds: ds.cloneWithRows(this.props.data),
+            ds: ds.cloneWithRows(this.data),
             isLoading: false,
             loadingPosition: 'top',
             getTopicError: null
         }
     }
 
-
-    componentDidMount() {
-        this._fetchTopic('update')
+    _genRows(){
+        TopicService.req.getTopicsByTab({
+            page: 1,
+            tab: 'ask',
+            limit: 10
+        })
+            .then(topics=> {
+                this.setState({
+                    ds: this.state.ds.cloneWithRows(topics),
+                })
+            })
+            .catch(err=> {
+                console.warn(err)
+                if (type == 'get') {
+                    return err
+                }
+            })
+            .done((err)=> {
+                this.isFreshing = false
+                this.setState({
+                    isLoading: false,
+                    err: err
+                })
+            })
     }
 
+    componentDidMount() {
+        console.log(this)
+        this._genRows()
+    }
 
     shouldComponentUpdate(nextProps, nextState) {
         if (nextProps.data != this.props.data || nextState.isLoading != this.state.isLoading) {
@@ -97,7 +122,6 @@ class PageListView extends Component {
         })
     }
 
-
     _onRowPress(topic) {
         this.props.router.toTopic({
             topic: topic,
@@ -111,15 +135,14 @@ class PageListView extends Component {
 
 
     _fetchTopic(type) {
-        if (this.isFreshing) {
+        /*if (this.isFreshing) {
             if (type == 'get') {
                 this.setState({
                     getTopicError: 'fetchFailed'
                 })
             }
             return
-        }
-
+        }*/
 
         this.isFreshing = true
         this.setState({
@@ -139,8 +162,9 @@ class PageListView extends Component {
             limit: 10
         })
             .then(topics=> {
-                LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
-                type == 'update' ? updateTopics(topics, tab) : getTopics(topics, tab)
+                this.setState({
+                    isLoading: false,
+                })
                 return null
             })
             .catch(err=> {
@@ -171,45 +195,33 @@ class PageListView extends Component {
         )
     }
 
-    _renderHeader() {
-        if (this.state.isLoading && this.state.loadingType == 'update') {
-            return this._renderLoading('update')
-        }
-
-        return null
-    }
-
-    renderRow(topic, sectionId, rowId, highlightRow) {
-        var isVisible = false
-        if (rowId < 10) isVisible = true
+    _renderRow(topic, sectionId, rowId, highlightRow) {
+        console.log(topic)
         return (
             <TopicRow
                 isVisible={true}
                 ref={view => this.listRows[rowId.toString()]=view}
                 key={topic.id}
-                onPress={this._onRowPress.bind(this)}
                 topic={topic}
-                footer={this._renderTopicFooter(topic)}
-                ></TopicRow>
+                >
+            </TopicRow>
         )
     }
 
-
     render() {
+
         return (
-            <View style={[{width:width,height:height - 40},{backgroundColor:'white'}]}>
-                <ListView
+            <View>
+                <ListView style={{backgroundColor:'red',width:width}}
                     ref={view => {this._listView = view}}
                     style={{backgroundColor:'rgba(255,255,255,1)'}}
-                    onScroll={this.onScroll.bind(this)}
+                    //onScroll={()=>onScroll()}
                     showsVerticalScrollIndicator={true}
                     initialListSize={10}
                     pagingEnabled={false}
                     removeClippedSubviews={true}
                     dataSource={this.state.ds}
-                    renderRow={()=>renderRow()}
-                    onEndReached={this.onEndReached.bind(this)}
-
+                    renderRow={this._renderRow}
                     />
             </View>
         )

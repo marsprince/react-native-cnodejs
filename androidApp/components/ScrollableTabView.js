@@ -17,14 +17,22 @@ var {
     ScrollView,
 } = React;
 
-var TopicRow=require('./TopicRow');
+var TopicListView=require('./TopicListView');
+var TopicRow=require('./TopicRow')
+var topic=require('../mocks/topic')
 var ScrollableTabViewExample = React.createClass({
     render() {
         return (
             <View style={styles.container}>
                 <ScrollableTabView edgeHitWidth={deviceWidth/2} renderTabBar={() => <CustomTabBar />}>
                     <ScrollView tabLabel="最新" style={styles.tabView}>
-                        <TopicRow >
+                        <TopicRow topic={topic.data} style={styles.card}>
+
+                        </TopicRow>
+                        <TopicRow topic={topic.data} style={styles.card}>
+
+                        </TopicRow>
+                        <TopicRow topic={topic.data} style={styles.card}>
 
                         </TopicRow>
                     </ScrollView>

@@ -13,7 +13,7 @@ module.exports = {
         "create_at": "2015-05-23T09:51:24.233Z",
         "author": {
             "loginname": "soliury",
-            "avatar_url": "/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"
+            "avatar_url": "https://avatars.githubusercontent.com/u/1147375?v=3&s=120"
         },
         "replies": [{
             "id": "55618d248f294e213d10b82c",
