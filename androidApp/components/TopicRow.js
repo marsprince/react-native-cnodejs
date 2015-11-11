@@ -17,6 +17,8 @@ var {
     } = React;
 
 var ImageCircle=require('./ImageCircle')
+
+
 var styles = StyleSheet.create({
     row:{
         height:90,
@@ -91,7 +93,9 @@ class TopicRow extends Component{
     }
     render()
     {
+        var moment=require('moment');
         var {topic} =this.props;//https://cnodejs.org/api/v1/topics
+        //moment.locale('zh-cn')
         return (
             <TouchableHighlight >
                 <View>
@@ -110,7 +114,7 @@ class TopicRow extends Component{
                         </View>
                         <View style={styles.infoRow}>
                             <View style={styles.avatar}>
-                                <ImageCircle url={topic.author.avatar_url}
+                                <ImageCircle url={topic.author.avatar_url.startsWith("http")?topic.author.avatar_url:"http:"+topic.author.avatar_url}
                                              width={40} height={40} borderRadius={20}>
                                 </ImageCircle>
                             </View>
@@ -126,10 +130,10 @@ class TopicRow extends Component{
                                 </View>
                                 <View style={styles.author}>
                                     <Text style={styles.authorText}>
-                                        创建于：{topic.create_at}
+                                        创建于：{moment(topic.create_at).format('YYYY-MM-DD hh:mm:ss')}
                                     </Text>
                                     <Text style={styles.countText}>
-                                        1小时前
+                                        {moment(topic.last_reply_at).startOf('hour').fromNow()}
                                     </Text>
                                 </View>
                             </View>

@@ -38,15 +38,15 @@ var extendsStyles = StyleSheet.create({
     }
 });
 
+var mocks=require('../mocks/topic')
 class PageListView extends Component {
     constructor(porps) {
         super(porps)
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-        this.page = 1
-        this.listRows = {}
-        this.data=[]
+
+        this.data=[mocks.data,mocks.data]
         this.state = {
-            ds: ds.cloneWithRows(this.data),
+            ds: ds,
             isLoading: false,
             loadingPosition: 'top',
             getTopicError: null
@@ -60,7 +60,9 @@ class PageListView extends Component {
             limit: 10
         })
             .then(topics=> {
+                console.log(topics)
                 this.setState({
+                    isLoading: false,
                     ds: this.state.ds.cloneWithRows(topics),
                 })
             })
@@ -80,128 +82,13 @@ class PageListView extends Component {
     }
 
     componentDidMount() {
-        console.log(this)
-        this._genRows()
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.data != this.props.data || nextState.isLoading != this.state.isLoading) {
-            return true
-        }
-        return false
-    }
-
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.data !== this.props.data) {
-            //console.log(this.props.data.length);
-            //LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-            this.setState({
-                ds: this.state.ds.cloneWithRows(nextProps.data)
-            })
-        }
-    }
-
-
-    onEndReached() {
-        this._fetchTopic('get')
-    }
-
-    onScroll(e) {
-        if (e.nativeEvent.contentOffset.y < -90) {
-            this._fetchTopic('update')
-        }
-    }
-
-    scrollToTop() {
-        this._listView.setNativeProps({
-            contentOffset: {
-                x: 0,
-                y: 0
-            }
-        })
-    }
-
-    _onRowPress(topic) {
-        this.props.router.toTopic({
-            topic: topic,
-            from: 'home'
-        })
-    }
-
-    _onGetAgainPress() {
-        this._fetchTopic('get')
-    }
-
-
-    _fetchTopic(type) {
-        /*if (this.isFreshing) {
-            if (type == 'get') {
-                this.setState({
-                    getTopicError: 'fetchFailed'
-                })
-            }
-            return
-        }*/
-
-        this.isFreshing = true
-        this.setState({
-            isLoading: true,
-            loadingType: type
-        })
-
-        var page = (type == 'update') ? 1 : this.page + 1
-        var tab = this.props.tab.name
-        var actions = this.props.actions
-        var getTopics = actions.getTopicsByTab
-        var updateTopics = actions.updateTopicsByTab
-
-        TopicService.req.getTopicsByTab({
-            page: page,
-            tab: tab,
-            limit: 10
-        })
-            .then(topics=> {
-                this.setState({
-                    isLoading: false,
-                })
-                return null
-            })
-            .catch(err=> {
-                console.warn(err)
-                if (type == 'get') {
-                    return err
-                }
-            })
-            .done((err)=> {
-                this.isFreshing = false
-                this.setState({
-                    isLoading: false,
-                    err: err
-                })
-                this.page = page
-            })
-    }
-
-
-    _renderLoading(loadingType) {
-        return (
-            <ActivityIndicatorIOS
-                hidesWhenStopped={false}
-                size="large"
-                animating={true}
-                style={[extendsStyles['loading'+loadingType]]}
-                />
-        )
+        this._genRows();
     }
 
     _renderRow(topic, sectionId, rowId, highlightRow) {
-        console.log(topic)
         return (
             <TopicRow
-                isVisible={true}
-                ref={view => this.listRows[rowId.toString()]=view}
-                key={topic.id}
+                //ref={view => this.listRows[rowId.toString()]=view}
                 topic={topic}
                 >
             </TopicRow>
@@ -212,16 +99,16 @@ class PageListView extends Component {
 
         return (
             <View>
-                <ListView style={{backgroundColor:'red',width:width}}
+                <ListView
                     ref={view => {this._listView = view}}
                     style={{backgroundColor:'rgba(255,255,255,1)'}}
                     //onScroll={()=>onScroll()}
                     showsVerticalScrollIndicator={true}
                     initialListSize={10}
                     pagingEnabled={false}
-                    removeClippedSubviews={true}
                     dataSource={this.state.ds}
                     renderRow={this._renderRow}
+                    style={{flex:1, backgroundColor: 'white'}}
                     />
             </View>
         )

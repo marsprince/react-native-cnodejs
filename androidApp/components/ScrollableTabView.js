@@ -26,15 +26,9 @@ var ScrollableTabViewExample = React.createClass({
             <View style={styles.container}>
                 <ScrollableTabView edgeHitWidth={deviceWidth/2} renderTabBar={() => <CustomTabBar />}>
                     <ScrollView tabLabel="最新" style={styles.tabView}>
-                        <TopicRow topic={topic.data} style={styles.card}>
+                        <TopicListView topic={topic.data} style={styles.card}>
 
-                        </TopicRow>
-                        <TopicRow topic={topic.data} style={styles.card}>
-
-                        </TopicRow>
-                        <TopicRow topic={topic.data} style={styles.card}>
-
-                        </TopicRow>
+                        </TopicListView>
                     </ScrollView>
                     <ScrollView tabLabel="分享" style={styles.tabView}>
                         <View style={styles.card}>
