@@ -1,14 +1,14 @@
 var React = require('react-native')
 
 // Components
-var User = require('../containers/User')
-var Topic = require('../containers/Topic')
-var Comments = require('../containers/Comments')
-var Message = require('../containers/Message')
-var QRCode = require('../containers/QRCode')
-var About = require('../containers/About')
-var Publish = require('../containers/Publish')
-
+//var User = require('../containers/User')
+//var Topic = require('../containers/Topic')
+//var Comments = require('../containers/Comments')
+//var Message = require('../containers/Message')
+//var QRCode = require('../containers/QRCode')
+//var About = require('../containers/About')
+//var Publish = require('../containers/Publish')
+var TopicInfoListView=require('../components/TopicInfoListView')
 // Config
 var sceneConfig = require('./sceneConfig')
 
@@ -19,10 +19,10 @@ var {
 
 var customFloatFromRight = sceneConfig.customFloatFromRight
 
-
 class Router {
     constructor(navigator) {
         this.navigator = navigator
+        this.length=this.navigator.getCurrentRoutes().length
     }
 
     push(props, route) {
@@ -47,9 +47,9 @@ class Router {
         })
     }
 
-    toTopic(props) {
+    toTopicInfoListView(props) {
         this.push(props, {
-            component: Topic,
+            component: TopicInfoListView,
             name: 'topic',
             sceneConfig: customFloatFromRight
         })

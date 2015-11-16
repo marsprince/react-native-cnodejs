@@ -1,8 +1,13 @@
+/**
+ * Created by mars on 2015/11/16.
+ * 每个帖子的详情列表
+ */
+
 var React = require('react-native')
 var moment = require('moment')
 
 var TopicService = require('../services/TopicService')
-var TopicRow = require('./TopicRow')
+var TopicInfoRow = require('./TopicInfoRow')
 
 var window = require('../util/window')
 
@@ -17,10 +22,7 @@ var {
     Image,
     ListView,
     ActivityIndicatorIOS,
-    TouchableHighlight,
-    LayoutAnimation,
-    TouchableOpacity,
-    ToastAndroid
+    TouchableHighlight
     } = React
 
 
@@ -40,77 +42,26 @@ var extendsStyles = StyleSheet.create({
 });
 
 var mocks=require('../mocks/topic')
-class TopicListView extends Component {
+class TopicInfoListView extends Component {
     constructor(porps) {
         super(porps)
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+        //var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
-        this.data=[mocks.data,mocks.data]
         this.state = {
-            ds: ds,
+            //ds: ds,
             isLoading: false,
             loadingPosition: 'top',
             getTopicError: null
         }
     }
 
-    _genRows(){
-        TopicService.req.getTopicsByTab({
-            page: 1,
-            tab: 'ask',
-            limit: 10
-        })
-            .then(topics=> {
-
-                this.setState({
-                    isLoading: false,
-                    ds: this.state.ds.cloneWithRows(topics),
-                })
-            })
-            .catch(err=> {
-                console.warn(err)
-            })
-            .done((err)=> {
-                this.isFreshing = false
-                this.setState({
-                    isLoading: false,
-                    err: err
-                })
-            })
-    }
-
-    componentDidMount() {
-        this._genRows();
-    }
-
-    _renderRow(topic, sectionId, rowId, highlightRow) {
-        return (
-            <TopicRow
-                //ref={view => this.listRows[rowId.toString()]=view}
-                topic={topic}
-                router={this.props.router}
-                >
-            </TopicRow>
-        )
-    }
-
-
-
     render() {
 
         return (
             <View>
-                <ListView
-                    ref={view => {this._listView = view}}
-                    style={{backgroundColor:'rgba(255,255,255,1)'}}
-                    //onScroll={()=>onScroll()}
-                    showsVerticalScrollIndicator={true}
-                    initialListSize={10}
-                    pagingEnabled={false}
-                    dataSource={this.state.ds}
-                    renderRow={this._renderRow.bind(this)}
-                    style={{flex:1, backgroundColor: 'white'}}
-                    />
+               <Text>
+                   {this.props.router.length}
+               </Text>
             </View>
         )
     }
@@ -200,4 +151,5 @@ var styles = StyleSheet.create({
     }
 })
 
-module.exports = TopicListView;
+module.exports = TopicInfoListView;
+

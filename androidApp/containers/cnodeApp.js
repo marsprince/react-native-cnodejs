@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import * as cnodeActions from '../actions/drawerActions.js';
 import { connect } from 'react-redux/native';
 
-var DrawerLayout=require('../components/DrawerLayout');
+var Navitation=require('./Navitation');
 var Toolbar=require('../components/Toolbar');
 var ScrollView=require('../components/ScrollableTabView')
 
@@ -15,18 +15,18 @@ class HomePage extends Component{
   }
   render()
   {
-    const { root,dispatch } = this.props;
+    const {state,dispatch } = this.props;
     const actions = bindActionCreators(cnodeActions, dispatch);
     return (
-        <DrawerLayout actions={actions} state={root}>
-        </DrawerLayout>
+        <Navitation actions={actions} state={state}>
+        </Navitation>
     )
   }
 }
 
 function mapStateToProps(state) {
   return {
-    root: state
+    state: state
   };
 }
 export default connect(mapStateToProps)(HomePage);

@@ -30,8 +30,7 @@ class cnodeToolbar extends Component {
             <View>
             <ToolbarAndroid
                 style={styles.toolbar}
-                navIcon={{uri:'http://facebook.github.io/react/img/logo_og.png'}}
-
+                navIcon={require('../../image/ic_action_list.png')}
                 onIconClicked={()=>this.props.actions.openDrawer()}
                 >
             </ToolbarAndroid>

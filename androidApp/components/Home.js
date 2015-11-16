@@ -30,7 +30,7 @@ var styles = StyleSheet.create({
     },
 });
 
-class cnodeDrawerLayout extends Component{
+class Home extends Component{
     constructor(props) {
         super(props);
     }
@@ -43,7 +43,7 @@ class cnodeDrawerLayout extends Component{
             <View>
                 <Toolbar actions={this.props.actions}>
                 </Toolbar>
-                <Scroll>
+                <Scroll router={this.props.router}>
                 </Scroll>
             </View>
         )
@@ -71,4 +71,4 @@ class cnodeDrawerLayout extends Component{
     }
 }
 
-module.exports=cnodeDrawerLayout
+module.exports=Home

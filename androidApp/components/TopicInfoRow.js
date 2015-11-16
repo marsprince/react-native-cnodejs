@@ -1,6 +1,6 @@
 /**
- * Created by liujia on 2015/11/2.
- * ä¸»é¢˜æ­£æ–‡è¡Œ
+ * Created by mars on 2015/11/16.
+ * Ö÷ÌâÏêÏ¸ÐÅÏ¢µÄÂ¥Ö÷²¿·Ö
  */
 
 'use strict';
@@ -13,12 +13,10 @@ var {
     View,
     TouchableHighlight,
     PixelRatio,
-    Image,
-    ToastAndroid
+    Image
     } = React;
 
 var ImageCircle=require('./ImageCircle')
-
 
 var styles = StyleSheet.create({
     row:{
@@ -85,19 +83,15 @@ var styles = StyleSheet.create({
         color: '#888888',
         lineHeight: 20,
         textAlign:'right',
+    },
+    webView:{
+
     }
 });
 
-class TopicRow extends Component{
+class TopicInfoRow extends Component{
     constructor(props) {
         super(props);
-    }
-    _onPress(id)
-    {
-        ToastAndroid.show(id,ToastAndroid.SHORT)
-        this.props.router.toTopicInfoListView({
-            id:id
-        })
     }
     render()
     {
@@ -105,21 +99,12 @@ class TopicRow extends Component{
         var {topic} =this.props;//https://cnodejs.org/api/v1/topics
         //moment.locale('zh-cn')
         return (
-            <TouchableHighlight  onPress={()=>{this._onPress(topic.id)}}>
+            <View>
                 <View>
+                    <View style={styles.title}>
+                        {topic.title}
+                    </View>
                     <View style={styles.row}>
-                        <View style={styles.titleRow}>
-                            <View style={styles.category}>
-                                <Text style={styles.categoryText}>
-                                    ç½®é¡¶
-                                </Text>
-                            </View>
-                            <View style={styles.title}>
-                                <Text style={styles.titleText} numberOfLines={1}>
-                                    {topic.title}
-                                </Text>
-                            </View>
-                        </View>
                         <View style={styles.infoRow}>
                             <View style={styles.avatar}>
                                 <ImageCircle url={topic.author.avatar_url.startsWith("http")?topic.author.avatar_url:"http:"+topic.author.avatar_url}
@@ -133,25 +118,28 @@ class TopicRow extends Component{
                                         {topic.author.loginname}
                                     </Text>
                                     <Text style={styles.countText}>
-                                        {topic.reply_count}/{topic.visit_count}
+                                        {topic.tab}
                                     </Text>
                                 </View>
                                 <View style={styles.author}>
                                     <Text style={styles.authorText}>
-                                        åˆ›å»ºäºŽï¼š{moment(topic.create_at).format('YYYY-MM-DD hh:mm:ss')}
+                                        ·¢²¼ÓÚ£º{moment(topic.create_at).format('YYYY-MM-DD hh:mm:ss')}
                                     </Text>
                                     <Text style={styles.countText}>
-                                        {moment(topic.last_reply_at).startOf('hour').fromNow()}
+                                        {topic.visit_count}´Îä¯ÀÀ
                                     </Text>
                                 </View>
                             </View>
                         </View>
                     </View>
+                   <View style={styles.webView}>
+                       this is webview
+                   </View>
                     <View style={styles.separator} />
                 </View>
-            </TouchableHighlight>
+            </View>
         )
     }
 }
 
-module.exports=TopicRow
+module.exports=TopicInfoRow
