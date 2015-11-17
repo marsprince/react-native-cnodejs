@@ -8,8 +8,9 @@
   "dependencies": {
     "moment": "^2.10.6",
     "query-string": "^2.4.0",
-    "react-native": "^0.14.1",
+    "react-native": "^0.15.0-rc",
     "react-native-scrollable-tab-view": "^0.1.10",
+    "react-native-vector-icons":"0.8.5",
     "redux":"v3.0.2",
     "react-redux":"v3.1.0",
     "redux-thunk":"v1.0.0"
