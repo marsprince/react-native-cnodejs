@@ -23,22 +23,6 @@ var {
     ToastAndroid
     } = React
 
-
-var extendsStyles = StyleSheet.create({
-    topic: {
-        width: width - 100
-    },
-    loadingupdate: {
-        width: width,
-        marginTop: 20
-    },
-    loadingget: {
-        width: width,
-        marginBottom: 20,
-        marginTop: 20
-    }
-});
-
 var mocks=require('../mocks/topic')
 class TopicListView extends Component {
     constructor(porps) {
@@ -109,7 +93,6 @@ class TopicListView extends Component {
                     pagingEnabled={false}
                     dataSource={this.state.ds}
                     renderRow={this._renderRow.bind(this)}
-                    style={{flex:1, backgroundColor: 'white'}}
                     />
             </View>
         )

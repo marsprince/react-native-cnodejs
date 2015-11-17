@@ -8,7 +8,8 @@ var {
     Component,
     ToolbarAndroid,
     StyleSheet,
-    View
+    View,
+    Image
     }=React;
 
 var styles=StyleSheet.create({
@@ -23,17 +24,20 @@ class cnodeToolbar extends Component {
     constructor(props) {
         super(props);
     }
+    componentDidMount()
+    {
+
+    }
     render()
     {
-        var im={uri:'ic_menu_black_24dp.png'}
         return (
             <View>
-            <ToolbarAndroid
-                style={styles.toolbar}
-                navIcon={require('../../image/ic_action_list.png')}
-                onIconClicked={()=>this.props.actions.openDrawer()}
-                >
-            </ToolbarAndroid>
+                <ToolbarAndroid
+                    style={styles.toolbar}
+                    navIcon={require("./ic_menu_black_24dp.png")}
+                    onIconClicked={()=>this.props.actions.openDrawer()}
+                    >
+                </ToolbarAndroid>
             </View>
         )
     }

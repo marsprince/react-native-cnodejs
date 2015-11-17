@@ -1,6 +1,6 @@
 /**
  * Created by mars on 2015/11/16.
- * ÷˜Ã‚œÍœ∏–≈œ¢µƒ¬•÷˜≤ø∑÷
+ * ‰∏ªÈ¢òËØ¶ÁªÜ‰ø°ÊÅØÁöÑÊ•º‰∏ªÈÉ®ÂàÜ
  */
 
 'use strict';
@@ -17,6 +17,7 @@ var {
     } = React;
 
 var ImageCircle=require('./ImageCircle')
+var cnodeUtil=require('../util/cnodeUtil')
 
 var styles = StyleSheet.create({
     row:{
@@ -102,7 +103,9 @@ class TopicInfoRow extends Component{
             <View>
                 <View>
                     <View style={styles.title}>
-                        {topic.title}
+                        <Text style={styles.titleText}>
+                            {topic.title}
+                        </Text>
                     </View>
                     <View style={styles.row}>
                         <View style={styles.infoRow}>
@@ -118,22 +121,24 @@ class TopicInfoRow extends Component{
                                         {topic.author.loginname}
                                     </Text>
                                     <Text style={styles.countText}>
-                                        {topic.tab}
+                                        {cnodeUtil.getCategory(topic.tab)}
                                     </Text>
                                 </View>
                                 <View style={styles.author}>
                                     <Text style={styles.authorText}>
-                                        ∑¢≤º”⁄£∫{moment(topic.create_at).format('YYYY-MM-DD hh:mm:ss')}
+                                        ÂèëÂ∏É‰∫éÔºö{moment(topic.create_at).format('YYYY-MM-DD hh:mm:ss')}
                                     </Text>
                                     <Text style={styles.countText}>
-                                        {topic.visit_count}¥Œ‰Ø¿¿
+                                        {topic.visit_count}Ê¨°ÊµèËßà
                                     </Text>
                                 </View>
                             </View>
                         </View>
                     </View>
                    <View style={styles.webView}>
-                       this is webview
+                       <Text style={styles.authorText}>
+                           this is webview
+                       </Text>
                    </View>
                     <View style={styles.separator} />
                 </View>

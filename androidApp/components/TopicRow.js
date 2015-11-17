@@ -13,8 +13,7 @@ var {
     View,
     TouchableHighlight,
     PixelRatio,
-    Image,
-    ToastAndroid
+    Image
     } = React;
 
 var ImageCircle=require('./ImageCircle')
@@ -94,7 +93,6 @@ class TopicRow extends Component{
     }
     _onPress(id)
     {
-        ToastAndroid.show(id,ToastAndroid.SHORT)
         this.props.router.toTopicInfoListView({
             id:id
         })

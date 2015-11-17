@@ -7,7 +7,8 @@ var React = require('react-native')
 var moment = require('moment')
 
 var TopicService = require('../services/TopicService')
-var TopicInfoRow = require('./TopicInfoRow')
+var TopicInfoRow = require('./TopicInfoRow');
+var ReplyRow=require('./ReplyRow')
 
 var window = require('../util/window')
 
@@ -25,43 +26,85 @@ var {
     TouchableHighlight
     } = React
 
-
-var extendsStyles = StyleSheet.create({
-    topic: {
-        width: width - 100
-    },
-    loadingupdate: {
-        width: width,
-        marginTop: 20
-    },
-    loadingget: {
-        width: width,
-        marginBottom: 20,
-        marginTop: 20
-    }
-});
-
+var NavigationTitleBar=require("./NavigationTitleBar");
+var TopicInfoRow=require("./TopicInfoRow")
 var mocks=require('../mocks/topic')
+
 class TopicInfoListView extends Component {
     constructor(porps) {
         super(porps)
-        //var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-
+        var replyDs = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
         this.state = {
-            //ds: ds,
+            replyDs: replyDs,
+            topicDs:null,
             isLoading: false,
             loadingPosition: 'top',
             getTopicError: null
         }
     }
 
-    render() {
+    _genRows(){
+        TopicService.req.getTopicById(this.props.id)
+            .then(topic=> {
+                this.setState({
+                    isLoading: false,
+                    topicDs:topic,
+                    replyDs: this.state.replyDs.cloneWithRows(topic.replies),
+                })
+            })
+            .catch(err=> {
+                console.warn(err)
+            })
+            .done((err)=> {
+                this.isFreshing = false
+                this.setState({
+                    isLoading: false,
+                    err: err
+                })
+            })
+    }
 
+    componentDidMount() {
+        this._genRows();
+    }
+
+    _renderRow(reply, sectionId, rowId, highlightRow) {
+        return (
+            <ReplyRow
+                //ref={view => this.listRows[rowId.toString()]=view}
+                reply={reply}
+                row={rowId}
+                router={this.props.router}
+                >
+            </ReplyRow>
+        )
+    }
+
+    render() {
+        var topicAll=this.state.topicDs;
+        if (!topicAll) {
+            return (
+                <View style={styles.container}>
+                   <Text>wait...</Text>
+                </View>
+            )
+        }
         return (
             <View>
-               <Text>
-                   {this.props.router.length}
-               </Text>
+               <NavigationTitleBar>
+               </NavigationTitleBar>
+                <TopicInfoRow topic={topicAll}>
+                </TopicInfoRow>
+                <ListView
+                    ref={view => {this._listView = view}}
+                    style={{backgroundColor:'rgba(255,255,255,1)'}}
+                    //onScroll={()=>onScroll()}
+                    showsVerticalScrollIndicator={true}
+                    initialListSize={10}
+                    pagingEnabled={false}
+                    dataSource={this.state.replyDs}
+                    renderRow={this._renderRow.bind(this)}
+                    />
             </View>
         )
     }

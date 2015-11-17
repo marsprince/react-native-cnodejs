@@ -28,13 +28,13 @@ class Navitation extends Component {
             }
             return false;
         })
-       /* this.props.actions.getLoginUserFromStorage()
-        this.props.actions.getAllTopicsFromStorage()
+       // this.props.actions.getLoginUserFromStorage()
+        //this.props.actions.getAllTopicsFromStorage()
 
         this.navigator.navigationContext.addListener('didfocus', e => {
             let route = e.data.route
             this[route.name] && this[route.name].componentDidFocus && this[route.name].componentDidFocus()
-        })*/
+        })
     }
 
 
