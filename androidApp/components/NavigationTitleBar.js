@@ -14,7 +14,7 @@ var {
     PixelRatio,
     Image
     } = React;
-var Icon = require('react-native-vector-icons/FontAwesome');
+
 var styles = StyleSheet.create({
     navBar:{
         backgroundColor: '#2C2C2C',
@@ -36,8 +36,7 @@ class NavigationTitleBar extends Component{
     {
         return (
             <View style={styles.navBar}>
-                    <Icon name="rocket">
-                    </Icon>
+
             </View>
         )
     }

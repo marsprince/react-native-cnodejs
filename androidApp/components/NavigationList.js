@@ -18,6 +18,7 @@ var {
 
 var Userinfo=require('./UserInfo')
 var SimpleRow=require('./SimpleRow')
+var TopicListView=require('./TopicListView')
 
 var styles = StyleSheet.create({
 
@@ -47,11 +48,10 @@ class NavigationList extends Component{
     render()
     {
         return (
-            <View>
-                <Userinfo>
-                </Userinfo>
-                <SimpleRow text="设置">
-                </SimpleRow>
+            <View style={{flex:1}}>
+                <TopicListView >
+
+                </TopicListView>
             </View>
         )
     }

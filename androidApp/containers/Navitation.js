@@ -6,7 +6,8 @@ var {
     PropTypes,
     Component,
     Navigator,
-    BackAndroid
+    BackAndroid,
+    StyleSheet
     } = React
 
 class Navitation extends Component {
@@ -66,12 +67,20 @@ class Navitation extends Component {
             <Navigator
                 ref={view => this.navigator=view}
                 initialRoute={this.initialRoute}
+                style={styles.navigator}
                 configureScene={this.configureScene.bind(this)}
                 renderScene={this.renderScene.bind(this)}
                 />
         )
     }
 }
+
+
+var styles = StyleSheet.create({
+    "navigator":{
+        flex:1
+    }
+})
 
 Navitation.propTypes = {
     actions: PropTypes.object

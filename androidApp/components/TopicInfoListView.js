@@ -37,7 +37,7 @@ class TopicInfoListView extends Component {
         this.state = {
             replyDs: replyDs,
             topicDs:null,
-            isLoading: false,
+            isLoading: true,
             loadingPosition: 'top',
             getTopicError: null
         }
@@ -73,28 +73,37 @@ class TopicInfoListView extends Component {
             <ReplyRow
                 //ref={view => this.listRows[rowId.toString()]=view}
                 reply={reply}
-                row={rowId}
+                row={parseInt(rowId)+1}
                 router={this.props.router}
                 >
             </ReplyRow>
         )
     }
 
+    _renderHeader()
+    {
+        return(
+            <TopicInfoRow topic={this.state.topicDs}>
+            </TopicInfoRow>
+        )
+    }
+
     render() {
-        var topicAll=this.state.topicDs;
-        if (!topicAll) {
+        let isLoading=this.state.isLoading;
+        if (isLoading) {
             return (
                 <View style={styles.container}>
+                    <NavigationTitleBar>
+                    </NavigationTitleBar>
                    <Text>wait...</Text>
                 </View>
             )
         }
         return (
-            <View>
+            <View style={{flex:1}}>
                <NavigationTitleBar>
                </NavigationTitleBar>
-                <TopicInfoRow topic={topicAll}>
-                </TopicInfoRow>
+
                 <ListView
                     ref={view => {this._listView = view}}
                     style={{backgroundColor:'rgba(255,255,255,1)'}}
@@ -104,6 +113,7 @@ class TopicInfoListView extends Component {
                     pagingEnabled={false}
                     dataSource={this.state.replyDs}
                     renderRow={this._renderRow.bind(this)}
+                    renderHeader={()=>this._renderHeader()}
                     />
             </View>
         )

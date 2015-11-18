@@ -40,7 +40,7 @@ class Home extends Component{
     }
     _renderNavigation(){
         return (
-            <View>
+            <View style={{flex:1}}>
                 <Toolbar actions={this.props.actions}>
                 </Toolbar>
                 <Scroll router={this.props.router}>
