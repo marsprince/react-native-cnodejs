@@ -23,11 +23,13 @@ var {
     Image,
     ListView,
     ActivityIndicatorIOS,
-    TouchableHighlight
+    TouchableHighlight,
+    InteractionManager
     } = React
 
 var NavigationTitleBar=require("./NavigationTitleBar");
 var TopicInfoRow=require("./TopicInfoRow")
+
 var mocks=require('../mocks/topic')
 
 class TopicInfoListView extends Component {
@@ -38,6 +40,7 @@ class TopicInfoListView extends Component {
             replyDs: replyDs,
             topicDs:null,
             isLoading: true,
+            isReady:false,
             loadingPosition: 'top',
             getTopicError: null
         }
@@ -65,7 +68,10 @@ class TopicInfoListView extends Component {
     }
 
     componentDidMount() {
-        this._genRows();
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({isReady: true});
+            this._genRows()
+        })
     }
 
     _renderRow(reply, sectionId, rowId, highlightRow) {
@@ -89,8 +95,7 @@ class TopicInfoListView extends Component {
     }
 
     render() {
-        let isLoading=this.state.isLoading;
-        if (isLoading) {
+        if (!this.state.isReady || this.state.isLoading) {
             return (
                 <View style={styles.container}>
                     <NavigationTitleBar>
@@ -99,6 +104,7 @@ class TopicInfoListView extends Component {
                 </View>
             )
         }
+
         return (
             <View style={{flex:1}}>
                <NavigationTitleBar>

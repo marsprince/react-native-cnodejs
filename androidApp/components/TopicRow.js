@@ -63,6 +63,7 @@ var styles = StyleSheet.create({
     },
     avatar:{
         flex:1,
+        alignItems:"center"
     },
     info:{
         flex:8,
@@ -102,6 +103,7 @@ class TopicRow extends Component{
         var moment=require('moment');
         var {topic} =this.props;//https://cnodejs.org/api/v1/topics
         //moment.locale('zh-cn')
+
         return (
             <TouchableHighlight  onPress={()=>{this._onPress(topic.id)}}>
                 <View>

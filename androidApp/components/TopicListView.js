@@ -86,8 +86,15 @@ class TopicListView extends Component {
         this._genRows();
     }
     render() {
-        let isLoading=this.state.isLoading;
-        if (isLoading) {
+        /*if(!this.props.isRender)
+        {
+            return (
+                <View style={styles.container}>
+                <Text>wwwwwwwwwwwwait...</Text>
+                    </View>
+            )
+        }*/
+        if (this.state.isLoading) {
             return (
                 <View style={styles.container}>
                     <Text>moha...</Text>
