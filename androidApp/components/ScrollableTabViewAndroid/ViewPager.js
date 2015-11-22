@@ -50,7 +50,7 @@ var ViewPager = React.createClass({
 
   render() {
     return (
-      <View>
+      <View >
         {this.props.position == 'top' ? this.renderTabBar() : null}
         <ViewPagerAndroid ref={(comp) => {this.viewPager = comp}}
           onPageScroll={this.onPageScroll}
@@ -58,7 +58,7 @@ var ViewPager = React.createClass({
           style={{
             flexDirection:'row',
             backgroundColor:'#ccc',
-            height: this.props.height || 300,
+            height: this.props.height || DimensionsHelper.SCREEN_HEIGHT,
             width: this.props.width || DimensionsHelper.SCREEN_WIDTH
           }}
           >

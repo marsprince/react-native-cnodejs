@@ -3,3 +3,5 @@
  */
 
 exports.OPEN_DRAWER = 'OPEN_DRAWER'
+exports.LOGIN = 'LOGIN'
+exports.LOGOUT = 'LOGOUT'

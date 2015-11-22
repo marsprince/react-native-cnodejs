@@ -8,6 +8,7 @@ var React = require('react-native')
 //var QRCode = require('../containers/QRCode')
 //var About = require('../containers/About')
 //var Publish = require('../containers/Publish')
+var BarCode=require('../components/BarCode')
 var TopicInfoListView=require('../components/TopicInfoListView')
 // Config
 var sceneConfig = require('./sceneConfig')
@@ -55,6 +56,14 @@ class Router {
         })
     }
 
+    toBarCode(props)
+    {
+        this.push(props, {
+            component: BarCode,
+            name: 'barCode',
+            sceneConfig: customFloatFromRight
+        })
+    }
     toComments(props) {
         this.push(props, {
             component: Comments,

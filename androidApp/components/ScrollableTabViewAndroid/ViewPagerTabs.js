@@ -60,7 +60,7 @@ var ViewPagerTabs = React.createClass({
           styles.tab,
           {width: DimensionsHelper.SCREEN_WIDTH/this.props.children.length}]}
         onPress={() => this.goToPage(page)}>
-        <View>
+        <View style={{flex:1}}>
           <Text style={textStyle}>{child.props.tabLabel}</Text>
         </View>
       </TouchableOpacity>
@@ -88,7 +88,7 @@ var styles = StyleSheet.create({
     borderColor: '#eee'
   },
   tab:{
-    height: 45,
+    height: 35,
     paddingBottom: 5,
     justifyContent: 'center',
     alignItems: 'center'
@@ -97,7 +97,7 @@ var styles = StyleSheet.create({
     height: 4,
     backgroundColor: '#999',
     position:'absolute',
-    top: 42,
+    top: 32,
     left: 0
   }
 })

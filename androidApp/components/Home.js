@@ -51,7 +51,7 @@ class Home extends Component{
     _renderNavigationView(){
         return (
             <View style={styles.navigationList}>
-                <NavigationList>
+                <NavigationList router={this.props.router}>
                 </NavigationList>
             </View>
         )
@@ -64,7 +64,7 @@ class Home extends Component{
                 drawerWidth={Dimensions.get('window').width - DRAWER_WIDTH_LEFT}
                 keyboardDismissMode="on-drag"
                 ref={(drawer) => { this.drawer = drawer; }}
-                renderNavigationView={this._renderNavigationView}>
+                renderNavigationView={this._renderNavigationView.bind(this)}>
                 {this._renderNavigation()}
             </DrawerLayoutAndroid>
         );

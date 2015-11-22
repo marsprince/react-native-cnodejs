@@ -4,7 +4,7 @@
 
 var types = require('./actionTypes')
 
-exports.openDrawer=function openDrawerModal() {
+export function openDrawer() {
 
     return {
         type: types.OPEN_DRAWER,

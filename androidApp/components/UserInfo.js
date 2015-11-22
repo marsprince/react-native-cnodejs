@@ -11,21 +11,31 @@ var {
     StyleSheet,
     Text,
     View,
+    Image
     } = React;
 
 var ImageCircle=require('./ImageCircle')
 var styles = StyleSheet.create({
     userInfo:{
-        height:100
+        height:150,
+        backgroundColor:'pink'
     },
     text:{
         fontSize: 15,
         color: '#888888',
         lineHeight: 20,
-        marginBottom:15
+        marginTop:20,
+        marginLeft:10,
     },
-    avatar:{
-        marginBottom:15
+    image:{
+        flex:1,
+    },
+    userAvatar:{
+        marginTop:10,
+        marginLeft:10,
+        width:80,
+        height:80,
+        borderRadius:40
     }
 });
 
@@ -38,12 +48,11 @@ class SimpleRow extends Component{
         var {text,onPress}=this.props;
         return (
             <View style={styles.userInfo}>
-                <ImageCircle url='https://facebook.github.io/react/img/logo_og.png'
-                             width={50} height={50} borderRadius={25}>
-                </ImageCircle>
-                <Text style={styles.text}>
-                    点击头像登录
-                </Text>
+                <Image source={require("../../image/defaultUser.png")} style={styles.userAvatar}>
+                </Image>
+                    <Text style={styles.text}>
+                        点击头像登录
+                    </Text>
             </View>
         )
     }
