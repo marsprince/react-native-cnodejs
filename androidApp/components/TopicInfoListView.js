@@ -1,6 +1,6 @@
 /**
  * Created by mars on 2015/11/16.
- * Ã¿¸öÌû×ÓµÄÏêÇéÁĞ±í
+ * æ¯ä¸ªå¸–å­çš„è¯¦æƒ…åˆ—è¡¨
  */
 
 var React = require('react-native')
@@ -98,7 +98,7 @@ class TopicInfoListView extends Component {
         if (!this.state.isReady || this.state.isLoading) {
             return (
                 <View style={styles.container}>
-                    <NavigationTitleBar>
+                    <NavigationTitleBar text="è¯é¢˜" router={this.props.router}>
                     </NavigationTitleBar>
                    <Text>wait...</Text>
                 </View>
@@ -107,7 +107,7 @@ class TopicInfoListView extends Component {
 
         return (
             <View style={{flex:1}}>
-               <NavigationTitleBar>
+               <NavigationTitleBar text="è¯é¢˜" router={this.props.router}>
                </NavigationTitleBar>
 
                 <ListView

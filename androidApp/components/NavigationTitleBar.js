@@ -11,19 +11,29 @@ var {
     StyleSheet,
     Text,
     View,
-    PixelRatio,
-    Image
+    Image,
+    TouchableHighlight
     } = React;
+
+var Icon = require('react-native-vector-icons/MaterialIcons');
 
 var styles = StyleSheet.create({
     navBar:{
         backgroundColor: '#2C2C2C',
-        height:56
+        height:56,
+        flexDirection:"row",
+        paddingLeft:10,
     },
     text:{
-        fontSize: 15,
-        color: '#888888',
-        lineHeight: 20,
+        flex:10,
+        fontSize: 19,
+        color: '#FFFFFF',
+        marginTop:10,
+        marginLeft:10,
+        textAlign:'left',
+    },
+    back:{
+        marginTop:8,
     }
 });
 
@@ -32,11 +42,27 @@ class NavigationTitleBar extends Component{
         super(props);
     }
 
+    _onPress()
+    {
+        if (this.props.router && this.props.router.length > 1) {
+            this.props.router.pop();
+        }
+    }
+
     render()
     {
         return (
             <View style={styles.navBar}>
-
+                <TouchableHighlight onPress={this._onPress.bind(this)}>
+                    <View style={{flex:1}}>
+                        <Icon name="arrow-back" size={30} color="#FFFFFF" style={styles.back}/>
+                    </View>
+                </TouchableHighlight>
+                <View style={{flex:10}}>
+                    <Text style={styles.text}>
+                        {this.props.text}
+                    </Text>
+                </View>
             </View>
         )
     }
