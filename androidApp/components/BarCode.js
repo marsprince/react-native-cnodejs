@@ -10,8 +10,8 @@ var {
     View,
     }=React
 
-var BarcodeScanner = require('./barcode/barCode');
-var NavBar=require('./NavigationTitleBar')
+var BarcodeScanner = require('./BarCode/BarCode');
+var NavBar=require('./ToolBar/BasicToolBar')
 var UserService=require('../services/UserService')
 
 var Barcode = React.createClass({
@@ -29,7 +29,7 @@ var Barcode = React.createClass({
     render() {
         return (
             <View style={{flex:1}}>
-                <NavBar text="扫描二维码">
+                <NavBar text="扫描二维码" router={this.props.router}>
                 </NavBar>
                 <BarcodeScanner
                     onBarCodeRead={this.barcodeReceived}

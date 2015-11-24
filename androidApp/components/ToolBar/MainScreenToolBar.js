@@ -1,6 +1,5 @@
 /**
- * Created by mars on 2015/11/16.
- * µ¼º½Ìõ
+ * Created by mars on 2015/11/24.
  */
 
 'use strict';
@@ -37,7 +36,7 @@ var styles = StyleSheet.create({
     }
 });
 
-class NavigationTitleBar extends Component{
+class MainScreenToolBar extends Component{
     constructor(props) {
         super(props);
     }
@@ -49,23 +48,31 @@ class NavigationTitleBar extends Component{
         }
     }
 
+    _renderText(text)
+    {
+        return(
+            <Text style={styles.text}>
+                {text}
+            </Text>
+        )
+    }
+
     render()
     {
+        const {drawerOpen} =this.props
         return (
             <View style={styles.navBar}>
-                <TouchableHighlight onPress={this._onPress.bind(this)}>
+                <TouchableHighlight onPress={drawerOpen?drawerOpen:null}>
                     <View style={{flex:1}}>
-                        <Icon name="arrow-back" size={30} color="#FFFFFF" style={styles.back}/>
+                        <Icon name="view-list" size={30} color="#FFFFFF" style={styles.back}/>
                     </View>
                 </TouchableHighlight>
                 <View style={{flex:10}}>
-                    <Text style={styles.text}>
-                        {this.props.text}
-                    </Text>
+                    {this.props.text ? this._renderText(this.props.text) : null}
                 </View>
             </View>
         )
     }
 }
 
-module.exports=NavigationTitleBar
+module.exports=MainScreenToolBar

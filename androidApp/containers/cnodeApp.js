@@ -6,7 +6,6 @@ import * as cnodeActions from '../actions/drawerActions.js';
 import { connect } from 'react-redux/native';
 
 var Navitation=require('./Navitation');
-var Toolbar=require('../components/Toolbar');
 var ScrollView=require('../components/ScrollableTabView')
 
 class HomePage extends Component{

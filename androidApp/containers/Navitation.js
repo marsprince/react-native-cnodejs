@@ -7,12 +7,16 @@ var {
     Component,
     Navigator,
     BackAndroid,
-    StyleSheet
+    StyleSheet,
+    ToastAndroid
     } = React
+
+var Storage=require('../services/Storage');
 
 class Navitation extends Component {
     constructor(props) {
         super(props)
+        this.backCount=0;
         this.initialRoute = {
             name: 'home',
             index: 0,
@@ -20,12 +24,23 @@ class Navitation extends Component {
         }
     }
 
-
     componentDidMount() {
         BackAndroid.addEventListener('hardwareBackPress',()=> {
             if (this.router && this.router.length > 1) {
                 this.router.pop();
                 return true;
+            }
+            else{
+                if(this.backCount==0)
+                {
+                    ToastAndroid.show("再点击一次返回桌面",ToastAndroid.SHORT);
+                    this.backCount++;
+                    return true;
+                }
+                else{
+                    this.backCount=0;
+                    return false;
+                }
             }
             return false;
         })
@@ -33,6 +48,7 @@ class Navitation extends Component {
         //this.props.actions.getAllTopicsFromStorage()
 
         this.navigator.navigationContext.addListener('didfocus', e => {
+            this.backCount=0;
             let route = e.data.route
             this[route.name] && this[route.name].componentDidFocus && this[route.name].componentDidFocus()
         })

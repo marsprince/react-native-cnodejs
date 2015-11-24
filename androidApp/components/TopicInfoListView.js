@@ -27,7 +27,7 @@ var {
     InteractionManager
     } = React
 
-var NavigationTitleBar=require("./NavigationTitleBar");
+var NavigationTitleBar=require("./ToolBar/BasicToolBar");
 var TopicInfoRow=require("./TopicInfoRow")
 
 var mocks=require('../mocks/topic')

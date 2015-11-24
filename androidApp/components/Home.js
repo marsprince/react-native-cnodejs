@@ -14,9 +14,9 @@ var {
     Text,
     } = React;
 
-var Toolbar=require('./Toolbar');
 var Scroll=require('./ScrollableTabView');
-var NavigationList=require('./NavigationList')
+var NavigationList=require('./NavigationList');
+var MainScreenToolBar=require('./ToolBar/MainScreenToolBar')
 
 var DRAWER_WIDTH_LEFT =  require('Dimensions').get('window').width  / 4;
 var styles = StyleSheet.create({
@@ -41,8 +41,11 @@ class Home extends Component{
     _renderNavigation(){
         return (
             <View style={{flex:1}}>
-                <Toolbar actions={this.props.actions}>
-                </Toolbar>
+                <MainScreenToolBar
+                    text="全部"
+                    drawerOpen={()=>this.drawer.openDrawer()}
+                    >
+                </MainScreenToolBar>
                 <Scroll router={this.props.router}>
                 </Scroll>
             </View>

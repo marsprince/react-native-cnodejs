@@ -52,7 +52,8 @@ var ViewPagerTabs = React.createClass({
     var isTabActive = this.state.activeTab === page;
     var textStyle = {
       color: isTabActive ? '#666' : '#999',
-      fontWeight: isTabActive ? 'bold' : 'normal'
+      fontWeight: isTabActive ? 'bold' : 'normal',
+      flex:1
     }
     return (
       <TouchableOpacity
@@ -85,7 +86,8 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderColor: '#eee'
+    borderColor: '#eee',
+    backgroundColor:'2C2C2C'
   },
   tab:{
     height: 35,
