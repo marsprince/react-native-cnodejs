@@ -23,7 +23,7 @@ var ViewPagerTabs = React.createClass({
   },
 
   moveActiveLine:function(e){
-    console.log("ViewPagerTabs.moveActiveLine", e.nativeEvent);
+
     var width = DimensionsHelper.SCREEN_WIDTH
     var tabWidth = width / this.props.children.length;
     var left = (tabWidth * (e.nativeEvent.offset || 0)) + (tabWidth * e.nativeEvent.position);
@@ -41,13 +41,6 @@ var ViewPagerTabs = React.createClass({
     this.setState({activeTab: e.nativeEvent.position});
   },
 
-  // goto(2)
-  goToPage: function(page){
-    console.log("goToPage", page);
-    this.props.viewPager().setPage(page);
-    this.setState({activeTab: page});
-  },
-
   renderTab(child, page){
     var isTabActive = this.state.activeTab === page;
     var textStyle = {
@@ -60,7 +53,7 @@ var ViewPagerTabs = React.createClass({
         style={[
           styles.tab,
           {width: DimensionsHelper.SCREEN_WIDTH/this.props.children.length}]}
-        onPress={() => this.goToPage(page)}>
+        onPress={() => this.props.goToPage(page)}>
         <View style={{flex:1}}>
           <Text style={textStyle}>{child.props.tabLabel}</Text>
         </View>

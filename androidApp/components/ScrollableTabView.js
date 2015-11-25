@@ -70,11 +70,16 @@ class ScrollableTabViewExample extends Component{
 
         })
     }
+
+    _onChangeTab(i){
+        ToastAndroid.show(i.toString(),ToastAndroid.SHORT)
+    }
+
     render() {
 
         return (
             <View style={styles.container}>
-                <ScrollableTabView position="top" bar='tabs' edgeHitWidth={deviceWidth/2} renderTabBar={() => <DefaultTabBar />} style={{flex:1}} >
+                <ScrollableTabView onChangeTab={this._onChangeTab} position="top" bar='tabs' edgeHitWidth={deviceWidth/2} renderTabBar={() => <DefaultTabBar />} style={{flex:1}} >
                     {this._renderTab()}
                 </ScrollableTabView>
             </View>

@@ -12,8 +12,8 @@ var ViewPagerDots = require("./ViewPagerDots");
 var DimensionsHelper = require("./DimensionsHelper");
 
 var ViewPager = React.createClass({
-  componentDidMount: function(){
-    console.log("ViewPager componentDidMount");
+  componentDidMount(){
+
   },
 
   getDefaultProps: function(){
@@ -26,7 +26,9 @@ var ViewPager = React.createClass({
   },
 
   goToPage: function(page){
+    this.viewPager.setPage(page);
     this.setState({activeTab: page});
+    this.props.onChangeTab && this.props.onChangeTab(page);
   },
 
   onPageScroll: function(e){
@@ -35,14 +37,12 @@ var ViewPager = React.createClass({
 
   onPageSelected: function(e){
     this.tabs.onPageSelected(e);
-    this.props.onChangeTab && this.props.onChangeTab({
-      i: e
-    });
+    this.props.onChangeTab && this.props.onChangeTab(e.nativeEvent.position);
   },
 
   renderTabBar() {
     if (this.props.bar === 'tabs') {
-      return <ViewPagerTabs children={this.props.children} viewPager={() => {return this.viewPager}} ref={(comp) => {this.tabs = comp}} />;;
+      return <ViewPagerTabs goToPage={this.goToPage} children={this.props.children} viewPager={() => {return this.viewPager}} ref={(comp) => {this.tabs = comp}} />;;
     } else {
       return <ViewPagerDots children={this.props.children} viewPager={() => {return this.viewPager}} ref={(comp) => {this.tabs = comp}} />;;
     }

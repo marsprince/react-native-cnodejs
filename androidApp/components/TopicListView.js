@@ -109,6 +109,7 @@ class TopicListView extends Component {
                     showsVerticalScrollIndicator={true}
                     initialListSize={10}
                     pagingEnabled={false}
+                    removeClippedSubviews={true}
                     dataSource={this.state.ds}
                     renderRow={this._renderRow.bind(this)}
                     onEndReached={this._onEndReached.bind(this)}
