@@ -23,7 +23,6 @@ var ViewPagerTabs = React.createClass({
   },
 
   moveActiveLine:function(e){
-
     var width = DimensionsHelper.SCREEN_WIDTH
     var tabWidth = width / this.props.children.length;
     var left = (tabWidth * (e.nativeEvent.offset || 0)) + (tabWidth * e.nativeEvent.position);
@@ -40,6 +39,12 @@ var ViewPagerTabs = React.createClass({
     // this.moveActiveLine(e);
     this.setState({activeTab: e.nativeEvent.position});
   },
+
+  // goto(2)
+ /* goToPage: function(page){
+    this.props.viewPager().setPage(page);
+    this.setState({activeTab: page});
+  },*/
 
   renderTab(child, page){
     var isTabActive = this.state.activeTab === page;

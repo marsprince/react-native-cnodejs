@@ -8,23 +8,25 @@ var React = require('react-native');
 
 var {
     View,
+    Component
     }=React
 
 var BarcodeScanner = require('./BarCode/BarCode');
 var NavBar=require('./ToolBar/BasicToolBar')
 var UserService=require('../services/UserService')
 
-var Barcode = React.createClass({
-    getInitialState() {
-        return ({
+class BarCode extends Component{
+    constructor(porps) {
+        super(porps);
+        this.state={
             torchMode: 'off',
             cameraType: 'back',
-        });
-    },
+        }
+    }
 
-    barcodeReceived(e) {
+    _barcodeReceived(e) {
         UserService.req.checkToken(e.data)
-    },
+    }
 
     render() {
         return (
@@ -32,7 +34,7 @@ var Barcode = React.createClass({
                 <NavBar text="扫描二维码" router={this.props.router}>
                 </NavBar>
                 <BarcodeScanner
-                    onBarCodeRead={this.barcodeReceived}
+                    onBarCodeRead={this._barcodeReceived}
                     style={{ flex: 1 }}
                     torchMode={this.state.torchMode}
                     cameraType={this.state.cameraType}
@@ -42,6 +44,6 @@ var Barcode = React.createClass({
 
         );
     }
-});
+};
 
-module.exports=Barcode
+module.exports=BarCode

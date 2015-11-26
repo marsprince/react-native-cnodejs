@@ -16,6 +16,7 @@ var {
 
 var styles = StyleSheet.create({
     row:{
+        height:40,
         backgroundColor: 'white',
         justifyContent: 'center',
         paddingHorizontal: 15,
@@ -40,8 +41,8 @@ class SimpleRow extends Component{
     {
         var {text,onPress}=this.props;
         return (
-            <TouchableOpacity onPress={()=>onPress()}>
-                <View>
+            <TouchableOpacity onPress={()=>onPress?onPress():null}>
+                <View style={{flex:1}}>
                     <View style={styles.row}>
                         <Text style={styles.text}>
                             {text}

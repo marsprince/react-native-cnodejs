@@ -22,6 +22,7 @@ var styles = StyleSheet.create({
         height:56,
         flexDirection:"row",
         paddingLeft:10,
+        paddingRight:10,
     },
     text:{
         flex:10,
@@ -32,6 +33,9 @@ var styles = StyleSheet.create({
         textAlign:'left',
     },
     back:{
+        marginTop:8,
+    },
+    write:{
         marginTop:8,
     }
 });
@@ -59,10 +63,10 @@ class MainScreenToolBar extends Component{
 
     render()
     {
-        const {drawerOpen} =this.props
+        const {drawerOpen,writeTopic} =this.props
         return (
             <View style={styles.navBar}>
-                <TouchableHighlight onPress={drawerOpen?drawerOpen:null}>
+                <TouchableHighlight activeOpacity={0} onPress={drawerOpen?drawerOpen:null}>
                     <View style={{flex:1}}>
                         <Icon name="view-list" size={30} color="#FFFFFF" style={styles.back}/>
                     </View>
@@ -70,6 +74,11 @@ class MainScreenToolBar extends Component{
                 <View style={{flex:10}}>
                     {this.props.text ? this._renderText(this.props.text) : null}
                 </View>
+                <TouchableHighlight activeOpacity={0} onPress={writeTopic?writeTopic:null}>
+                    <View style={{flex:1}}>
+                        <Icon name="edit" size={30} color="#FFFFFF" style={styles.write}/>
+                    </View>
+                </TouchableHighlight>
             </View>
         )
     }

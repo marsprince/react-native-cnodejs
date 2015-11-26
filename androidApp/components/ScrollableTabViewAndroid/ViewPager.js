@@ -26,9 +26,14 @@ var ViewPager = React.createClass({
   },
 
   goToPage: function(page){
-    this.viewPager.setPage(page);
+
     this.setState({activeTab: page});
-    this.props.onChangeTab && this.props.onChangeTab(page);
+    this.viewPager.setPage(page);
+    console.log(page)
+    this.props.onChangeTab && this.props.onChangeTab({
+      i:page,
+      ref: this.props.children[page]
+    });
   },
 
   onPageScroll: function(e){
@@ -37,7 +42,10 @@ var ViewPager = React.createClass({
 
   onPageSelected: function(e){
     this.tabs.onPageSelected(e);
-    this.props.onChangeTab && this.props.onChangeTab(e.nativeEvent.position);
+    this.props.onChangeTab && this.props.onChangeTab({
+      i:e.nativeEvent.position,
+      ref: this.props.children[e.nativeEvent.position]
+    });
   },
 
   renderTabBar() {

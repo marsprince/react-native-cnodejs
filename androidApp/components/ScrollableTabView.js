@@ -21,6 +21,7 @@ var {
 
 var TopicListView=require('./TopicListView');
 var ScrollableTabView = Platform.OS=="android"?require("./ScrollableTabViewAndroid/ViewPager"):require('react-native-scrollable-tab-view');
+//var ScrollableTabView=require('react-native-scrollable-tab-view')
 var DefaultTabBar=require("./DefaultTabBar")
 
 var cnodeUtil=require('../util/cnodeUtil')
@@ -33,16 +34,12 @@ class ScrollableTabViewExample extends Component{
             {tab:"share"},
             {tab:"ask"},
             {tab:"job"},
-        ]
+        ];
         this.state={
            tabData:this.data,
-            selectedTab:0
+            selectedTab:0,
         }
     }
-   /* _onChangeTab({i}){
-        ToastAndroid.show(i,ToastAndroid.SHORT)
-        this.setState({selectedTab: i})
-    }*/
 
     _renderTab()
     {
@@ -51,7 +48,7 @@ class ScrollableTabViewExample extends Component{
             {
                 return (
                     <View tabLabel="最新" style={styles.tabView}>
-                        <TopicListView router={this.props.router} /*isRender={i==this.state.selectedTab?true:false}*/>
+                        <TopicListView router={this.props.router} isRender={i==this.state.selectedTab?true:false}>
 
                         </TopicListView>
                     </View>
@@ -61,7 +58,7 @@ class ScrollableTabViewExample extends Component{
             {
                 return (
                     <View tabLabel={cnodeUtil.getCategory(tab['tab'])} style={styles.tabView}>
-                        <TopicListView router={this.props.router} tab={tab['tab']} /*isRender={i==this.state.selectedTab?true:false}*/>
+                        <TopicListView router={this.props.router} tab={tab['tab']} isRender={i==this.state.selectedTab?true:false}>
 
                         </TopicListView>
                     </View>
@@ -71,15 +68,19 @@ class ScrollableTabViewExample extends Component{
         })
     }
 
-    _onChangeTab(i){
-        ToastAndroid.show(i.toString(),ToastAndroid.SHORT)
+    _onChangeTab({i,ref}){
+        setTimeout(()=>{
+            this.setState({
+                selectedTab:i
+            })
+        },300)
     }
 
     render() {
 
         return (
             <View style={styles.container}>
-                <ScrollableTabView onChangeTab={this._onChangeTab} position="top" bar='tabs' edgeHitWidth={deviceWidth/2} renderTabBar={() => <DefaultTabBar />} style={{flex:1}} >
+                <ScrollableTabView onChangeTab={this._onChangeTab.bind(this)} position="top" bar='tabs' edgeHitWidth={deviceWidth/2} renderTabBar={() => <DefaultTabBar />} style={{flex:1}} >
                     {this._renderTab()}
                 </ScrollableTabView>
             </View>

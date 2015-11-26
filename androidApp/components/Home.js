@@ -42,7 +42,6 @@ class Home extends Component{
         return (
             <View style={{flex:1}}>
                 <MainScreenToolBar
-                    text="全部"
                     drawerOpen={()=>this.drawer.openDrawer()}
                     >
                 </MainScreenToolBar>

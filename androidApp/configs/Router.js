@@ -5,8 +5,7 @@ var React = require('react-native')
 //var Topic = require('../containers/Topic')
 //var Comments = require('../containers/Comments')
 //var Message = require('../containers/Message')
-//var QRCode = require('../containers/QRCode')
-//var About = require('../containers/About')
+var About = require('../components/About')
 //var Publish = require('../containers/Publish')
 var BarCode=require('../components/BarCode')
 var TopicInfoListView=require('../components/TopicInfoListView')
@@ -64,6 +63,15 @@ class Router {
             sceneConfig: customFloatFromRight
         })
     }
+
+    toAbout() {
+        this.push({}, {
+            component: About,
+            name: 'about',
+            sceneConfig: customFloatFromRight
+        })
+    }
+
     toComments(props) {
         this.push(props, {
             component: Comments,
@@ -88,14 +96,6 @@ class Router {
         })
     }
 
-
-    toAbout() {
-        this.push({}, {
-            component: About,
-            name: 'about',
-            sceneConfig: sceneConfig.customFloatFromBottom
-        })
-    }
 
 
     toPublish() {

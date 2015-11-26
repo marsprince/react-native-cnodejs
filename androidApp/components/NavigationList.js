@@ -45,8 +45,8 @@ class NavigationList extends Component{
     constructor(props) {
         super(props);
     }
-    _onPress(){
-        this.props.router.toBarCode()
+    _onPressAbout(){
+        this.props.router.toAbout()
     }
     render()
     {
@@ -54,7 +54,7 @@ class NavigationList extends Component{
             <View style={{flex:1}}>
                 <Userinfo >
                 </Userinfo>
-                <SimpleRow text="登录" onPress={this._onPress.bind(this)} router={this.props.router}>
+                <SimpleRow text="关于" onPress={this._onPressAbout.bind(this)} router={this.props.router}>
                 </SimpleRow>
             </View>
         )
