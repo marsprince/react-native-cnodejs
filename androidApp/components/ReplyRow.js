@@ -18,57 +18,38 @@ var {
 
 var ImageCircle=require('./ImageCircle')
 
+import CommentHtml from "./htmlRender/CommentHtml.js"
+var Icon=require("react-native-vector-icons/MaterialIcons")
+
 var styles = StyleSheet.create({
     row:{
-        height:90,
-        paddingLeft:10,
-        paddingRight:10,
+        height:60,
+        paddingLeft:15,
+        paddingRight:15,
+        marginTop:10,
+        marginBottom:10,
         flex:1,
         backgroundColor: 'white',
+        flexDirection:'row',
     },
     separator:{
         height: 1 / PixelRatio.get(),
         backgroundColor: '#bbbbbb',
-    },
-    titleRow:{
-        height:30,
-        marginTop:10,
-        flexDirection:'row',
-    },
-    category:{
-        flex:1,
-        backgroundColor:'lightgreen',
-        borderRadius:10,
-        marginBottom:5
-    },
-    title:{
-        flex:8,
-        marginLeft:10,
-    },
-    categoryText:{
-        fontSize: 14,
-        marginTop:2,
-        textAlign:'center',
     },
     titleText:{
         fontSize: 16,
         fontWeight: '500',
         textAlign:'left'
     },
-    infoRow:{
-        height:40,
-        marginBottom:10,
-        flexDirection:'row',
+    info:{
+        flex:6,
+        paddingLeft:10
     },
     avatar:{
         flex:1,
     },
-    info:{
-        flex:8,
-        marginBottom:10,
-        marginLeft:10
-    },
-    author:{
+    action:{
+        flex:2,
         flexDirection:'row',
     },
     authorText:{
@@ -78,14 +59,21 @@ var styles = StyleSheet.create({
         lineHeight: 20,
     },
     countText:{
-        flex:1,
+        flex:3,
         fontSize: 14,
         color: '#888888',
         lineHeight: 20,
-        textAlign:'right',
+    },
+    agreeText:{
+        textAlign :'center',
+        fontSize: 20,
+        color: '#888888',
+        lineHeight:26,
     },
     webView:{
-
+        paddingLeft:15,
+        paddingRight:15,
+        flex:1
     }
 });
 
@@ -99,43 +87,47 @@ class ReplyRow extends Component{
         var {reply,row} =this.props;//https://cnodejs.org/api/v1/topics
         //moment.locale('zh-cn')
         return (
-            <View>
-                <View>
-                    <View style={styles.row}>
-                        <View style={styles.infoRow}>
-                            <View style={styles.avatar}>
-                                <ImageCircle url={reply.author.avatar_url.startsWith("http")?reply.author.avatar_url:"http:"+reply.author.avatar_url}
+            <View style={{flex:1}}>
+                <View style={styles.row}>
+                    <View style={styles.avatar}>
+                        <ImageCircle url={reply.author.avatar_url.startsWith("http")?reply.author.avatar_url:"http:"+reply.author.avatar_url}
                                              width={40} height={40} borderRadius={20}>
-                                </ImageCircle>
-                            </View>
+                        </ImageCircle>
+                    </View>
 
-                            <View style={styles.info}>
-                                <View style={styles.author}>
-                                    <Text style={styles.authorText}>
-                                        {reply.author.loginname}
-                                    </Text>
-                                    <Text style={styles.countText}>
-                                        {reply.ups.length}人点赞
-                                    </Text>
-                                </View>
-                                <View style={styles.author}>
-                                    <Text style={styles.countText}>
-                                        {row}楼
-                                    </Text>
-                                    <Text style={styles.authorText}>
-                                        {moment(reply.create_at).format('YYYY-MM-DD hh:mm:ss')}
-                                    </Text>
-                                </View>
-                            </View>
+                    <View style={styles.info}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.authorText}>
+                                    {reply.author.loginname}
+                            </Text>
+                            <Text style={styles.authorText}>
+                                {row}楼 {moment(reply.create_at).startOf('hour').fromNow()}
+                            </Text>
                         </View>
                     </View>
-                    <View style={styles.webView}>
-                        <Text style={styles.authorText}>
-                            this is webview
-                        </Text>
+
+                    <View style={styles.action}>
+                        <TouchableHighlight activeOpacity={1} style={{flex:1}} onPress={null}>
+                            <View style={{flex:1,flexDirection:'row'}}>
+                                <Icon name="thumb-up" size={25} color="#000000" style={{flex:1}}/>
+                                <Text style={[styles.agreeText,{flex:1}]}>
+                                    {reply.ups.length}
+                                </Text>
+                            </View>
+                        </TouchableHighlight>
+                        <TouchableHighlight activeOpacity={1} style={{flex:1}} onPress={null}>
+                            <View style={{flex:1,flexDirection:'row'}}>
+                                <Icon name="reply" size={25} color="#000000" style={{flex:1}}/>
+                            </View>
+                        </TouchableHighlight>
                     </View>
-                    <View style={styles.separator} />
                 </View>
+                <View style={styles.webView}>
+                    <CommentHtml content={reply.content} router={this.props.router}>
+
+                    </CommentHtml>
+                </View>
+                <View style={styles.separator} />
             </View>
         )
     }

@@ -23,6 +23,9 @@ var {
     } = React
 
 var localConfig=require("../configs/localConfig")
+
+import Loading from "./Loading.js";
+
 class TopicListView extends Component {
     constructor(porps) {
         super(porps)
@@ -88,16 +91,13 @@ class TopicListView extends Component {
     render() {
         if(!this.props.isRender)
         {
-            return (
-                <View style={styles.container}>
-                <Text>wwwwwwwwwwwwait...</Text>
-                    </View>
-            )
+            return null
         }
         if (this.state.isLoading) {
             return (
-                <View style={styles.container}>
-                    <Text>moha...</Text>
+                <View style={{flex:1,alignItems:'center',justifyContent :'center'}}>
+                    <Loading>
+                    </Loading>
                 </View>
             )
         }
