@@ -14,7 +14,9 @@ var {
     Image
     } = React;
 
-var ImageCircle=require('./ImageCircle')
+var ImageCircle=require('./ImageCircle');
+var UserService=require('../services/UserService')
+
 var styles = StyleSheet.create({
     userInfo:{
         height:150,
@@ -42,19 +44,58 @@ var styles = StyleSheet.create({
 class SimpleRow extends Component{
     constructor(props) {
         super(props);
+        this.state={
+            isLogin:false,
+            userData:null
+        }
     }
-    render()
+
+    componentWillMount(){
+        UserService.storage.getUser().then((data)=>{
+            console.log(data)
+           this.setState({
+                isLogin:true,
+                userData:data
+               })
+        })
+    }
+
+    _notLoginRender()
     {
-        var {text,onPress}=this.props;
-        return (
+        return(
             <View style={styles.userInfo}>
                 <Image source={require("../../image/defaultUser.png")} style={styles.userAvatar}>
                 </Image>
-                    <Text style={styles.text}>
-                        点击头像登录
-                    </Text>
+                <Text style={styles.text}>
+                    点击头像登录
+                </Text>
             </View>
         )
+    }
+
+    _loginRender()
+    {
+        const userData=this.state.userData
+        return(
+            <View style={styles.userInfo}>
+                <Image source={{uri:userData.avatar_url}} style={styles.userAvatar}>
+                </Image>
+                <Text style={styles.text}>
+                    {userData.loginname}
+                </Text>
+            </View>
+        )
+    }
+
+    render()
+    {
+        if(this.state.isLogin)
+        {
+            return this._loginRender()
+        }
+        else{
+            return this._notLoginRender()
+        }
     }
 }
 

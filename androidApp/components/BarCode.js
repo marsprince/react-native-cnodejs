@@ -25,7 +25,9 @@ class BarCode extends Component{
     }
 
     _barcodeReceived(e) {
-        UserService.req.checkToken(e.data)
+        UserService.req.checkToken(e.data).then(data=>{
+            console.log(data)
+        })
     }
 
     render() {
