@@ -19,11 +19,12 @@ var {
 var ImageCircle=require('./ImageCircle')
 var cnodeUtil=require('../util/cnodeUtil')
 
+import CommentHtml from "./htmlRender/CommentHtml.js"
+
 var styles = StyleSheet.create({
     row:{
-        height:90,
-        paddingLeft:10,
-        paddingRight:10,
+        paddingLeft:15,
+        paddingRight:15,
         flex:1,
         backgroundColor: 'white',
     },
@@ -32,7 +33,7 @@ var styles = StyleSheet.create({
         backgroundColor: '#bbbbbb',
     },
     titleRow:{
-        height:30,
+        flex:1,
         marginTop:10,
         flexDirection:'row',
     },
@@ -43,8 +44,10 @@ var styles = StyleSheet.create({
         marginBottom:5
     },
     title:{
-        flex:8,
-        marginLeft:10,
+        flex:1,
+        paddingTop:15,
+        paddingLeft:15,
+        marginBottom:10
     },
     categoryText:{
         fontSize: 14,
@@ -57,8 +60,8 @@ var styles = StyleSheet.create({
         textAlign:'left'
     },
     infoRow:{
-        height:40,
-        marginBottom:10,
+        flex:1,
+        marginBottom:5,
         flexDirection:'row',
     },
     avatar:{
@@ -86,7 +89,9 @@ var styles = StyleSheet.create({
         textAlign:'right',
     },
     webView:{
-
+        paddingLeft:15,
+        paddingRight:15,
+        flex:1
     }
 });
 
@@ -101,47 +106,45 @@ class TopicInfoRow extends Component{
         //moment.locale('zh-cn')
         return (
             <View>
-                <View>
-                    <View style={styles.title}>
-                        <Text style={styles.titleText}>
-                            {topic.title}
-                        </Text>
-                    </View>
-                    <View style={styles.row}>
-                        <View style={styles.infoRow}>
-                            <View style={styles.avatar}>
-                                <ImageCircle url={topic.author.avatar_url.startsWith("http")?topic.author.avatar_url:"http:"+topic.author.avatar_url}
+                <View style={styles.title}>
+                    <Text style={styles.titleText}>
+                        {topic.title}
+                    </Text>
+                </View>
+                <View style={styles.row}>
+                    <View style={styles.infoRow}>
+                        <View style={styles.avatar}>
+                            <ImageCircle url={topic.author.avatar_url.startsWith("http")?topic.author.avatar_url:"http:"+topic.author.avatar_url}
                                              width={40} height={40} borderRadius={20}>
-                                </ImageCircle>
-                            </View>
+                            </ImageCircle>
+                        </View>
 
-                            <View style={styles.info}>
-                                <View style={styles.author}>
-                                    <Text style={styles.authorText}>
-                                        {topic.author.loginname}
-                                    </Text>
-                                    <Text style={styles.countText}>
-                                        {cnodeUtil.getCategory(topic.tab)}
-                                    </Text>
-                                </View>
-                                <View style={styles.author}>
-                                    <Text style={styles.authorText}>
-                                        发布于：{moment(topic.create_at).format('YYYY-MM-DD hh:mm:ss')}
-                                    </Text>
-                                    <Text style={styles.countText}>
-                                        {topic.visit_count}次浏览
-                                    </Text>
-                                </View>
+                        <View style={styles.info}>
+                            <View style={styles.author}>
+                                <Text style={styles.authorText}>
+                                    {topic.author.loginname}
+                                </Text>
+                                <Text style={styles.countText}>
+                                    {cnodeUtil.getCategory(topic.tab)}
+                                </Text>
                             </View>
+                           <View style={styles.author}>
+                               <Text style={styles.authorText}>
+                                   发布于：{moment(topic.create_at).startOf('hour').fromNow()}
+                               </Text>
+                               <Text style={styles.countText}>
+                                   {topic.visit_count}次浏览
+                               </Text>
+                           </View>
                         </View>
                     </View>
-                   <View style={styles.webView}>
-                       <Text style={styles.authorText}>
-                           this is webview
-                       </Text>
-                   </View>
-                    <View style={styles.separator} />
                 </View>
+                <View style={styles.webView}>
+                    <CommentHtml content={topic.content} router={this.props.router}>
+
+                    </CommentHtml>
+                </View>
+                <View style={styles.separator} />
             </View>
         )
     }

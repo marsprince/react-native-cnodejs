@@ -30,7 +30,7 @@ var {
 var NavigationTitleBar=require("./ToolBar/BasicToolBar");
 var TopicInfoRow=require("./TopicInfoRow")
 
-var mocks=require('../mocks/topic')
+import Loading from './Loading.js'
 
 class TopicInfoListView extends Component {
     constructor(porps) {
@@ -89,7 +89,7 @@ class TopicInfoListView extends Component {
     _renderHeader()
     {
         return(
-            <TopicInfoRow topic={this.state.topicDs}>
+            <TopicInfoRow topic={this.state.topicDs} router={this.props.router}>
             </TopicInfoRow>
         )
     }
@@ -97,10 +97,13 @@ class TopicInfoListView extends Component {
     render() {
         if (!this.state.isReady || this.state.isLoading) {
             return (
-                <View style={styles.container}>
+                <View style={{flex:1}}>
                     <NavigationTitleBar text="话题" router={this.props.router}>
                     </NavigationTitleBar>
-                   <Text>wait...</Text>
+                    <View style={{flex:1,alignItems:'center',justifyContent :'center'}}>
+                        <Loading>
+                        </Loading>
+                    </View>
                 </View>
             )
         }
