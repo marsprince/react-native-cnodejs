@@ -21,13 +21,16 @@ var ImageCircle=require('./ImageCircle')
 import CommentHtml from "./htmlRender/CommentHtml.js"
 var Icon=require("react-native-vector-icons/MaterialIcons")
 
+/*moment*/
+import moment from "moment"
+import zh_cn from "moment/locale/zh-cn.js"
+moment.locale('zh-cn',zh_cn)
+
 var styles = StyleSheet.create({
     row:{
-        height:60,
         paddingLeft:15,
         paddingRight:15,
         marginTop:10,
-        marginBottom:10,
         flex:1,
         backgroundColor: 'white',
         flexDirection:'row',
@@ -83,9 +86,7 @@ class ReplyRow extends Component{
     }
     render()
     {
-        var moment=require('moment');
         var {reply,row} =this.props;//https://cnodejs.org/api/v1/topics
-        //moment.locale('zh-cn')
         return (
             <View style={{flex:1}}>
                 <View style={styles.row}>

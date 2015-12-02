@@ -17,7 +17,12 @@ var {
     } = React;
 
 var ImageCircle=require('./ImageCircle')
-var cnodeUtil=require('../util/cnodeUtil')
+import {getCategory} from "../util/cnodeUtil"
+
+/*moment*/
+import moment from "moment"
+import zh_cn from "moment/locale/zh-cn.js"
+moment.locale('zh-cn',zh_cn)
 
 import CommentHtml from "./htmlRender/CommentHtml.js"
 
@@ -39,7 +44,6 @@ var styles = StyleSheet.create({
     },
     category:{
         flex:1,
-        backgroundColor:'lightgreen',
         borderRadius:10,
         marginBottom:5
     },
@@ -51,7 +55,6 @@ var styles = StyleSheet.create({
     },
     categoryText:{
         fontSize: 14,
-        marginTop:2,
         textAlign:'center',
     },
     titleText:{
@@ -60,12 +63,13 @@ var styles = StyleSheet.create({
         textAlign:'left'
     },
     infoRow:{
-        flex:1,
+        height:40,
         marginBottom:5,
         flexDirection:'row',
     },
     avatar:{
         flex:1,
+        alignItems:"center"
     },
     info:{
         flex:8,
@@ -76,7 +80,13 @@ var styles = StyleSheet.create({
         flexDirection:'row',
     },
     authorText:{
-        flex:3,
+        flex:7,
+        fontSize: 14,
+        color: '#888888',
+        lineHeight: 20,
+    },
+    timeText:{
+        flex:2,
         fontSize: 14,
         color: '#888888',
         lineHeight: 20,
@@ -84,7 +94,7 @@ var styles = StyleSheet.create({
     countText:{
         flex:1,
         fontSize: 14,
-        color: '#888888',
+        color: 'lightgreen',
         lineHeight: 20,
         textAlign:'right',
     },
@@ -101,9 +111,7 @@ class TopicInfoRow extends Component{
     }
     render()
     {
-        var moment=require('moment');
         var {topic} =this.props;//https://cnodejs.org/api/v1/topics
-        //moment.locale('zh-cn')
         return (
             <View>
                 <View style={styles.title}>
@@ -124,13 +132,15 @@ class TopicInfoRow extends Component{
                                 <Text style={styles.authorText}>
                                     {topic.author.loginname}
                                 </Text>
-                                <Text style={styles.countText}>
-                                    {cnodeUtil.getCategory(topic.tab)}
-                                </Text>
+                                <View style={[styles.category,{backgroundColor:((topic.top || topic.good)?"lightgreen":"lightgray")}]}>
+                                    <Text style={styles.categoryText}>
+                                        {topic.top?"置顶":(topic.good?"精华":getCategory(topic.tab))}
+                                    </Text>
+                                </View>
                             </View>
                            <View style={styles.author}>
-                               <Text style={styles.authorText}>
-                                   发布于：{moment(topic.create_at).startOf('hour').fromNow()}
+                               <Text style={styles.timeText}>
+                                   发布于:{moment(topic.create_at).startOf('hour').fromNow()}
                                </Text>
                                <Text style={styles.countText}>
                                    {topic.visit_count}次浏览

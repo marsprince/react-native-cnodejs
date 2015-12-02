@@ -19,9 +19,13 @@ var {
 var ImageCircle=require('./ImageCircle')
 import {getCategory} from "../util/cnodeUtil"
 
+/*moment*/
+import moment from "moment"
+import zh_cn from "moment/locale/zh-cn.js"
+moment.locale('zh-cn',zh_cn)
+
 var styles = StyleSheet.create({
     row:{
-        height:90,
         paddingLeft:10,
         paddingRight:10,
         flex:1,
@@ -32,13 +36,12 @@ var styles = StyleSheet.create({
         backgroundColor: '#bbbbbb',
     },
     titleRow:{
-        height:30,
+        flex:1,
         marginTop:10,
         flexDirection:'row',
     },
     category:{
         flex:1,
-
         borderRadius:10,
         marginBottom:5
     },
@@ -100,9 +103,10 @@ class TopicRow extends Component{
     }
     render()
     {
-        var moment=require('moment');
+
+        //var moment=require('moment');
         var {topic} =this.props;//https://cnodejs.org/api/v1/topics
-        //moment.locale('zh-cn')
+
 
         return (
             <TouchableHighlight  onPress={()=>{this._onPress(topic.id)}}>
