@@ -2,11 +2,10 @@
 
 import React, { Component } from 'react-native';
 import {bindActionCreators} from 'redux';
-import * as cnodeActions from '../actions/drawerActions.js';
+import * as cnodeActions from '../actions/index.js';
 import { connect } from 'react-redux/native';
 
 var Navitation=require('./Navitation');
-var ScrollView=require('../components/ScrollableTabView')
 
 class HomePage extends Component{
   constructor(props) {

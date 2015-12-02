@@ -4,16 +4,18 @@
 
 'use strict'
 
-var React = require('react-native');
-
-var {
+//var React = require('react-native');
+import React,{
     View,
     Component
-    }=React
+    }
+    from 'react-native';
 
-var BarcodeScanner = require('./BarCode/BarCode');
-var NavBar=require('./ToolBar/BasicToolBar')
-var UserService=require('../services/UserService')
+var BarcodeScanner = require('../components/BarCode/BarCode');
+var NavBar=require('./../components/ToolBar/BasicToolBar')
+
+import { connect } from 'react-redux/native';
+import { checkToken } from '../actions/UserActions.js';
 
 class BarCode extends Component{
     constructor(porps) {
@@ -25,8 +27,8 @@ class BarCode extends Component{
     }
 
     _barcodeReceived(e) {
-        UserService.req.checkToken(e.data).then(data=>{
-            console.log(data)
+       this.props.checkToken(e.data).then(data=>{
+            this.props.router.pop()
         })
     }
 
@@ -47,5 +49,22 @@ class BarCode extends Component{
         );
     }
 };
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        checkToken: () => dispatch(checkToken())
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(BarCode);
 
 module.exports=BarCode

@@ -7,7 +7,7 @@ var React = require('react-native')
 //var Message = require('../containers/Message')
 var About = require('../components/About')
 //var Publish = require('../containers/Publish')
-var BarCode=require('../components/BarCode')
+var BarCode=require('../containers/BarCode')
 var TopicInfoListView=require('../components/TopicInfoListView')
 // Config
 var sceneConfig = require('./sceneConfig')

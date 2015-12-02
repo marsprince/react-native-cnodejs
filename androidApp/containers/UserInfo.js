@@ -5,17 +5,21 @@
 
 'use strict';
 
-var React = require('react-native');
-var {
+import React, {
     Component,
     StyleSheet,
     Text,
     View,
-    Image
-    } = React;
+    Image,
+    TouchableHighlight
+    }
+    from 'react-native';
 
-var ImageCircle=require('./ImageCircle');
-var UserService=require('../services/UserService')
+var ImageCircle=require('./../components/ImageCircle');
+var UserActions=require('../actions/UserActions')
+
+import { connect } from 'react-redux/native';
+import { getLoginUserFromStorage } from '../actions/UserActions.js';
 
 var styles = StyleSheet.create({
     userInfo:{
@@ -41,7 +45,7 @@ var styles = StyleSheet.create({
     }
 });
 
-class SimpleRow extends Component{
+class UserInfo extends Component{
     constructor(props) {
         super(props);
         this.state={
@@ -50,8 +54,9 @@ class SimpleRow extends Component{
         }
     }
 
-    componentWillMount(){
-        UserService.storage.getUser().then((data)=>{
+    componentWDidMount(){
+        console.log( this.props.getLoginUserFromStorage)
+        this.props.getLoginUserFromStorage.then((data)=>{
             console.log(data)
            this.setState({
                 isLogin:true,
@@ -60,12 +65,19 @@ class SimpleRow extends Component{
         })
     }
 
+    _login(){
+        this.props.router.toBarCode()
+    }
+
     _notLoginRender()
     {
         return(
             <View style={styles.userInfo}>
-                <Image source={require("../../image/defaultUser.png")} style={styles.userAvatar}>
-                </Image>
+                <TouchableHighlight activeOpacity={0} onPress={this._login.bind(this)} style={{flex:1}}>
+                    <Image source={require("../../image/defaultUser.png")} style={styles.userAvatar}>
+                    </Image>
+                </TouchableHighlight>
+
                 <Text style={styles.text}>
                     点击头像登录
                 </Text>
@@ -99,5 +111,20 @@ class SimpleRow extends Component{
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
 
-module.exports=SimpleRow
+function mapDispatchToProps(dispatch) {
+    return {
+        getLoginUserFromStorage: () => dispatch(getLoginUserFromStorage())
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UserInfo);
+

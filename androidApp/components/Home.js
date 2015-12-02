@@ -36,7 +36,7 @@ class Home extends Component{
     }
     componentDidUpdate()
     {
-        if(this.props.state.drawerState.isDrawerOpen) this.drawer.openDrawer()
+
     }
     _renderNavigation(){
         return (

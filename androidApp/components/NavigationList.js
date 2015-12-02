@@ -16,7 +16,7 @@ var {
     ToastAndroid
     } = React;
 
-var Userinfo=require('./UserInfo')
+var Userinfo=require('./../containers/UserInfo')
 var SimpleRow=require('./SimpleRow')
 var TopicListView=require('./TopicListView')
 
@@ -52,7 +52,7 @@ class NavigationList extends Component{
     {
         return (
             <View style={{flex:1}}>
-                <Userinfo >
+                <Userinfo router={this.props.router}>
                 </Userinfo>
                 <SimpleRow text="关于" onPress={this._onPressAbout.bind(this)} router={this.props.router}>
                 </SimpleRow>
