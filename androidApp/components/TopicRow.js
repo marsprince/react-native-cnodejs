@@ -17,7 +17,7 @@ var {
     } = React;
 
 var ImageCircle=require('./ImageCircle')
-
+import {getCategory} from "../util/cnodeUtil"
 
 var styles = StyleSheet.create({
     row:{
@@ -38,7 +38,7 @@ var styles = StyleSheet.create({
     },
     category:{
         flex:1,
-        backgroundColor:'lightgreen',
+
         borderRadius:10,
         marginBottom:5
     },
@@ -109,9 +109,9 @@ class TopicRow extends Component{
                 <View>
                     <View style={styles.row}>
                         <View style={styles.titleRow}>
-                            <View style={styles.category}>
+                            <View style={[styles.category,{backgroundColor:((topic.top || topic.good)?"lightgreen":"lightgray")}]}>
                                 <Text style={styles.categoryText}>
-                                    置顶
+                                    {topic.top?"置顶":(topic.good?"精华":getCategory(topic.tab))}
                                 </Text>
                             </View>
                             <View style={styles.title}>

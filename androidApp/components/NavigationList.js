@@ -21,7 +21,6 @@ var SimpleRow=require('./SimpleRow')
 var TopicListView=require('./TopicListView')
 
 var styles = StyleSheet.create({
-
     refresh:{
         width: 136,
         height: 136,

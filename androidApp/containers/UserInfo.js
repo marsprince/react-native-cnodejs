@@ -95,6 +95,9 @@ class UserInfo extends Component{
                 <Text style={styles.text}>
                     {userData.loginname}
                 </Text>
+                <Text style={[styles.text,{textAlign:'right'}]}>
+                    注销
+                </Text>
             </View>
         )
     }
