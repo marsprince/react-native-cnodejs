@@ -79,10 +79,6 @@ exports.checkToken = function (token) {
                     Object.assign(userTemp, userInfo)
                     UserService.storage.saveUser(userTemp)
                     dispatch(getUser(userTemp))
-                    dispatch({
-                        type: types.CHECK_TOKEN_SUCCESS,
-                        isModalOpen: false
-                    })
                 }
                 else {
                     throw 'CHECK_TOKEN_FAILED'

@@ -1,4 +1,4 @@
-var types = require('./actionTypes')
+var types = require('./ActionTypes')
 var UserService = require('../services/UserService')
 var window = require('../util/window')
 

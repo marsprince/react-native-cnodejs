@@ -2,7 +2,7 @@
  * Created by mars on 2015/10/14.
  */
 
-var types = require('../actions/actionTypes')
+var types = require('../actions/ActionTypes')
 
 var initialState = {
     isDrawerOpen: false

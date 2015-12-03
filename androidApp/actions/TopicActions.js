@@ -1,4 +1,4 @@
-var types = require('./actionTypes')
+var types = require('./ActionTypes')
 var TopicService = require('../services/TopicService')
 
 

@@ -27,9 +27,9 @@ class BarCode extends Component{
     }
 
     _barcodeReceived(e) {
-       this.props.checkToken(e.data).then(data=>{
-            this.props.router.pop()
-        })
+        console.log(e.data)
+       this.props.checkToken(e.data)
+       this.props.router.pop()
     }
 
     render() {
@@ -38,7 +38,7 @@ class BarCode extends Component{
                 <NavBar text="扫描二维码" router={this.props.router}>
                 </NavBar>
                 <BarcodeScanner
-                    onBarCodeRead={this._barcodeReceived}
+                    onBarCodeRead={this._barcodeReceived.bind(this)}
                     style={{ flex: 1 }}
                     torchMode={this.state.torchMode}
                     cameraType={this.state.cameraType}

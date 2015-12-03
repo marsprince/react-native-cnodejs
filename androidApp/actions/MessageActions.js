@@ -1,4 +1,4 @@
-var types = require('./actionTypes')
+var types = require('./ActionTypes')
 var MessageService = require('../services/MessageService')
 
 

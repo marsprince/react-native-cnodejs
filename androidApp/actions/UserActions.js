@@ -1,4 +1,4 @@
-var types = require('./actionTypes')
+var types = require('./ActionTypes')
 var UserService = require('../services/UserService')
 var TopicService = require('../services/TopicService')
 var MessageService = require('../services/MessageService')
@@ -11,7 +11,6 @@ function getUser(user) {
         user: user
     }
 }
-
 
 exports.getLoginUserFromStorage = function () {
     return dispatch=> {
@@ -66,12 +65,10 @@ exports.fetchUser = function fetchUser(user) {
 exports.checkToken = function (token) {
     return dispatch=> {
         var userTemp = {}
-        dispatch({
-            type: types.CHECK_TOKEN_REQUREST
-        })
         UserService.req.checkToken(token)
             .then(user=> {
                 userTemp = user
+                console.log(user)
                 return UserService.req.getLoginUserInfo(user)
             })
             .then((userInfo)=> {
@@ -81,7 +78,6 @@ exports.checkToken = function (token) {
                     dispatch(getUser(userTemp))
                     dispatch({
                         type: types.CHECK_TOKEN_SUCCESS,
-                        isModalOpen: false
                     })
                 }
                 else {
@@ -94,7 +90,6 @@ exports.checkToken = function (token) {
                     type: types.CHECK_TOKEN_FAILED,
                     err: err
                 })
-                window.alert('token验证失败')
             })
             .done()
     }
