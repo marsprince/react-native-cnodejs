@@ -11,7 +11,7 @@ var BarCode=require('../containers/BarCode')
 var TopicInfoListView=require('../components/TopicInfoListView')
 // Config
 var sceneConfig = require('./sceneConfig')
-
+var WriteTopic =require('../components/WriteTopic')
 
 var {
     Navigator
@@ -88,16 +88,6 @@ class Router {
         })
     }
 
-    toQRCode(props) {
-        this.push(props, {
-            component: QRCode,
-            name: 'qrCode',
-            sceneConfig: Navigator.SceneConfigs.FloatFromBottom
-        })
-    }
-
-
-
     toPublish() {
         this.push({}, {
             component: Publish,
@@ -106,21 +96,12 @@ class Router {
         })
     }
 
-
-    replaceWithHome() {
-        this.navigator.popToTop()
-    }
-
-    replaceWithTopic(props) {
-        let routesList = this.navigator.getCurrentRoutes()
-        let index = routesList[routesList.length - 1].index
-        var route = {
-            props: props,
-            index: index,
-            component: Topic,
+    toWriteTopic() {
+        this.push({}, {
+            component: WriteTopic,
+            name: 'WriteTopic',
             sceneConfig: customFloatFromRight
-        }
-        this.navigator.replace(route)
+        })
     }
 }
 

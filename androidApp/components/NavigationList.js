@@ -47,12 +47,24 @@ class NavigationList extends Component{
     _onPressAbout(){
         this.props.router.toAbout()
     }
+
+    _onPressMessage(){
+        this.props.router.toMessage()
+    }
+
+    _onPressSettings(){
+        this.props.router.toSettings()
+    }
     render()
     {
         return (
             <View style={{flex:1}}>
                 <Userinfo router={this.props.router}>
                 </Userinfo>
+                <SimpleRow text="消息" onPress={this._onPressAbout.bind(this)} router={this.props.router}>
+                </SimpleRow>
+                <SimpleRow text="设置" onPress={this._onPressAbout.bind(this)} router={this.props.router}>
+                </SimpleRow>
                 <SimpleRow text="关于" onPress={this._onPressAbout.bind(this)} router={this.props.router}>
                 </SimpleRow>
             </View>

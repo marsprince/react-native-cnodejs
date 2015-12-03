@@ -38,11 +38,16 @@ class Home extends Component{
     {
 
     }
+
+    _writeTopic(){
+        this.props.router.toWriteTopic()
+    }
     _renderNavigation(){
         return (
             <View style={{flex:1}}>
                 <MainScreenToolBar
                     drawerOpen={()=>this.drawer.openDrawer()}
+                    writeTopic={()=>this._writeTopic()}
                     >
                 </MainScreenToolBar>
                 <Scroll router={this.props.router}>
