@@ -16,5 +16,11 @@ exports.closeLoginModal = function closeLoginModal() {
     }
 }
 
+exports.loadConfig=function loadConfig(){
+    return {
+        type: types.LOAD_CONFIG,
+    }
+}
+
 
 

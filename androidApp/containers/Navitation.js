@@ -61,7 +61,7 @@ class Navitation extends Component {
             return React.createElement(route.component, Object.assign({}, route.props,
                 {
                     ref: view=>this[route.name] = view,
-                    //actions: this.props.actions, for
+                    actions: this.props.actions,
                     state: this.props.state,
                     router: this.router
                 }

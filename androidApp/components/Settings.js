@@ -1,5 +1,5 @@
 /**
- * Created by mars on 2015/10/15.
+ * Created by liujia on 2015/12/4.
  */
 
 'use strict';
@@ -16,10 +16,9 @@ var {
     ToastAndroid
     } = React;
 
-var Userinfo=require('./../containers/UserInfo')
 var SimpleRow=require('./SimpleRow')
-var TopicListView=require('./TopicListView')
-
+var NavBar=require('./../components/ToolBar/BasicToolBar')
+import SettingsRow from "./SettingsRow.js"
 var styles = StyleSheet.create({
     refresh:{
         width: 136,
@@ -43,30 +42,19 @@ var styles = StyleSheet.create({
 class NavigationList extends Component{
     constructor(props) {
         super(props);
-    }
-    _onPressAbout(){
-        this.props.router.toAbout()
+
     }
 
-    _onPressMessage(){
-        this.props.router.toMessage()
-    }
-
-    _onPressSettings(){
-        this.props.router.toSettings()
-    }
     render()
     {
         return (
             <View style={{flex:1}}>
-                <Userinfo router={this.props.router}>
-                </Userinfo>
-                <SimpleRow text="消息" onPress={this._onPressAbout.bind(this)} router={this.props.router}>
-                </SimpleRow>
-                <SimpleRow text="设置" onPress={this._onPressSettings.bind(this)} router={this.props.router}>
-                </SimpleRow>
-                <SimpleRow text="关于" onPress={this._onPressAbout.bind(this)} router={this.props.router}>
-                </SimpleRow>
+                <NavBar text="设置" router={this.props.router}>
+                </NavBar>
+                <SettingsRow text="测试1" subText="小标题1">
+                </SettingsRow>
+                <SettingsRow text="测试2" subText="这个功能没做">
+                </SettingsRow>
             </View>
         )
     }

@@ -11,7 +11,7 @@ import React,{
     }
     from 'react-native';
 
-var BarcodeScanner = require('../components/BarCode/BarCode');
+var BarcodeScanner = require('../components/BarCodeModule/BarCode');
 var NavBar=require('./../components/ToolBar/BasicToolBar')
 
 import { connect } from 'react-redux/native';
@@ -27,8 +27,7 @@ class BarCode extends Component{
     }
 
     _barcodeReceived(e) {
-        console.log(e.data)
-       this.props.checkToken(e.data)
+       this.props.actions.checkToken(e.data)
        this.props.router.pop()
     }
 
@@ -49,22 +48,5 @@ class BarCode extends Component{
         );
     }
 };
-
-function mapStateToProps(state) {
-    return {
-        user: state.user
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        checkToken: () => dispatch(checkToken())
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(BarCode);
 
 module.exports=BarCode

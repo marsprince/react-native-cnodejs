@@ -22,8 +22,6 @@ var {
     ToastAndroid
     } = React
 
-var localConfig=require("../configs/localConfig")
-
 import Loading from "./Loading.js";
 
 class TopicListView extends Component {
@@ -43,7 +41,7 @@ class TopicListView extends Component {
     _genRows(){
         var params={
             page: this.page,
-            limit: localConfig.perPageLimit
+            limit: 10
         }
         if(this.props.tab) params['tab']=this.props.tab;
 

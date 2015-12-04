@@ -16,6 +16,10 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 
 export default class App extends Component {
+  //default config
+  componentDidMount(){
+
+  }
   render() {
     return (
       <Provider store={store}>

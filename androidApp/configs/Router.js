@@ -12,6 +12,7 @@ var TopicInfoListView=require('../components/TopicInfoListView')
 // Config
 var sceneConfig = require('./sceneConfig')
 var WriteTopic =require('../components/WriteTopic')
+var Settings=require('../components/Settings')
 
 var {
     Navigator
@@ -100,6 +101,14 @@ class Router {
         this.push({}, {
             component: WriteTopic,
             name: 'WriteTopic',
+            sceneConfig: customFloatFromRight
+        })
+    }
+
+    toSettings(){
+        this.push({}, {
+            component: Settings,
+            name: 'Settings',
             sceneConfig: customFloatFromRight
         })
     }
