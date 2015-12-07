@@ -1,6 +1,7 @@
 var types = require('./ActionTypes')
 var UserService = require('../services/UserService')
 var window = require('../util/window')
+import {configService} from "../services/ConfigService"
 
 exports.openLoginModal = function openLoginModal() {
     return {
@@ -17,8 +18,35 @@ exports.closeLoginModal = function closeLoginModal() {
 }
 
 exports.loadConfig=function loadConfig(){
-    return {
-        type: types.LOAD_CONFIG,
+    return dispatch=> {
+        configService.loadConfig()
+            .then(results=> {
+                dispatch({
+                    type: types.LOAD_CONFIG_SUCCESS,
+                    results: results
+                })
+            })
+            .catch(err=> {
+
+            })
+            .done()
+    }
+}
+
+exports.initConfig=function initConfig(){
+    return dispatch=> {
+        configService.initConfig()
+            .then(results=> {
+                console.log(results)
+                dispatch({
+                    type: types.INIT_CONFIG_SUCCESS,
+                    results: results
+                })
+            })
+            .catch(err=> {
+
+            })
+            .done()
     }
 }
 

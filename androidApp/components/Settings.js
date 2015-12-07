@@ -39,14 +39,19 @@ var styles = StyleSheet.create({
     }
 });
 
-class NavigationList extends Component{
+class Settings extends Component{
     constructor(props) {
         super(props);
+    }
 
+    componentDidMount()
+    {
+        this.props.actions.initConfig();
     }
 
     render()
     {
+        console.log(this.props.state)
         return (
             <View style={{flex:1}}>
                 <NavBar text="设置" router={this.props.router}>
@@ -60,4 +65,4 @@ class NavigationList extends Component{
     }
 }
 
-module.exports=NavigationList
+module.exports=Settings

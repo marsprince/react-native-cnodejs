@@ -3,9 +3,10 @@
  */
 
 import { combineReducers } from 'redux';
+import configState from './configReducer'
 
 const rootReducer = combineReducers({
-    drawerState
+    configState
 });
 
 export default rootReducer;

@@ -4,7 +4,6 @@
  */
 
 var intiConfig={
-  config:{
     topicTail:{
       text:"设置小尾巴",
       subText:"开启后可以设置小尾巴",
@@ -15,7 +14,6 @@ var intiConfig={
       subText:"没有发布的话题草稿会被保存",
       value:true
     }
-  }
 }
 
 module.exports=intiConfig
