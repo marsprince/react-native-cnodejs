@@ -9,7 +9,7 @@ var React = require('react-native');
 var {
     Component,
     StyleSheet,
-    Text,
+    Text,AsyncStorage,
     View,
     PixelRatio,
     ListView,
@@ -47,6 +47,8 @@ class Settings extends Component{
 
     componentDidMount()
     {
+        //AsyncStorage.removeItem('config')
+        this.props.actions.initConfig()
         this.props.actions.loadConfig()
     }
 

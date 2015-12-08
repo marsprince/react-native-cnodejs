@@ -44,9 +44,10 @@ class WriteTopic extends Component{
                 <TextInput placeholder="标题">
                 </TextInput>
                 <Text>选择</Text>
-                <TextInput placeholder="说点什么吧..." multiline={true}
-                           style={{height: 40, backroundColor: 'gray', borderWidth: 1}}>
+
+                <TextInput placeholder="说点什么吧..." multiline={true} style={{height:100}}>
                 </TextInput>
+
 
             </View>
         );

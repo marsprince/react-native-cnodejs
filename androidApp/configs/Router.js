@@ -10,15 +10,13 @@ var About = require('../components/About')
 var BarCode=require('../containers/BarCode')
 var TopicInfoListView=require('../components/TopicInfoListView')
 // Config
-var sceneConfig = require('./sceneConfig')
+import {customFloatFromRight,basePushFromRight} from  './sceneConfig'
 var WriteTopic =require('../components/WriteTopic')
 var Settings=require('../components/Settings')
 
 var {
     Navigator
     } = React
-
-var customFloatFromRight = sceneConfig.customFloatFromRight
 
 class Router {
     constructor(navigator) {
@@ -101,7 +99,7 @@ class Router {
         this.push({}, {
             component: WriteTopic,
             name: 'WriteTopic',
-            sceneConfig: customFloatFromRight
+            sceneConfig: basePushFromRight
         })
     }
 

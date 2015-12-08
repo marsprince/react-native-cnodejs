@@ -44,7 +44,6 @@ class PublishToolar extends Component{
 
     _onPress()
     {
-        console.log(this.props.router)
         if (this.props.router && this.props.router.length > 1) {
             this.props.router.pop();
         }
@@ -59,7 +58,7 @@ class PublishToolar extends Component{
                         <Icon name="arrow-back" size={30} color="#FFFFFF" style={styles.back}/>
                     </View>
                 </TouchableHighlight>
-                <View style={{flex:8}}>
+                <View style={{flex:5}}>
                     <Text style={styles.text}>
                         {this.props.text}
                     </Text>

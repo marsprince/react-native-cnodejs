@@ -26,8 +26,15 @@ req.loadConfig=function() {
 }
 
 req.initConfig=function() {
-   if(storage.get()===null) storage.save(initConfig)
-    return storage.get()
+    return storage.get().then(
+        value=>{
+            if(!value) {
+                storage.save(initConfig)
+                return storage.get()
+            }
+        }
+    )
+
 }
 
 req.restoreConfig=function(){

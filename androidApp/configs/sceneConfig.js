@@ -18,6 +18,7 @@ var fullPopGestureConfig = Object.assign({}, Navigator.SceneConfigs.FloatFromBot
     edgeHitWidth: width
 })
 
+exports.basePushFromRight=baseConfig
 
 exports.customFloatFromRight = Object.assign({}, baseConfig, {
     gestures: {
