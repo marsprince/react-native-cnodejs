@@ -4,9 +4,10 @@
 
 import { combineReducers } from 'redux';
 import configState from './configReducer'
+import topicState from './topicReducer'
 
 const rootReducer = combineReducers({
-    configState
+    configState,topicState
 });
 
 export default rootReducer;

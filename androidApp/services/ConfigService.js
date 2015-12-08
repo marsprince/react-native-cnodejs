@@ -1,22 +1,22 @@
 /**
  * Created by liujia on 2015/12/7.
  */
-
 var Storage = require('./Storage')
-import intiConfig from "../configs/initConfig"
+import initConfig from "../configs/initConfig"
+import {STORAGE_KEY_CONFIG} from "../configs/Constants"
+
 var storage = {}
 
 storage.get = function () {
-    return Storage.getItem('sss')
+    return Storage.getItem(STORAGE_KEY_CONFIG)
 }
 
 storage.save = function (value) {
-    console.log(Storage.setItem('config', value))
-    return Storage.setItem('config', value)
+    return Storage.setItem(STORAGE_KEY_CONFIG, value)
 }
 
 storage.remove = function () {
-    return Storage.removeItem('config')
+    return Storage.removeItem(STORAGE_KEY_CONFIG)
 }
 
 var req = {}
@@ -26,7 +26,18 @@ req.loadConfig=function() {
 }
 
 req.initConfig=function() {
-    return storage.save(intiConfig)
+   if(storage.get()===null) storage.save(initConfig)
+    return storage.get()
+}
+
+req.restoreConfig=function(){
+    storage.save(initConfig)
+    return storage.get()
+}
+
+req.setConfig=function(valee){
+    storage.save(valee)
+    return storage.get()
 }
 
 req.removeConfig=function() {

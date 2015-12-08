@@ -22,18 +22,25 @@ storage.getAll = function () {
     }))
 }
 
-
 storage.remove = function () {
     return Storage.multiRemove(tabs.map(tab=> {
         return 'tab_' + tab
     }))
 }
 
+storage.set=function(tab,value){
+    return Storage.setItem('tab_' + tab,value)
+}
 
 var req = {}
 
-
 req.getTopicsByTab = function (params) {
+    /*
+    params:{
+    page:Number,
+    tab:String
+    }
+     */
     var url = config.domain + '/api/v1/topics'
 
     return request.get(url, params)
@@ -45,7 +52,6 @@ req.getTopicsByTab = function (params) {
             return topics
         })
 }
-
 
 req.getTopicById = function (id) {
     let url = config.domain + '/api/v1/topic/' + id
@@ -83,7 +89,6 @@ req.markTopicAsLike = function (id, token, isLiked) {
         })
 }
 
-
 req.reply = function (topicId, content, token, replyId) {
     let apiUrl = config.domain + config.apiPath
     var body = {
@@ -105,7 +110,6 @@ req.reply = function (topicId, content, token, replyId) {
             }
         })
 }
-
 
 req.upComment = function (replyId, token) {
     let apiUrl = config.domain + config.apiPath

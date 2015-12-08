@@ -13,7 +13,7 @@ import React,{
     }
     from 'react-native';
 
-var NavBar=require('./../components/ToolBar/BasicToolBar')
+var NavBar=require('./../components/ToolBar/PublishToolar')
 const DropDown = require('react-native-dropdown');
 const {
     Select,

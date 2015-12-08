@@ -15,7 +15,7 @@ import CnodeApp from './cnodeApp';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 
-export default class App extends Component {
+class App extends Component {
   //load default config
   componentDidMount(){
 
@@ -28,3 +28,5 @@ export default class App extends Component {
     );
   }
 }
+
+module.exports=App

@@ -37,9 +37,40 @@ exports.initConfig=function initConfig(){
     return dispatch=> {
         configService.initConfig()
             .then(results=> {
-                console.log(results)
                 dispatch({
                     type: types.INIT_CONFIG_SUCCESS,
+                    results: results
+                })
+            })
+            .catch(err=> {
+
+            })
+            .done()
+    }
+}
+
+exports.setConfig=function setConfig(value){
+    return dispatch=> {
+        configService.setConfig(value)
+            .then(results=> {
+                dispatch({
+                    type: types.SET_CONFIG_SUCCESS,
+                    results: results
+                })
+            })
+            .catch(err=> {
+
+            })
+            .done()
+    }
+}
+
+exports.restoreConfig=function restoreConfig(value){
+    return dispatch=> {
+        configService.restoreConfig()
+            .then(results=> {
+                dispatch({
+                    type: types.RESTORE_CONFIG_SUCCESS,
                     results: results
                 })
             })

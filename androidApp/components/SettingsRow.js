@@ -10,7 +10,7 @@ var {
     StyleSheet,
     Text,
     View,
-    TouchableOpacity,
+    TouchableHighlight,
     PixelRatio
     } = React;
 
@@ -48,14 +48,12 @@ var styles = StyleSheet.create({
 class SettingsRow extends Component{
     constructor(props) {
         super(props);
-        this.state={
-            trueSwitchIsOn:false
-        }
     }
     render()
     {
         var {text,subText,switchPress,switchValue}=this.props;
         return (
+             <TouchableHighlight onPress={() => {switchPress?switchPress():null}}>
                 <View style={styles.row}>
                     <View style={{flexDirection:'row',flex:1}} >
                         <View style={styles.textRow}>
@@ -67,13 +65,13 @@ class SettingsRow extends Component{
                             </Text>
                         </View>
                         <View style={styles.actions}>
-                            <Switch onValueChange={(value) => {()=>switchPress?switchPress():null}}
-                                    value={switchValue}>
+                            <Switch value={switchValue}>
                             </Switch>
                         </View>
                     </View>
                     <View style={styles.separator} />
                 </View>
+             </TouchableHighlight>
         )
     }
 }

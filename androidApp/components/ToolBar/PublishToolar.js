@@ -1,6 +1,7 @@
 /**
- * Created by mars on 2015/11/16.
+ * Created by liujia on 2015/12/8.
  */
+
 
 'use strict';
 
@@ -36,7 +37,7 @@ var styles = StyleSheet.create({
     }
 });
 
-class NavigationTitleBar extends Component{
+class PublishToolar extends Component{
     constructor(props) {
         super(props);
     }
@@ -58,14 +59,19 @@ class NavigationTitleBar extends Component{
                         <Icon name="arrow-back" size={30} color="#FFFFFF" style={styles.back}/>
                     </View>
                 </TouchableHighlight>
-                <View style={{flex:10}}>
+                <View style={{flex:8}}>
                     <Text style={styles.text}>
                         {this.props.text}
                     </Text>
                 </View>
+                <TouchableHighlight style={{flex:1}}>
+                    <Text style={styles.text}>
+                        发表
+                    </Text>
+                </TouchableHighlight>
             </View>
         )
     }
 }
 
-module.exports=NavigationTitleBar
+module.exports=PublishToolar

@@ -4,6 +4,7 @@
 
 'use strict';
 
+
 var React = require('react-native');
 var {
     Component,
@@ -46,20 +47,34 @@ class Settings extends Component{
 
     componentDidMount()
     {
-        this.props.actions.initConfig();
+        this.props.actions.loadConfig()
+    }
+
+    _switchPress(index){
+        //update value in storage,then update config in redux
+        var {config} =this.props.state.configState
+        config[index].value=!config[index].value
+        this.props.actions.setConfig(config)
     }
 
     render()
     {
-        console.log(this.props.state)
+        var {config} =this.props.state.configState
+
         return (
             <View style={{flex:1}}>
                 <NavBar text="设置" router={this.props.router}>
                 </NavBar>
-                <SettingsRow text="测试1" subText="小标题1">
-                </SettingsRow>
-                <SettingsRow text="测试2" subText="这个功能没做">
-                </SettingsRow>
+                {config?config.map((item,index)=>{
+                    return(
+                        <SettingsRow
+                            text={item.text}
+                            subText={item.subText}
+                            switchValue={item.value}
+                            switchPress={this._switchPress.bind(this,index)}>
+                        </SettingsRow>
+                    )
+                }):null}
             </View>
         )
     }

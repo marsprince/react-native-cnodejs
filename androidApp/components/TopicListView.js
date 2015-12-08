@@ -39,6 +39,7 @@ class TopicListView extends Component {
     }
 
     _genRows(){
+        //get from storage,if not exist,call get from network
         var params={
             page: this.page,
             limit: 10

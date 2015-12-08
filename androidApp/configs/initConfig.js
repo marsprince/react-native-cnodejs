@@ -3,17 +3,19 @@
  * default config
  */
 
-var intiConfig={
-    topicTail:{
-      text:"ÉèÖÃĞ¡Î²°Í",
-      subText:"¿ªÆôºó¿ÉÒÔÉèÖÃĞ¡Î²°Í",
+var initConfig=[
+    {
+      name:'topicTail',
+      text:"è®¾ç½®å°å°¾å·´",
+      subText:"å¼€å¯åå¯ä»¥è®¾ç½®å°å°¾å·´",
       value:true
     },
-    saveDraft:{
-      text:"±£´æ²İ¸å",
-      subText:"Ã»ÓĞ·¢²¼µÄ»°Ìâ²İ¸å»á±»±£´æ",
+    {
+      name:'saveDraft',
+      text:"ä¿å­˜è‰ç¨¿",
+      subText:"æ²¡æœ‰å‘å¸ƒçš„è¯é¢˜è‰ç¨¿ä¼šè¢«ä¿å­˜",
       value:true
     }
-}
+]
 
-module.exports=intiConfig
+module.exports=initConfig
