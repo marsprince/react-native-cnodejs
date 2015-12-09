@@ -11,17 +11,25 @@ var {
     Text,
     View,
     TextInput,
+    Dimensions
     } = React;
 import {Button} from 'mrn'
 var styles = StyleSheet.create({
     row:{
-        backgroundColor: 'white',
+        backgroundColor: '#EDEEF2',
         paddingHorizontal: 15,
         paddingVertical: 8,
         flex:1,
-        flexDirection:'row'
+        height:60,
+        flexDirection:'row',
+        position:'absolute',
+        bottom:0,
+        right:0,
+        left:0
     },
 });
+
+var deviceWidth = Dimensions.get('window').width;
 
 class ReplyRow extends Component{
     constructor(props) {
@@ -32,12 +40,12 @@ class ReplyRow extends Component{
         var {text,onPress}=this.props;
         return (
                 <View style={styles.row} >
-                    <View style={{flex:6}}>
-                        <TextInput defaultValue = {text} placeholder="说点什么吧">
+                    <View style={{flex:6,justifyContent:'center'}}>
+                        <TextInput defaultValue = {text} placeholder="说点什么吧"  style={{ borderColor: 'gray', borderWidth: 1}}>
                         </TextInput>
                     </View>
-                    <View style={{flex:1}}>
-                        <Button value="发布"  primary={'googleBlue'}/>
+                    <View style={{flex:1,paddingTop:5}}>
+                        <Button value="回复"  primary={'googleBlue'}/>
                     </View>
                 </View>
         )

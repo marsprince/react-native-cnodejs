@@ -28,6 +28,7 @@ var {
 
 var NavigationTitleBar=require("./ToolBar/BasicToolBar");
 var TopicInfoRow=require("./TopicInfoRow")
+import CommentRow from './CommentRow'
 
 import Loading from './Loading.js'
 import ReplyRow from './ReplyRow.js'
@@ -76,13 +77,13 @@ class TopicInfoListView extends Component {
 
     _renderRow(reply, sectionId, rowId, highlightRow) {
         return (
-            <ReplyRow
+            <CommentRow
                 //ref={view => this.listRows[rowId.toString()]=view}
                 reply={reply}
                 row={parseInt(rowId)+1}
                 router={this.props.router}
                 >
-            </ReplyRow>
+            </CommentRow>
         )
     }
 
@@ -121,7 +122,7 @@ class TopicInfoListView extends Component {
 
                 <ListView
                     ref={view => {this._listView = view}}
-                    style={{backgroundColor:'rgba(255,255,255,1)'}}
+                    style={{backgroundColor:'rgba(255,255,255,1)',marginBottom:60}}
                     //onScroll={()=>onScroll()}
                     showsVerticalScrollIndicator={true}
                     initialListSize={10}
@@ -130,7 +131,8 @@ class TopicInfoListView extends Component {
                     renderRow={this._renderRow.bind(this)}
                     renderHeader={()=>this._renderHeader()}
                     />
-                {this._renderFooter()}
+                <ReplyRow>
+                </ReplyRow>
             </View>
         )
     }
