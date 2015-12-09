@@ -11,10 +11,8 @@ var {
     StyleSheet,
     Text,AsyncStorage,
     View,
-    PixelRatio,
     ListView,
     TouchableOpacity,
-    ToastAndroid
     } = React;
 
 var SimpleRow=require('./SimpleRow')

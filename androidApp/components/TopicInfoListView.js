@@ -8,7 +8,6 @@ var moment = require('moment')
 
 var TopicService = require('../services/TopicService')
 var TopicInfoRow = require('./TopicInfoRow');
-var ReplyRow=require('./ReplyRow')
 
 var window = require('../util/window')
 
@@ -31,6 +30,7 @@ var NavigationTitleBar=require("./ToolBar/BasicToolBar");
 var TopicInfoRow=require("./TopicInfoRow")
 
 import Loading from './Loading.js'
+import ReplyRow from './ReplyRow.js'
 
 class TopicInfoListView extends Component {
     constructor(porps) {
@@ -94,6 +94,12 @@ class TopicInfoListView extends Component {
         )
     }
 
+    _renderFooter(){
+        return(
+            <ReplyRow>
+            </ReplyRow>
+        )
+    }
     render() {
         if (!this.state.isReady || this.state.isLoading) {
             return (
@@ -124,6 +130,7 @@ class TopicInfoListView extends Component {
                     renderRow={this._renderRow.bind(this)}
                     renderHeader={()=>this._renderHeader()}
                     />
+                {this._renderFooter()}
             </View>
         )
     }

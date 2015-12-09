@@ -14,13 +14,7 @@ import React,{
     from 'react-native';
 
 var NavBar=require('./../components/ToolBar/PublishToolar')
-const DropDown = require('react-native-dropdown');
-const {
-    Select,
-    Option,
-    OptionList,
-    updatePosition
-    } = DropDown;
+import  {RadioButtonGroup,RadioButton } from 'mrn'
 import { connect } from 'react-redux/native';
 import { checkToken } from '../actions/UserActions.js';
 
@@ -43,7 +37,15 @@ class WriteTopic extends Component{
                 </NavBar>
                 <TextInput placeholder="标题">
                 </TextInput>
-                <Text>选择</Text>
+                <View style={{flexDirection:'row'}}>
+                     <Text style={{flex:1, justifyContent: 'center'}}>请选择分类</Text>
+                     <View  style={{flex:1,flexDirection:'row'}}>
+                        <RadioButton value="1" label="分享" checked={true}/>
+                        <RadioButton value="2" label="提问"/>
+                        <RadioButton value="3" label="分享"/>
+                     </View>
+
+                </View>
 
                 <TextInput placeholder="说点什么吧..." multiline={true} style={{height:100}}>
                 </TextInput>
