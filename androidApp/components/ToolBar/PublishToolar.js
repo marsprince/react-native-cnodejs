@@ -16,7 +16,7 @@ var {
     } = React;
 
 var Icon = require('react-native-vector-icons/MaterialIcons');
-
+import {Button} from 'mrn'
 var styles = StyleSheet.create({
     navBar:{
         backgroundColor: '#2C2C2C',
@@ -63,11 +63,9 @@ class PublishToolar extends Component{
                         {this.props.text}
                     </Text>
                 </View>
-                <TouchableHighlight style={{flex:1}}>
-                    <Text style={styles.text}>
-                        发表
-                    </Text>
-                </TouchableHighlight>
+                <View style={{flex:1, marginTop:5,marginLeft:10}}>
+                    <Button value="发布"  primary={'googleBlue'}/>
+                </View>
             </View>
         )
     }

@@ -9,7 +9,8 @@ import React,{
     View,
     Component,
     TextInput,
-    Text
+    Text,
+    StyleSheet
     }
     from 'react-native';
 
@@ -17,13 +18,14 @@ var NavBar=require('./../components/ToolBar/PublishToolar')
 import  {RadioButtonGroup,RadioButton } from 'mrn'
 import { connect } from 'react-redux/native';
 import { checkToken } from '../actions/UserActions.js';
+import {getCategory} from '../util/cnodeUtil.js'
 
 class WriteTopic extends Component{
     constructor(porps) {
         super(porps);
         this.state = {
-            canada: '',
-            usa: ''
+            label:['ask','share','job'],
+            selectedLabel:0
         };
     }
 
@@ -37,24 +39,39 @@ class WriteTopic extends Component{
                 </NavBar>
                 <TextInput placeholder="标题">
                 </TextInput>
-                <View style={{flexDirection:'row'}}>
-                     <Text style={{flex:1, justifyContent: 'center'}}>请选择分类</Text>
-                     <View  style={{flex:1,flexDirection:'row'}}>
-                        <RadioButton value="1" label="分享" checked={true}/>
-                        <RadioButton value="2" label="提问"/>
-                        <RadioButton value="3" label="分享"/>
+                <View style={{flexDirection:'row',justifyContent: 'center',flex:1}}>
+                    <View style={{flex:1,paddingTop:16}}>
+                        <Text style={styles.text}>请选择分类</Text>
+                    </View>
+                     <View style={{flex:4,flexDirection:'row'}}>
+                         {this.state.label.map((value,index)=>{
+                             return(
+                                 <View style={{flex:1}}>
+                                     <RadioButton value={index}
+                                                  label={getCategory(value)}
+                                                  checked={index==this.state.selectedLabel?true:false}
+                                                  onCheck={index=>this.setState({selectedLabel:index})}/>
+                                 </View>
+                             )
+                         })}
                      </View>
-
                 </View>
 
                 <TextInput placeholder="说点什么吧..." multiline={true} style={{height:100}}>
                 </TextInput>
 
-
             </View>
         );
     }
 };
+
+var styles = StyleSheet.create({
+    text:{
+        textAlign:'center',
+        fontSize: 15,
+        lineHeight: 20,
+    },
+});
 
 function mapStateToProps(state) {
     return {

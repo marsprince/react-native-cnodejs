@@ -53,23 +53,26 @@ class SettingsRow extends Component{
     {
         var {text,subText,switchPress,switchValue}=this.props;
         return (
-                <View style={styles.row}>
-                    <View style={{flexDirection:'row',flex:1}} >
-                        <View style={styles.textRow}>
-                            <Text style={styles.text}>
-                                {text}
-                            </Text>
-                            <Text style={styles.subtext}>
-                                {subText}
-                            </Text>
+                <TouchableHighlight style={styles.row} onPress={()=>{switchPress?switchPress():null}}>
+                    <View style={{flex:1}}>
+                        <View style={{flexDirection:'row',flex:1}} >
+                            <View style={styles.textRow}>
+                                <Text style={styles.text}>
+                                    {text}
+                                </Text>
+                                <Text style={styles.subtext}>
+                                    {subText}
+                                </Text>
+                            </View>
+                            <View style={styles.actions}>
+                                <Switch value={switchValue} onValueChange={()=>{switchPress?switchPress():null}}>
+                                </Switch>
+                            </View>
                         </View>
-                        <View style={styles.actions}>
-                            <Switch value={switchValue} onValueChange={()=>{switchPress?switchPress():null}}>
-                            </Switch>
-                        </View>
+                        <View style={styles.separator} />
                     </View>
-                    <View style={styles.separator} />
-                </View>
+
+                </TouchableHighlight>
         )
     }
 }
