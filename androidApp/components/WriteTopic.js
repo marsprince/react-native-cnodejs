@@ -39,26 +39,32 @@ class WriteTopic extends Component{
                 </NavBar>
                 <TextInput placeholder="标题">
                 </TextInput>
-                <View style={{flexDirection:'row',justifyContent: 'center',flex:1}}>
-                    <View style={{flex:1,paddingTop:16}}>
+                <View style={{flexDirection:'row',justifyContent: 'center'}}>
+                    <View style={{flex:1,paddingTop:18,paddingLeft:5}}>
                         <Text style={styles.text}>请选择分类</Text>
                     </View>
                      <View style={{flex:4,flexDirection:'row'}}>
                          {this.state.label.map((value,index)=>{
                              return(
-                                 <View style={{flex:1}}>
-                                     <RadioButton value={index}
-                                                  label={getCategory(value)}
-                                                  checked={index==this.state.selectedLabel?true:false}
-                                                  onCheck={index=>this.setState({selectedLabel:index})}/>
+                                 <View style={{flex:1,flexDirection:'row'}}>
+                                     <View style={{flex:3}}>
+                                         <RadioButton value={index}
+                                                      checked={index==this.state.selectedLabel?true:false}
+                                                      onCheck={index=>this.setState({selectedLabel:index})}/>
+                                     </View>
+                                     <Text style={{flex:2,marginTop:18,paddingLeft:15}}>
+                                         {getCategory(value)}
+                                     </Text>
+
                                  </View>
                              )
                          })}
                      </View>
                 </View>
-
-                <TextInput placeholder="说点什么吧..." multiline={true} style={{height:100}}>
-                </TextInput>
+                <View style={styles.textInput}>
+                    <TextInput placeholder="说点什么吧..." multiline={true} >
+                    </TextInput>
+                </View>
 
             </View>
         );
@@ -68,9 +74,13 @@ class WriteTopic extends Component{
 var styles = StyleSheet.create({
     text:{
         textAlign:'center',
-        fontSize: 15,
+        fontSize: 14,
         lineHeight: 20,
     },
+    textInput:{
+        //borderWidth:1,
+        //borderColor:'blue'
+    }
 });
 
 function mapStateToProps(state) {
