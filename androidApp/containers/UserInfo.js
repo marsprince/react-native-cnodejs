@@ -66,7 +66,7 @@ class UserInfo extends Component{
     }
 
     _login(){
-        this.props.router.toBarCode()
+        this.props.router.toLogin()
     }
 
     _notLoginRender()

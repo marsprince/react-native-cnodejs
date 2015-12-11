@@ -16,7 +16,7 @@ import React,{
 
 var NavBar=require('./../components/ToolBar/PublishToolar')
 import  {RadioButtonGroup,RadioButton,Button } from 'mrn'
-import { connect } from 'react-redux/native';
+import { connect } from '../../node_modules/react-redux/native';
 import { checkToken } from '../actions/UserActions.js';
 import {getCategory} from '../util/cnodeUtil.js'
 
@@ -47,10 +47,15 @@ class WriteTopic extends Component{
             writeDisabled:(value && this.state.title)?false:true
         })
     }
+
+    _onPress(){
+
+    }
+
     render() {
         return (
             <View style={{flex:1}}>
-                <NavBar text="发布话题" router={this.props.router} disabled={this.state.writeDisabled}>
+                <NavBar text="发布话题" router={this.props.router} disabled={this.state.writeDisabled} onPress={this._onPress.bind(this)}>
                 </NavBar>
                 <TextInput placeholder="标题" onChangeText={(value)=>this._titleOnChangeText(value)}>
                 </TextInput>

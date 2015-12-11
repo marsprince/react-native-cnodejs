@@ -11,8 +11,9 @@ var BarCode=require('../containers/BarCode')
 var TopicInfoListView=require('../components/TopicInfoListView')
 // Config
 import {customFloatFromRight,basePushFromRight} from  './sceneConfig'
-var WriteTopic =require('../components/WriteTopic')
+var WriteTopic =require('../containers/WriteTopic')
 var Settings=require('../components/Settings')
+var Login=require('../components/Login')
 
 var {
     Navigator
@@ -107,6 +108,14 @@ class Router {
         this.push({}, {
             component: Settings,
             name: 'Settings',
+            sceneConfig: customFloatFromRight
+        })
+    }
+
+    toLogin(){
+        this.push({}, {
+            component: Login,
+            name: 'Login',
             sceneConfig: customFloatFromRight
         })
     }

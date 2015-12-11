@@ -10,10 +10,8 @@ var {
     StyleSheet,
     Text,
     View,
-    PixelRatio,
     ListView,
     TouchableOpacity,
-    ToastAndroid
     } = React;
 
 var Userinfo=require('./../containers/UserInfo')
