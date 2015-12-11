@@ -15,7 +15,7 @@ import React,{
     from 'react-native';
 
 var NavBar=require('./../components/ToolBar/PublishToolar')
-import  {RadioButtonGroup,RadioButton } from 'mrn'
+import  {RadioButtonGroup,RadioButton,Button } from 'mrn'
 import { connect } from 'react-redux/native';
 import { checkToken } from '../actions/UserActions.js';
 import {getCategory} from '../util/cnodeUtil.js'
@@ -25,19 +25,34 @@ class WriteTopic extends Component{
         super(porps);
         this.state = {
             label:['ask','share','job'],
-            selectedLabel:0
+            selectedLabel:0,
+            writeDisabled:true,
+            title:"",
+            content:""
         };
     }
 
     componentDidMount() {
 
     }
+    _titleOnChangeText(value){
+        this.setState({
+            title:value,
+            writeDisabled:(value && this.state.content)?false:true
+        })
+    }
+    _contentOnChangeText(value){
+        this.setState({
+            content:value,
+            writeDisabled:(value && this.state.title)?false:true
+        })
+    }
     render() {
         return (
             <View style={{flex:1}}>
-                <NavBar text="发布话题" router={this.props.router}>
+                <NavBar text="发布话题" router={this.props.router} disabled={this.state.writeDisabled}>
                 </NavBar>
-                <TextInput placeholder="标题">
+                <TextInput placeholder="标题" onChangeText={(value)=>this._titleOnChangeText(value)}>
                 </TextInput>
                 <View style={{flexDirection:'row',justifyContent: 'center'}}>
                     <View style={{flex:1,paddingTop:18,paddingLeft:5}}>
@@ -62,7 +77,7 @@ class WriteTopic extends Component{
                      </View>
                 </View>
                 <View style={styles.textInput}>
-                    <TextInput placeholder="说点什么吧..." multiline={true} >
+                    <TextInput placeholder="说点什么吧..." multiline={true} onChangeText={(value)=>this._contentOnChangeText(value)}>
                     </TextInput>
                 </View>
 

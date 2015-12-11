@@ -51,6 +51,7 @@ class PublishToolar extends Component{
 
     render()
     {
+        const {disabled} =this.props
         return (
             <View style={styles.navBar}>
                 <TouchableHighlight onPress={this._onPress.bind(this)}>
@@ -64,7 +65,7 @@ class PublishToolar extends Component{
                     </Text>
                 </View>
                 <View style={{flex:1, marginTop:5,marginLeft:10}}>
-                    <Button value="发布"  primary={'googleBlue'}/>
+                    <Button value="发布"  primary={'googleBlue'} disabled={disabled}/>
                 </View>
             </View>
         )
