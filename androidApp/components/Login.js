@@ -1,6 +1,6 @@
 /**
  * Created by liujia on 2015/11/2.
- * 登录界面
+ * 鐧诲綍鐣岄潰
  */
 'use strict'
 
@@ -38,7 +38,7 @@ var styles = StyleSheet.create({
         textAlign:'left',
     },
     back:{
-        marginTop:8,
+        marginTop:-7,
     }
 });
 

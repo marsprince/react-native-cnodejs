@@ -9,13 +9,13 @@
     "moment": "^2.10.6",
     "mrn": "^0.1.7",
     "query-string": "^2.4.0",
-    "react-native": "^0.15.0-rc",
+    "react-native": "^0.16.0",
     "react-native-barcodescanner": "^0.1.3",
     "react-native-html-render": "^1.0.2",
     "react-native-scrollable-tab-view": "^0.2.2-alpha",
-    "react-native-vector-icons": "^0.8.5",
-    "react-redux": "v3.1.0",
-    "redux": "v3.0.2",
-    "redux-thunk": "v1.0.0"
+    "react-native-vector-icons": "^1.0.1",
+    "react-redux": "v3.1.2",
+    "redux": "^3.0.5",
+    "redux-thunk": "^1.0.1"
   }
 }

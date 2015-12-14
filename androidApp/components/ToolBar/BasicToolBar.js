@@ -32,7 +32,7 @@ var styles = StyleSheet.create({
         textAlign:'left',
     },
     back:{
-        marginTop:8,
+        marginTop:-7,
     }
 });
 
@@ -43,7 +43,6 @@ class NavigationTitleBar extends Component{
 
     _onPress()
     {
-        console.log(this.props.router)
         if (this.props.router && this.props.router.length > 1) {
             this.props.router.pop();
         }

@@ -132,10 +132,20 @@ exports.loadUser=function loadUser(){
     return dispatch=> {
         UserService.req.loadUser()
             .then(results=> {
-                dispatch({
-                    type: types.LOAD_USER_SUCCESS,
-                    results: results
-                })
+                if(results)
+                {
+                    dispatch({
+                        type: types.LOAD_USER_SUCCESS,
+                        results: results
+                    })
+                }
+                else{
+                    dispatch({
+                        type: types.LOAD_USER_FAILED,
+                        results: results
+                    })
+                }
+
             })
             .catch(err=> {
 
