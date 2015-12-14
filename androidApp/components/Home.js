@@ -15,7 +15,7 @@ var {
     } = React;
 
 var Scroll=require('./ScrollableTabView');
-var NavigationList=require('./NavigationList');
+var NavigationList=require('./../containers/NavigationList');
 var MainScreenToolBar=require('./ToolBar/MainScreenToolBar')
 
 var DRAWER_WIDTH_LEFT =  require('Dimensions').get('window').width  / 4;
@@ -58,7 +58,7 @@ class Home extends Component{
     _renderNavigationView(){
         return (
             <View style={styles.navigationList}>
-                <NavigationList router={this.props.router}>
+                <NavigationList router={this.props.router} actions={this.props.actions} state={this.props.state}>
                 </NavigationList>
             </View>
         )

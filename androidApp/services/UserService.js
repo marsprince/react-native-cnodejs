@@ -41,9 +41,11 @@ storage.getUserAndUserInfo = function () {
         })
 }
 
-
 var req = {}
 
+req.loadUser=function() {
+    return storage.getUserInfo()
+}
 
 req.getLoginUserInfo = function (user) {
     var apiUrl = config.domain + config.apiPath

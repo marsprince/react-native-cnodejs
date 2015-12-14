@@ -64,20 +64,16 @@ exports.fetchUser = function fetchUser(user) {
 
 exports.checkToken = function (token) {
     return dispatch=> {
-        var userTemp = {}
         UserService.req.checkToken(token)
             .then(user=> {
-                userTemp = user
-                console.log(user)
                 return UserService.req.getLoginUserInfo(user)
             })
             .then((userInfo)=> {
                 if (userInfo) {
-                    Object.assign(userTemp, userInfo)
-                    UserService.storage.saveUser(userTemp)
-                    dispatch(getUser(userTemp))
+                   // dispatch(getUser(userInfo))
                     dispatch({
                         type: types.CHECK_TOKEN_SUCCESS,
+                        userData:userInfo
                     })
                 }
                 else {
@@ -85,7 +81,6 @@ exports.checkToken = function (token) {
                 }
             })
             .catch(function (err) {
-                console.warn(err)
                 dispatch({
                     type: types.CHECK_TOKEN_FAILED,
                     err: err
@@ -130,5 +125,21 @@ exports.clear = function () {
     MessageService.storage.remove()
     return {
         type: types.CLEAR
+    }
+}
+
+exports.loadUser=function loadUser(){
+    return dispatch=> {
+        UserService.req.loadUser()
+            .then(results=> {
+                dispatch({
+                    type: types.LOAD_USER_SUCCESS,
+                    results: results
+                })
+            })
+            .catch(err=> {
+
+            })
+            .done()
     }
 }

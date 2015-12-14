@@ -14,9 +14,9 @@ var {
     TouchableOpacity,
     } = React;
 
-var Userinfo=require('./../containers/UserInfo')
-var SimpleRow=require('./SimpleRow')
-var TopicListView=require('./TopicListView')
+var Userinfo=require('./../components/UserInfo')
+var SimpleRow=require('./../components/SimpleRow')
+var TopicListView=require('./../components/TopicListView')
 
 var styles = StyleSheet.create({
     refresh:{
@@ -57,7 +57,7 @@ class NavigationList extends Component{
     {
         return (
             <View style={{flex:1}}>
-                <Userinfo router={this.props.router}>
+                <Userinfo router={this.props.router} state={this.props.state} actions={this.props.actions}>
                 </Userinfo>
                 <SimpleRow text="消息" onPress={this._onPressAbout.bind(this)} router={this.props.router}>
                 </SimpleRow>

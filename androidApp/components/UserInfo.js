@@ -15,23 +15,23 @@ import React, {
     }
     from 'react-native';
 
-var ImageCircle=require('./../components/ImageCircle');
+var ImageCircle=require('./ImageCircle');
 var UserActions=require('../actions/UserActions')
 
-import { connect } from 'react-redux/native';
+import { connect } from '../../node_modules/react-redux/native';
 import { getLoginUserFromStorage } from '../actions/UserActions.js';
+import {Button} from 'mrn'
 
 var styles = StyleSheet.create({
     userInfo:{
-        height:150,
         backgroundColor:'pink'
     },
     text:{
-        fontSize: 15,
+        fontSize: 14,
         color: '#888888',
         lineHeight: 20,
-        marginTop:20,
-        marginLeft:10,
+        marginLeft:15,
+        justifyContent:'center'
     },
     image:{
         flex:1,
@@ -48,21 +48,10 @@ var styles = StyleSheet.create({
 class UserInfo extends Component{
     constructor(props) {
         super(props);
-        this.state={
-            isLogin:false,
-            userData:null
-        }
     }
 
-    componentWDidMount(){
-        console.log( this.props.getLoginUserFromStorage)
-        this.props.getLoginUserFromStorage.then((data)=>{
-            console.log(data)
-           this.setState({
-                isLogin:true,
-                userData:data
-               })
-        })
+    componentDidMount(){
+       this.props.actions.loadUser()
     }
 
     _login(){
@@ -87,24 +76,32 @@ class UserInfo extends Component{
 
     _loginRender()
     {
-        const userData=this.state.userData
+        const userData=this.props.state.userState.userData
         return(
             <View style={styles.userInfo}>
                 <Image source={{uri:userData.avatar_url}} style={styles.userAvatar}>
                 </Image>
-                <Text style={styles.text}>
-                    {userData.loginname}
-                </Text>
-                <Text style={[styles.text,{textAlign:'right'}]}>
-                    注销
-                </Text>
+                <View style={{flex:1,flexDirection:'row'}}>
+                    <View style={{flex:3}}>
+                        <Text style={styles.text}>
+                            {userData.loginname}
+                        </Text>
+                        <Text style={styles.text}>
+                            积分：{userData.score}
+                        </Text>
+                    </View>
+                    <View style={{flex:1}}>
+                        <Button value="注销" primary={'googleBlue'}  />
+                    </View>
+                </View>
             </View>
         )
     }
 
     render()
     {
-        if(this.state.isLogin)
+        const userState=this.props.state.userState
+        if(userState.isLogin)
         {
             return this._loginRender()
         }
@@ -114,20 +111,4 @@ class UserInfo extends Component{
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        user: state.user
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        getLoginUserFromStorage: () => dispatch(getLoginUserFromStorage())
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(UserInfo);
-
+module.exports=UserInfo

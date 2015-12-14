@@ -45,12 +45,29 @@ var styles = StyleSheet.create({
 class Login extends Component{
     constructor(props) {
         super(props);
+        this.state={
+            loginDisabled:true
+        }
     }
-    _onPress()
-    {
+    _onPress(){
         if (this.props.router && this.props.router.length > 1) {
             this.props.router.pop();
         }
+    }
+
+    _onPressBarcode() {
+        this.props.router.toBarCode()
+    }
+
+    _onPressLogin(){
+        this.props.actions.checkToken(this.state.token)
+    }
+
+    _onChangeText(value) {
+        this.setState({
+            loginDisabled: value ? false : true,
+            token:value
+        })
     }
     render() {
         return (
@@ -73,15 +90,15 @@ class Login extends Component{
                 </View>
 
                 <View>
-                    <TextInput placeholder ='Access Token:'>
+                    <TextInput placeholder ='Access Token:' onChangeText={value=>this._onChangeText(value)}>
                     </TextInput>
                 </View>
                 <View style={{flexDirection:'row'}}>
                     <View style={{flex:1,borderWidth:1,borderColor:'lightGreen'}}>
-                        <Button value="扫描二维码" primary={'googleBlue'} />
+                        <Button value="扫描二维码" primary={'googleBlue'} onPress={this._onPressBarcode.bind(this)} />
                     </View>
                     <View style={{flex:1,borderWidth:1,borderColor:'lightGreen'}}>
-                        <Button value="登录" primary={'googleBlue'} />
+                        <Button value="登录" primary={'googleBlue'} onPress={this._onPressLogin.bind(this)} disabled={this.state.loginDisabled}/>
                     </View>
                 </View>
                 <View style={{flex:1}}>

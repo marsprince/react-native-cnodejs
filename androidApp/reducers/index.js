@@ -5,9 +5,10 @@
 import { combineReducers } from 'redux';
 import configState from './configReducer'
 import topicState from './topicReducer'
+import userState from './userReducer.js'
 
 const rootReducer = combineReducers({
-    configState,topicState
+    configState,topicState,userState
 });
 
 export default rootReducer;
