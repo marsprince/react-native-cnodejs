@@ -26,7 +26,14 @@ var styles = StyleSheet.create({
     userInfo:{
         backgroundColor:'pink'
     },
-    text:{
+    textUnLogin:{
+        fontSize: 14,
+        color: '#888888',
+        lineHeight: 20,
+        marginLeft:10,
+        justifyContent:'center'
+    },
+    textLogin:{
         fontSize: 14,
         color: '#888888',
         lineHeight: 20,
@@ -67,7 +74,7 @@ class UserInfo extends Component{
                     </Image>
                 </TouchableHighlight>
 
-                <Text style={styles.text}>
+                <Text style={styles.textUnLogin}>
                     点击头像登录
                 </Text>
             </View>
@@ -86,10 +93,10 @@ class UserInfo extends Component{
                 </Image>
                 <View style={{flex:1,flexDirection:'row'}}>
                     <View style={{flex:3}}>
-                        <Text style={styles.text}>
+                        <Text style={styles.textLogin}>
                             {userData.loginname}
                         </Text>
-                        <Text style={styles.text}>
+                        <Text style={styles.textLogin}>
                             积分：{userData.score}
                         </Text>
                     </View>

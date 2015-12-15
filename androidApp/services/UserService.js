@@ -65,6 +65,7 @@ req.getUserInfo = function (userName) {
 }
 
 
+
 req.checkToken = function (token) {
     var apiUrl = config.domain + config.apiPath + '/accesstoken'
     return request.post(apiUrl, {

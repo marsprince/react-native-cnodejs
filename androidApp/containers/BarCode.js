@@ -25,17 +25,11 @@ class BarCode extends Component{
             cameraType: 'back',
         }
     }
-    componentDidMount(){
+    componentDidUpdate(){
         if(this.props.state.userState.isLogin)
         {
-            this.props.router.popToTop()
+            this.props.router.pop()
         }
-       /* else{
-            if(this.props.state.userState.error)
-            {
-                ToastAndroid.show('登录失败',ToastAndroid.SHORT)
-            }
-        }*/
     }
 
     _barcodeReceived(e) {

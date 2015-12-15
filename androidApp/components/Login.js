@@ -13,7 +13,8 @@ var {
     StyleSheet,
     TouchableHighlight,
     Text,
-    TextInput
+    TextInput,
+    ToastAndroid
     }=React
 
 var Icon = require('react-native-vector-icons/MaterialIcons');
@@ -49,6 +50,13 @@ class Login extends Component{
             loginDisabled:true
         }
     }
+    componentDidUpdate(){
+        if(this.props.state.userState.isLogin)
+        {
+            this.props.router.pop()
+        }
+    }
+
     _onPress(){
         if (this.props.router && this.props.router.length > 1) {
             this.props.router.pop();

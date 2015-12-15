@@ -35,12 +35,14 @@ export default function userReducer(state = initialState, action={}) {
         case types.LOAD_USER_FAILED:
             return{
                 ...state,
-                isLogin:false
+                isLogin:false,
+                err:null
             }
         case types.LOGOUT:
             return{
                 isLogin:false,
-                userData:null
+                userData:null,
+                err:null
             }
         default :
             return state
