@@ -29,7 +29,6 @@ var ViewPager = React.createClass({
 
     this.setState({activeTab: page});
     this.viewPager.setPage(page);
-    console.log(page)
     this.props.onChangeTab && this.props.onChangeTab({
       i:page,
       ref: this.props.children[page]
@@ -62,7 +61,7 @@ var ViewPager = React.createClass({
         {this.props.position == 'top' ? this.renderTabBar() : null}
         <ViewPagerAndroid ref={(comp) => {this.viewPager = comp}}
           onPageScroll={this.onPageScroll}
-          onPageSelected={this.onPageSelected.bind(this)}
+          onPageSelected={this.onPageSelected}
           style={{
             flexDirection:'row',
             backgroundColor:'#ccc',

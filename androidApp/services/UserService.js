@@ -5,23 +5,12 @@ var request = require('./Request')
 var storage = {}
 
 
-storage.saveUser = function (user) {
-    return Storage.setItem('user', user)
+storage.clearUserInfo = function () {
+    return Storage.removeItem('userInfo')
 }
-
-
-storage.clearUser = function () {
-    return Storage.removeItem('user')
-}
-
 
 storage.saveUserInfo = function (userInfo) {
     return Storage.setItem('userInfo', userInfo)
-}
-
-
-storage.getUser = function () {
-    return Storage.getItem('user')
 }
 
 storage.getUserInfo = function () {

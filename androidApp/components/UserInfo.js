@@ -73,6 +73,9 @@ class UserInfo extends Component{
             </View>
         )
     }
+    _logout(){
+        this.props.actions.logout()
+    }
 
     _loginRender()
     {
@@ -91,7 +94,7 @@ class UserInfo extends Component{
                         </Text>
                     </View>
                     <View style={{flex:1}}>
-                        <Button value="注销" primary={'googleBlue'}  />
+                        <Button value="注销" primary={'googleBlue'}  onPress={this._logout.bind(this)}/>
                     </View>
                 </View>
             </View>

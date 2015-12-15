@@ -55,6 +55,7 @@ var ViewPagerTabs = React.createClass({
     }
     return (
       <TouchableOpacity
+          key={page}
         style={[
           styles.tab,
           {width: DimensionsHelper.SCREEN_WIDTH/this.props.children.length}]}

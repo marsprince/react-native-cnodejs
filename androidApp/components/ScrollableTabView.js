@@ -47,7 +47,7 @@ class ScrollableTabViewExample extends Component{
             if(!tab['tab'])
             {
                 return (
-                    <View tabLabel="最新" style={styles.tabView}>
+                    <View key={i} tabLabel="最新" style={styles.tabView}>
                         <TopicListView router={this.props.router} isRender={i==this.state.selectedTab?true:false}>
 
                         </TopicListView>
@@ -57,7 +57,7 @@ class ScrollableTabViewExample extends Component{
             else
             {
                 return (
-                    <View tabLabel={cnodeUtil.getCategory(tab['tab'])} style={styles.tabView}>
+                    <View key={i} tabLabel={cnodeUtil.getCategory(tab['tab'])} style={styles.tabView}>
                         <TopicListView router={this.props.router} tab={tab['tab']} isRender={i==this.state.selectedTab?true:false}>
 
                         </TopicListView>

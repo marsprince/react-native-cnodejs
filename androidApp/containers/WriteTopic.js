@@ -66,9 +66,9 @@ class WriteTopic extends Component{
                      <View style={{flex:4,flexDirection:'row'}}>
                          {this.state.label.map((value,index)=>{
                              return(
-                                 <View style={{flex:1,flexDirection:'row'}}>
+                                 <View key={index} style={{flex:1,flexDirection:'row'}}>
                                      <View style={{flex:3}}>
-                                         <RadioButton value={index}
+                                         <RadioButton value={index.toString()}
                                                       checked={index==this.state.selectedLabel?true:false}
                                                       onCheck={index=>this.setState({selectedLabel:index})}/>
                                      </View>

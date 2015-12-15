@@ -38,6 +38,11 @@ class Router {
         this.navigator.pop()
     }
 
+    popToTop()
+    {
+        this.navigator.popToTop()
+    }
+
 
     toUser(props) {
         this.push(props, {

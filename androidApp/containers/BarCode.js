@@ -7,14 +7,14 @@
 //var React = require('react-native');
 import React,{
     View,
-    Component
+    Component,
+    ToastAndroid
     }
     from 'react-native';
 
 var BarcodeScanner = require('../components/BarCodeModule/BarCode');
 var NavBar=require('./../components/ToolBar/BasicToolBar')
 
-import { connect } from 'react-redux/native';
 import { checkToken } from '../actions/UserActions.js';
 
 class BarCode extends Component{
@@ -25,10 +25,22 @@ class BarCode extends Component{
             cameraType: 'back',
         }
     }
+    componentDidMount(){
+        if(this.props.state.userState.isLogin)
+        {
+            this.props.router.popToTop()
+        }
+       /* else{
+            if(this.props.state.userState.error)
+            {
+                ToastAndroid.show('登录失败',ToastAndroid.SHORT)
+            }
+        }*/
+    }
 
     _barcodeReceived(e) {
-       this.props.actions.checkToken(e.data)
-       this.props.router.pop()
+        this.props.actions.checkToken(e.data)
+        this.props.router.popToTop()
     }
 
     render() {
