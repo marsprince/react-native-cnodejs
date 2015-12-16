@@ -37,11 +37,11 @@ class ReplyRow extends Component{
     }
     render()
     {
-        var {text,onPress}=this.props;
+        var {text,onPress,onChangeText}=this.props;
         return (
                 <View style={styles.row} >
                     <View style={{flex:6,justifyContent:'center'}}>
-                        <TextInput defaultValue = {text} placeholder="说点什么吧"  style={{ borderColor: 'gray', borderWidth: 1}}>
+                        <TextInput multiline={true} defaultValue = {text} onChangeText={(value)=>onChangeText(value)}placeholder="说点什么吧" style={{ borderColor: 'gray', borderWidth: 1}}>
                         </TextInput>
                     </View>
                     <View style={{flex:1,paddingTop:5}}>

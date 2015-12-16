@@ -11,7 +11,8 @@ import React, {
     Text,
     View,
     Image,
-    TouchableHighlight
+    TouchableHighlight,
+    TouchableOpacity
     }
     from 'react-native';
 
@@ -69,10 +70,10 @@ class UserInfo extends Component{
     {
         return(
             <View style={styles.userInfo}>
-                <TouchableHighlight activeOpacity={0} onPress={this._login.bind(this)} style={{flex:1}}>
+                <TouchableOpacity activeOpacity={1} onPress={this._login.bind(this)} style={{flex:1}}>
                     <Image source={require("../../image/defaultUser.png")} style={styles.userAvatar}>
                     </Image>
-                </TouchableHighlight>
+                </TouchableOpacity>
 
                 <Text style={styles.textUnLogin}>
                     点击头像登录

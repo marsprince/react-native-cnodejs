@@ -44,14 +44,14 @@ var styles = StyleSheet.create({
         textAlign:'left'
     },
     info:{
-        flex:6,
+        flex:5,
         paddingLeft:10
     },
     avatar:{
         flex:1,
     },
     action:{
-        flex:2,
+        flex:3,
         flexDirection:'row',
     },
     authorText:{
@@ -67,10 +67,11 @@ var styles = StyleSheet.create({
         lineHeight: 20,
     },
     agreeText:{
-        textAlign :'center',
+        textAlign :'left',
         fontSize: 20,
         color: '#888888',
         lineHeight:26,
+        marginTop:10
     },
     webView:{
         paddingLeft:15,
@@ -86,9 +87,10 @@ class CommentRow extends Component{
     _upPress(){
 
     }
+
     render()
     {
-        var {reply,row} =this.props;//https://cnodejs.org/api/v1/topics
+        var {reply,row,replyOnePress} =this.props;//https://cnodejs.org/api/v1/topics
         return (
             <View style={{flex:1}}>
                 <View style={styles.row}>
@@ -110,18 +112,14 @@ class CommentRow extends Component{
                     </View>
 
                     <View style={styles.action}>
-                        <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:1}} onPress={this._upPress.bind(this)}>
-                            <View style={{flex:1,flexDirection:'row'}}>
-                                <Icon name="thumb-up" size={25} color="#000000" style={{flex:1}}/>
-                                <Text style={[styles.agreeText,{flex:1}]}>
-                                    {reply.ups.length}
-                                </Text>
-                            </View>
+                        <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:1,alignItems :'center'}} onPress={this._upPress.bind(this)}>
+                                <Icon name="thumb-up" size={25} color="#000000" style={{flex:1,paddingTop:5}}/>
                         </TouchableHighlight>
-                        <TouchableHighlight activeOpacity={0} underlayColor='lightgray' style={{flex:1}} onPress={null}>
-                            <View style={{flex:1,flexDirection:'row'}}>
-                                <Icon name="reply" size={25} color="#000000" style={{flex:1}}/>
-                            </View>
+                        <Text style={[styles.agreeText,{flex:1}]}>
+                            {reply.ups.length}
+                        </Text>
+                        <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:1,alignItems :'center'}} onPress={()=>replyOnePress()}>
+                                <Icon name="reply" size={25} color="#000000" style={{flex:1,paddingTop:5}}/>
                         </TouchableHighlight>
                     </View>
                 </View>

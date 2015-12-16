@@ -42,8 +42,8 @@ class TopicInfoListView extends Component {
             topicDs:null,
             isLoading: true,
             isReady:false,
-            loadingPosition: 'top',
-            getTopicError: null
+            replyContent:"",
+            defaultValue:""
         }
     }
 
@@ -82,11 +82,21 @@ class TopicInfoListView extends Component {
                 reply={reply}
                 row={parseInt(rowId)+1}
                 router={this.props.router}
+                replyOnePress={this._replyOnePress.bind(this,reply)}
                 >
             </CommentRow>
         )
     }
-
+    _replyOnePress(reply){
+        this.setState({
+            defaultValue:this.state.replyContent?"@"+reply.author.loginname+" "+this.state.replyContent:"@"+reply.author.loginname+" "
+        })
+    }
+    _onChangeText(value){
+        this.setState({
+            replyContent:value
+        })
+    }
     _renderHeader()
     {
         return(
@@ -95,12 +105,6 @@ class TopicInfoListView extends Component {
         )
     }
 
-    _renderFooter(){
-        return(
-            <ReplyRow>
-            </ReplyRow>
-        )
-    }
     render() {
         if (!this.state.isReady || this.state.isLoading) {
             return (
@@ -131,7 +135,7 @@ class TopicInfoListView extends Component {
                     renderRow={this._renderRow.bind(this)}
                     renderHeader={()=>this._renderHeader()}
                     />
-                <ReplyRow>
+                <ReplyRow text={this.state.defaultValue} onChangeText={(value)=>this._onChangeText(value)}>
                 </ReplyRow>
             </View>
         )
