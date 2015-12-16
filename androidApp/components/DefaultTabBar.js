@@ -21,10 +21,11 @@ var styles = StyleSheet.create({
   },
 
   tabs: {
+    backgroundColor:'#2C2C2C',
     height: 50,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 20,
+    //marginTop: 20,
     borderWidth: 1,
     borderTopWidth: 0,
     borderLeftWidth: 0,
@@ -46,7 +47,7 @@ var DefaultTabBar = React.createClass({
     return (
       <TouchableOpacity style={[styles.tab]} key={name} onPress={() => this.props.goToPage(page)}>
         <View>
-          <Text style={{color: isTabActive ? 'navy' : 'black', fontWeight: isTabActive ? 'bold' : 'normal'}}>{name}</Text>
+          <Text style={{color: isTabActive ? 'white' : 'gray', fontWeight: isTabActive ? 'bold' : 'normal'}}>{name}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -57,8 +58,8 @@ var DefaultTabBar = React.createClass({
     var tabUnderlineStyle = {
       position: 'absolute',
       width: deviceWidth / numberOfTabs,
-      height: 4,
-      backgroundColor: 'navy',
+      height: 3,
+      backgroundColor: 'gray',
       bottom: 0,
     };
 

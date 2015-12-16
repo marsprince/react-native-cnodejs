@@ -83,6 +83,9 @@ class CommentRow extends Component{
     constructor(props) {
         super(props);
     }
+    _upPress(){
+
+    }
     render()
     {
         var {reply,row} =this.props;//https://cnodejs.org/api/v1/topics
@@ -101,13 +104,13 @@ class CommentRow extends Component{
                                 {reply.author.loginname}
                             </Text>
                             <Text style={styles.authorText}>
-                                {row}¥ {moment(reply.create_at).startOf('hour').fromNow()}
+                                {row}楼 {moment(reply.create_at).startOf('hour').fromNow()}
                             </Text>
                         </View>
                     </View>
 
                     <View style={styles.action}>
-                        <TouchableHighlight activeOpacity={1} style={{flex:1}} onPress={null}>
+                        <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:1}} onPress={this._upPress.bind(this)}>
                             <View style={{flex:1,flexDirection:'row'}}>
                                 <Icon name="thumb-up" size={25} color="#000000" style={{flex:1}}/>
                                 <Text style={[styles.agreeText,{flex:1}]}>
@@ -115,7 +118,7 @@ class CommentRow extends Component{
                                 </Text>
                             </View>
                         </TouchableHighlight>
-                        <TouchableHighlight activeOpacity={1} style={{flex:1}} onPress={null}>
+                        <TouchableHighlight activeOpacity={0} underlayColor='lightgray' style={{flex:1}} onPress={null}>
                             <View style={{flex:1,flexDirection:'row'}}>
                                 <Icon name="reply" size={25} color="#000000" style={{flex:1}}/>
                             </View>

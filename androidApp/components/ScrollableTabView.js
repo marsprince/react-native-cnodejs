@@ -20,8 +20,8 @@ var {
 } = React;
 
 var TopicListView=require('./TopicListView');
-var ScrollableTabView = Platform.OS=="android"?require("./ScrollableTabViewAndroid/ViewPager"):require('react-native-scrollable-tab-view');
-//var ScrollableTabView=require('react-native-scrollable-tab-view')
+//var ScrollableTabView = Platform.OS=="android"?require("./ScrollableTabViewAndroid/ViewPager"):require('react-native-scrollable-tab-view');
+var ScrollableTabView=require('react-native-scrollable-tab-view')
 var DefaultTabBar=require("./DefaultTabBar")
 
 var cnodeUtil=require('../util/cnodeUtil')
@@ -73,14 +73,14 @@ class ScrollableTabViewExample extends Component{
             this.setState({
                 selectedTab:i
             })
-        },300)
+        },400)
     }
 
     render() {
 
         return (
             <View style={styles.container}>
-                <ScrollableTabView onChangeTab={this._onChangeTab.bind(this)} position="top" bar='tabs' edgeHitWidth={deviceWidth/2} renderTabBar={() => <DefaultTabBar />} style={{flex:1}} >
+                <ScrollableTabView onChangeTab={this._onChangeTab.bind(this)}  edgeHitWidth={deviceWidth/2} renderTabBar={() => <DefaultTabBar />} style={{flex:1}} >
                     {this._renderTab()}
                 </ScrollableTabView>
             </View>

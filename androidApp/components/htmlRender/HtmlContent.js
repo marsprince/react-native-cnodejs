@@ -8,15 +8,18 @@ var window = require('../../util/window')
 var { width, height } = window.get()
 
 var {
+    Platform,
     Component,
     View,
     Text,
     StyleSheet,
     Image,
     LinkingIOS,
-    Navigator
+    Navigator,
+    IntentAndroid
     }=React
 
+import {openUrl} from '../openUrlModule/openUrl'
 var contentFontSize = 16
 
 
@@ -58,8 +61,8 @@ class HtmlContent extends Component {
             if (regs.http.topic.test(url)) {
                 let topicId = url.replace(/^https?:\/\/cnodejs\.org\/topic\//, '')
 
-                return router.toTopic({
-                    topicId: topicId,
+                return router.toTopicInfoListView({
+                    id: topicId,
                     from: 'html'
                 })
             }
@@ -71,12 +74,11 @@ class HtmlContent extends Component {
                     userName: userName
                 })
             }
-
-            window.link(url)
+            openUrl(url)
         }
 
         if (/^mailto:\w*/.test(url)) {
-            window.link(url)
+            openUrl(url)
         }
     }
 
