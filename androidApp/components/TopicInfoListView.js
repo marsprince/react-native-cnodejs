@@ -26,7 +26,7 @@ var {
     InteractionManager
     } = React
 
-var NavigationTitleBar=require("./ToolBar/BasicToolBar");
+var NavigationTitleBar=require("./ToolBar/TopicToolBar");
 var TopicInfoRow=require("./TopicInfoRow")
 import CommentRow from './CommentRow'
 

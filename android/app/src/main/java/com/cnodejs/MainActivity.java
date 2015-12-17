@@ -13,6 +13,7 @@ import com.facebook.soloader.SoLoader;
 
 import com.eguma.barcodescanner.BarcodeScanner;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.github.marsprince.alertAndroid.AlertAndroidPackage;
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
@@ -32,6 +33,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
 
                  .addPackage(new BarcodeScanner())
                  .addPackage(new VectorIconsPackage())
+                  .addPackage(new AlertAndroidPackage(this))
 
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)

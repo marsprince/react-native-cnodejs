@@ -112,13 +112,13 @@ class CommentRow extends Component{
                     </View>
 
                     <View style={styles.action}>
-                        <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:1,alignItems :'center'}} onPress={this._upPress.bind(this)}>
+                        <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:2,alignItems :'center'}} onPress={this._upPress.bind(this)}>
                                 <Icon name="thumb-up" size={25} color="#000000" style={{flex:1,paddingTop:5}}/>
                         </TouchableHighlight>
                         <Text style={[styles.agreeText,{flex:1}]}>
                             {reply.ups.length}
                         </Text>
-                        <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:1,alignItems :'center'}} onPress={()=>replyOnePress()}>
+                        <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:2,alignItems :'center'}} onPress={()=>replyOnePress()}>
                                 <Icon name="reply" size={25} color="#000000" style={{flex:1,paddingTop:5}}/>
                         </TouchableHighlight>
                     </View>

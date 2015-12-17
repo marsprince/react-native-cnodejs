@@ -29,4 +29,5 @@ dependencies {
 
      compile project(':ReactNativeBarcodescanner')
       compile project(':react-native-vector-icons')
+       compile project(':AlertAndroid')
 }

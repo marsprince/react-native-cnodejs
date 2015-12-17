@@ -3,9 +3,9 @@
  */
 
 'use strict';
-
 var React = require('react-native');
 var {
+    DeviceEventEmitter,
     Component,
     Dimensions,
     DrawerLayoutAndroid,
@@ -17,6 +17,7 @@ var {
 var Scroll=require('./ScrollableTabView');
 var NavigationList=require('./../containers/NavigationList');
 var MainScreenToolBar=require('./ToolBar/MainScreenToolBar')
+import {alertDialog} from './alertModule/alert'
 
 var DRAWER_WIDTH_LEFT =  require('Dimensions').get('window').width  / 4;
 var styles = StyleSheet.create({
@@ -34,13 +35,22 @@ class Home extends Component{
     constructor(props) {
         super(props);
     }
-    componentDidUpdate()
+    componentDidMount()
     {
-
+        DeviceEventEmitter.addListener('positiveButtonClick', ()=>{
+            this.props.router.toLogin()
+        });
     }
 
     _writeTopic(){
-        this.props.router.toWriteTopic()
+        if(this.props.state.userState.isLogin)
+        {
+            this.props.router.toWriteTopic()
+        }
+        else{
+            alertDialog()
+        }
+
     }
     _renderNavigation(){
         return (
