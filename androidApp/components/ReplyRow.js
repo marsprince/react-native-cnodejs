@@ -45,7 +45,7 @@ class ReplyRow extends Component{
                         </TextInput>
                     </View>
                     <View style={{flex:1,paddingTop:5}}>
-                        <Button value="回复"  primary={'googleBlue'}/>
+                        <Button value="回复"  primary={'googleBlue'} onPress={()=>onPress()}/>
                     </View>
                 </View>
         )

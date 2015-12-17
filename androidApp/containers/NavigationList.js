@@ -17,6 +17,7 @@ var {
 var Userinfo=require('./../components/UserInfo')
 var SimpleRow=require('./../components/SimpleRow')
 var TopicListView=require('./../components/TopicListView')
+import {alertDialog} from '../components/alertModule/alert'
 
 var styles = StyleSheet.create({
     refresh:{
@@ -47,7 +48,13 @@ class NavigationList extends Component{
     }
 
     _onPressMessage(){
-        this.props.router.toMessage()
+        if(this.props.state.userState.isLogin)
+        {
+            this.props.router.toMessage()
+        }
+        else{
+            alertDialog()
+        }
     }
 
     _onPressSettings(){
@@ -59,7 +66,7 @@ class NavigationList extends Component{
             <View style={{flex:1}}>
                 <Userinfo router={this.props.router} state={this.props.state} actions={this.props.actions}>
                 </Userinfo>
-                <SimpleRow text="消息" onPress={this._onPressAbout.bind(this)} router={this.props.router}>
+                <SimpleRow text="消息" onPress={this._onPressMessage.bind(this)} router={this.props.router}>
                 </SimpleRow>
                 <SimpleRow text="设置" onPress={this._onPressSettings.bind(this)} router={this.props.router}>
                 </SimpleRow>

@@ -4,16 +4,16 @@ var React = require('react-native')
 //var User = require('../containers/User')
 //var Topic = require('../containers/Topic')
 //var Comments = require('../containers/Comments')
-//var Message = require('../containers/Message')
-var About = require('../components/About')
+var Message = require('../containers/Message')
+var About = require('About')
 //var Publish = require('../containers/Publish')
 var BarCode=require('../containers/BarCode')
-var TopicInfoListView=require('../components/TopicInfoListView')
+var TopicInfoListView=require('../containers/TopicInfoListView')
 // Config
 import {customFloatFromRight,basePushFromRight} from  './sceneConfig'
 var WriteTopic =require('../containers/WriteTopic')
-var Settings=require('../components/Settings')
-var Login=require('../components/Login')
+var Settings=require('../containers/Settings')
+var Login=require('../containers/Login')
 
 var {
     Navigator

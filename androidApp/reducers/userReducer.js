@@ -9,7 +9,8 @@ var AsyncStorage = React.AsyncStorage
 
 var initialState = {
     isLogin:false,
-    userData:null
+    userData:null,
+    accesstoken:null
 }
 
 export default function userReducer(state = initialState, action={}) {
@@ -18,7 +19,8 @@ export default function userReducer(state = initialState, action={}) {
             return {
                 ...state,
                 userData:action.userData,
-                isLogin:true
+                isLogin:true,
+                accesstoken:actions.accesstoken
             }
         case types.CHECK_TOKEN_FAILED:
             return{

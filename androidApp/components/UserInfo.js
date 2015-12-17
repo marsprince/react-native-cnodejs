@@ -1,6 +1,5 @@
 /**
  * Created by mars on 2015/11/6.
- * 显示头像和个人信息
  */
 
 'use strict';
@@ -12,7 +11,8 @@ import React, {
     View,
     Image,
     TouchableHighlight,
-    TouchableOpacity
+    TouchableOpacity,
+    DeviceEventEmitter
     }
     from 'react-native';
 
@@ -22,6 +22,7 @@ var UserActions=require('../actions/UserActions')
 import { connect } from '../../node_modules/react-redux/native';
 import { getLoginUserFromStorage } from '../actions/UserActions.js';
 import {Button} from 'mrn'
+import {alertLogout} from './alertModule/alertLogout'
 
 var styles = StyleSheet.create({
     userInfo:{
@@ -82,7 +83,8 @@ class UserInfo extends Component{
         )
     }
     _logout(){
-        this.props.actions.logout()
+       // alertLogout()
+       this.props.actions.logout()
     }
 
     _loginRender()

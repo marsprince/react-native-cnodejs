@@ -74,7 +74,8 @@ exports.checkToken = function (token) {
                    // dispatch(getUser(userInfo))
                     dispatch({
                         type: types.CHECK_TOKEN_SUCCESS,
-                        userData:userInfo
+                        userData:userInfo,
+                        accesstoken:token
                     })
                 }
                 else {
