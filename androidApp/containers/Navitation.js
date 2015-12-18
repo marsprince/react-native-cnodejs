@@ -1,5 +1,5 @@
 var React = require('react-native')
-var Home = require('Home')
+var Home = require('./Home')
 var Router = require('../configs/Router')
 
 var {

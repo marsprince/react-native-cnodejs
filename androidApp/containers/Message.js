@@ -20,7 +20,7 @@ var {
 var MessageListView=require('../components/MessageListView');
 //var ScrollableTabView = Platform.OS=="android"?require("./ScrollableTabViewAndroid/ViewPager"):require('react-native-scrollable-tab-view');
 var ScrollableTabView=require('react-native-scrollable-tab-view')
-var DefaultTabBar=require("./DefaultTabBar")
+var DefaultTabBar=require("../components/DefaultTabBar")
 
 var cnodeUtil=require('../util/cnodeUtil')
 

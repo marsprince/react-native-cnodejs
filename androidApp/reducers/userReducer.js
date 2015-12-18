@@ -20,7 +20,7 @@ export default function userReducer(state = initialState, action={}) {
                 ...state,
                 userData:action.userData,
                 isLogin:true,
-                accesstoken:actions.accesstoken
+                accesstoken:action.accesstoken
             }
         case types.CHECK_TOKEN_FAILED:
             return{
