@@ -82,7 +82,7 @@ req.checkToken = function (token) {
         .then(data => {
             if (data.success) {
                 data.token = token
-                Storage.setItem('user', data)
+                Storage.multiSet([['user', data],['accesstoken',token]])
                 return data
             }
             throw 'wrong token'

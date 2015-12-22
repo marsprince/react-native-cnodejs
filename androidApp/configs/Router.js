@@ -14,6 +14,7 @@ import {customFloatFromRight,basePushFromRight} from  './sceneConfig'
 var WriteTopic =require('../containers/WriteTopic')
 var Settings=require('../containers/Settings')
 var Login=require('../containers/Login')
+import User from '../containers/User'
 
 var {
     Navigator
@@ -89,7 +90,7 @@ class Router {
         this.push(props, {
             component: Message,
             name: 'message',
-            sceneConfig: customFloatFromRight
+            sceneConfig: basePushFromRight
         })
     }
 

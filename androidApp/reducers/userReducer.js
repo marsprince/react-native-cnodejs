@@ -32,7 +32,8 @@ export default function userReducer(state = initialState, action={}) {
             return {
                 ...state,
                 userData:action.results,
-                isLogin:true
+                isLogin:true,
+                accesstoken:action.accesstoken
             }
         case types.LOAD_USER_FAILED:
             return{

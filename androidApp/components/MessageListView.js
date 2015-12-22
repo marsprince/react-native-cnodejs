@@ -20,7 +20,6 @@ var {
     Text,
     Image,
     ListView,
-    ActivityIndicatorIOS,
     TouchableHighlight,
     TouchableOpacity,
     ToastAndroid
@@ -41,8 +40,6 @@ class MessageListView extends Component {
     }
 
     _genRows(){
-        //get from storage,if not exist,call get from network
-
         MessageService.req.get(this.props.state.userState.accesstoken)
             .then(messages=> {
                 var newData=this.data.concat(this.props.isRead ? messages.has_read_messages : messages.hasnot_read_messages)
@@ -56,7 +53,6 @@ class MessageListView extends Component {
                 console.warn(err)
             })
             .done((err)=> {
-                this.isFreshing = false
                 this.setState({
                     isLoading: false,
                     err: err
@@ -85,10 +81,6 @@ class MessageListView extends Component {
         this._genRows();
     }
     render() {
-        if(!this.props.isRender)
-        {
-            return null
-        }
         if (this.state.isLoading) {
             return (
                 <View style={{flex:1,alignItems:'center',justifyContent :'center'}}>
@@ -108,7 +100,7 @@ class MessageListView extends Component {
                 removeClippedSubviews={true}
                 dataSource={this.state.ds}
                 renderRow={this._renderRow.bind(this)}
-                onEndReached={this._onEndReached.bind(this)}
+                //onEndReached={this._onEndReached.bind(this)}
                 onEndReachedThreshold={20}
                 />
         )

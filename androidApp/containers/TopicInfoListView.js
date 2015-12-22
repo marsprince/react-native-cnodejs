@@ -30,6 +30,7 @@ import CommentRow from './../components/CommentRow'
 import {alertDialog} from './../components/alertModule/alert.ios'
 
 import Loading from './../components/Loading.js'
+import Error from './../components/Error.js'
 import ReplyRow from './../components/ReplyRow.js'
 
 class TopicInfoListView extends Component {
@@ -42,21 +43,25 @@ class TopicInfoListView extends Component {
             isLoading: true,
             isReady:false,
             replyContent:"",
-            defaultValue:""
+            defaultValue:"",
+            hasTopic:true
         }
     }
 
     _genRows(){
         TopicService.req.getTopicById(this.props.id)
             .then(topic=> {
-                this.setState({
-                    isLoading: false,
-                    topicDs:topic,
-                    replyDs: this.state.replyDs.cloneWithRows(topic.replies),
-                })
+                    this.setState({
+                        isLoading: false,
+                        topicDs:topic,
+                        replyDs: this.state.replyDs.cloneWithRows(topic.replies),
+                    })
             })
             .catch(err=> {
-                console.warn(err)
+                this.setState({
+                    isLoading: false,
+                    hasTopic: false
+                })
             })
             .done((err)=> {
                 this.isFreshing = false
@@ -128,6 +133,17 @@ class TopicInfoListView extends Component {
             )
         }
 
+        if(!this.state.hasTopic)
+        {
+            return (
+                <View style={{flex:1}}>
+                    <NavigationTitleBar text="话题" router={this.props.router}>
+                    </NavigationTitleBar>
+                    <Error text="获取话题失败，话题不存在或已删除">
+                    </Error>
+                </View>
+            )
+        }
         return (
             <View style={{flex:1}}>
                <NavigationTitleBar text="话题" router={this.props.router}>

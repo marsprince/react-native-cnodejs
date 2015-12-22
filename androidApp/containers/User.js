@@ -2,21 +2,14 @@
 var React = require('react-native')
 var moment = require('moment')
 var ScrollableTabView = require('react-native-scrollable-tab-view')
-var { Icon, } = require('react-native-icons')
 
-
-// Custom Component
-var UserTopicPage = require('../components/UserTopicPage')
-var Return = require('../components/overlay/Return')
-var TabBar = require('../components/TabBar')
-var Setting = require('../components/Setting')
-
-
-var genColor = require('../util/genColor')
 var UserService = require('../services/UserService')
-var window = require('../util/window')
-var { width, height } = window.get()
+var deviceWidth = require('Dimensions').get('window').width;
+var deviceHeight=require('Dimensions').get('window').height
 
+import UserRow from '../components/UserRow.js'
+import DefaultTabBar from '../components/DefaultTabBar'
+import ImageCircle from '../components/ImageCircle.js'
 var {
     View,
     StyleSheet,
@@ -30,289 +23,134 @@ var {
     TouchableOpacity,
     Navigator,
     ActivityIndicatorIOS,
-    LayoutAnimation
     } = React
 
 
-class User extends Component {
-    constructor(props) {
-        super(props)
+class User extends Component{
+    constructor(porps) {
+        super(porps)
+        var initDs = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
         this.state = {
-            userInfo: null,
-            wallColor: genColor(),
-            didFocus: false,
-            isSettingModalOpen: false
+            topicDs: initDs,
+            replyDs: initDs,
+            isLoading: true,
+            userInfo:null
         }
     }
-
 
     componentDidMount() {
-        if (this.props.isLoginUser) {
-            this.props.actions.fetchUser(this.props.state.user)
-        }
-        else {
-            this._getUserInfo()
-        }
+        this._genRows();
     }
 
 
-    componentDidFocus() {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-        this.setState({
-            didFocus: true
-        })
+    _onChangeTab(){
+
     }
-
-
-    _onGithubPress(name) {
-        if (name == '' || !name) return
-        window.link('https://github.com/' + name)
-    }
-
-
-    onSettingModalClosePress() {
-        this.setState({
-            isSettingModalOpen: false
-        })
-    }
-
-
-    onSettingIconPress() {
-        this.setState({
-            isSettingModalOpen: true
-        })
-    }
-
-
-    _getUserInfo() {
-        let userName = this.props.userName
-
-        UserService.req.getUserInfo(userName)
-            .then(userInfo=> {
-                console.log('get userINfo');
+    _genRows(){
+        UserService.req.getUserInfo(this.props.loginname)
+            .then(user=> {
                 this.setState({
-                    userInfo: userInfo
+                    isLoading: false,
+                    userInfo:user,
+                    topicDs: this.state.topicDs.cloneWithRows(user.recent_topics),
+                    replyDs: this.state.replyDs.cloneWithRows(user.recent_replies),
                 })
             })
             .catch(err=> {
                 console.warn(err)
-                if (err == 'UserNotExist') {
-                    window.alert('用户不存在')
-                    this.props.router.pop()
-                }
             })
-            .done()
+            .done((err)=> {
+                this.setState({
+                    isLoading: false,
+                    err: err
+                })
+            })
     }
 
-
-    _renderUserTopics(userInfo) {
-        let recentReplies = userInfo.recent_replies
-        let recentTopics = userInfo.recent_topics
-        if (this.state.didFocus) {
-            return (
-                <View style={styles.list}>
-                    <ScrollableTabView
-                        edgeHitWidth={(width/3)*2}
-                        renderTabBar={()=>TabBar}>
-                        <UserTopicPage
-                            router={this.props.router}
-                            style={styles.userTopicPage}
-                            data={recentReplies}
-                            tabLabel="最近回复"/>
-                        <UserTopicPage
-                            router={this.props.router}
-                            style={styles.userTopicPage}
-                            data={recentTopics}
-                            tabLabel="最近发布"/>
-                    </ScrollableTabView>
-                </View>
-            )
-        }
-
-        if (this.props.isLoginUser) {
-            return (
-                <ActivityIndicatorIOS
-                    hidesWhenStopped={true}
-                    size="large"
-                    animating={true}
-                    style={styles.loading}/>
-            )
-        }
-
+    _renderRow(topic, sectionId, rowId, highlightRow) {
+        return (
+            <UserRow
+                //ref={view => this.listRows[rowId.toString()]=view}
+                topic={topic}
+                router={this.props.router}
+                >
+            </UserRow>
+        )
     }
-
 
     render() {
-        var userInfo = this.state.userInfo
-
-        let isLoginUser = this.props.isLoginUser
-
-        if (isLoginUser) {
-            userInfo = this.props.state.user
-        }
-
-        if (!userInfo) {
-            return (
-                <View style={styles.container}>
-                    <ActivityIndicatorIOS
-                        hidesWhenStopped={true}
-                        size="large"
-                        animating={true}
-                        style={styles.loading}/>
-                </View>
-
-            )
-        }
-        let imgUri = window.parseImgUrl(userInfo.avatar_url)
-        let createTime = moment(userInfo.create_at).format('l')
-        let authorName = userInfo.loginname
-        let githubName = userInfo.githubUsername
-        let pubTopicIcon = (
-            <TouchableOpacity
-                onPress={()=>{
-                    this.props.router.toPublish()
-                }}
-                >
-                <Icon
-                    name='ion|ios-compose'
-                    size={34}
-                    color='rgba(255,255,255,0.7)'
-                    style={styles.icon}/>
-            </TouchableOpacity>
-        )
-
-        let settingIcon = (
-            <TouchableOpacity
-                onPress={this.onSettingIconPress.bind(this)}
-                >
-                <Icon
-                    name='ion|ios-gear'
-                    size={34}
-                    color='rgba(255,255,255,0.7)'
-                    style={styles.icon}/>
-            </TouchableOpacity>
-        )
-
+       if(this.state.isLoading)
+       {
+           return null
+       }
+        let {userInfo}=this.state
         return (
-            <View style={styles.container}>
-                <View style={[styles.bgWall,{backgroundColor:this.state.wallColor}]}>
-                    <View style={styles.imgRow}>
-
-                        {isLoginUser ? pubTopicIcon : null}
-
-                        <TouchableOpacity
-                            onPress={this._onGithubPress.bind(this, githubName)}>
-                            <Image
-                                style={styles.authorImg}
-                                source={{uri:imgUri}}>
-                            </Image>
-                        </TouchableOpacity>
-
-                        {isLoginUser ? settingIcon : null}
-
-                    </View>
-
-
-                    <TouchableOpacity
-                        onPress={this._onGithubPress.bind(this, authorName)}>
-                        <Text style={styles.github}>
-                            {authorName}
-                        </Text>
-                    </TouchableOpacity>
-
-
-                    <View style={styles.bgWallFooter}>
-                        <Text style={styles.bgWallFooterText}>
-                            {'注册时间: ' + createTime}
-                        </Text>
-
-                        <Text style={styles.bgWallFooterText}>
-                            {'积分:' + userInfo.score}
-                        </Text>
+            <View style={{flex:1}}>
+                <View>
+                    <Image source={require('../../image/user_detail_header_bg.png')}  style={{width:deviceWidth,height:deviceHeight/3,resizeMode :'stretch'}}>
+                    </Image>
+                    <View style={styles.userInfo}>
+                        <ImageCircle url={userInfo.avatar_url} height={40} width={40}>
+                        </ImageCircle>
                     </View>
                 </View>
-                {this._renderUserTopics(userInfo)}
 
-                <Return router={this.props.router}></Return>
+                <View style={styles.container}>
+                    <ScrollableTabView onChangeTab={this._onChangeTab.bind(this)} edgeHitWidth={deviceWidth/2} renderTabBar={() => <DefaultTabBar />} style={{flex:1}} >
+                        <View tabLabel='最近回复' style={{flex:1}}>
+                            <ListView
+                                ref={view => {this._listView = view}}
+                                style={{backgroundColor:'rgba(255,255,255,1)',marginBottom:60}}
+                                //onScroll={()=>onScroll()}
+                                showsVerticalScrollIndicator={true}
+                                initialListSize={10}
+                                pagingEnabled={false}
+                                dataSource={this.state.replyDs}
+                                renderRow={this._renderRow.bind(this)}
 
+                                />
+                        </View>
+                        <View tabLabel='最近发布' style={{flex:1}}>
+                            <ListView
+                                ref={view => {this._listView = view}}
+                                style={{backgroundColor:'rgba(255,255,255,1)',marginBottom:60}}
+                                //onScroll={()=>onScroll()}
+                                showsVerticalScrollIndicator={true}
+                                initialListSize={10}
+                                pagingEnabled={false}
+                                dataSource={this.state.topicDs}
+                                renderRow={this._renderRow.bind(this)}
 
-                <Setting
-                    actions={this.props.actions}
-                    router={this.props.router}
-                    isModalOpen={this.state.isSettingModalOpen}
-                    closeModal={this.onSettingModalClosePress.bind(this)}
-                    ></Setting>
+                                />
+                        </View>
+                    </ScrollableTabView>
+                </View>
             </View>
-        )
+        );
     }
-}
-
-var bgWallHeight = 160
-var authorWrapperHeight = 100
-var authorImgSize = 60
-var fontColor = 'rgba(255,255,255,0.7)'
+};
 
 var styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white'
     },
-    loading: {
+    tabView: {
         flex: 1,
-        width: width
+        backgroundColor: 'rgba(0,0,0,0.01)',
     },
-    bgWall: {
-        height: bgWallHeight,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingTop: 30,
-        paddingBottom: 10
+    navBar:{
+        position:'absolute',
+        top:0,
+        backgroundColor: '#2C2C2C',
+        flexDirection:"row",
+        paddingLeft:10,
     },
-    imgRow: {
-        width: width,
-        flexDirection: 'row',
-        justifyContent: 'space-around'
-    },
-    icon: {
-        width: 30,
-        height: authorImgSize
-    },
-    authorWrapper: {
-        height: authorWrapperHeight,
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-    authorImg: {
-        height: authorImgSize,
-        width: authorImgSize,
-        borderRadius: authorImgSize / 2
-    },
-    bgWallFooter: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: width
-    },
-    bgWallFooterText: {
-        paddingLeft: 10,
-        paddingRight: 10,
-        fontSize: 12,
-        color: 'rgba(255,255,255,0.6)'
-    },
-    github: {
-        color: fontColor
-    },
-    userTopicPage: {
-        height: height - bgWallHeight - 70
-    },
-    list: {
-        width: width
+    userInfo:{
+        position:'absolute',
+        top:0,
     }
+});
 
-})
-
-
-module.exports = User
+module.exports=User
 
 

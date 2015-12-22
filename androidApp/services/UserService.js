@@ -30,10 +30,15 @@ storage.getUserAndUserInfo = function () {
         })
 }
 
+storage.multiGet=function()
+{
+    return Storage.multiGet(['userInfo','accesstoken'])
+}
+
 var req = {}
 
 req.loadUser=function() {
-    return storage.getUserInfo()
+    return storage.multiGet()
 }
 
 req.getLoginUserInfo = function (user) {
@@ -73,8 +78,7 @@ req.checkToken = function (token) {
     })
         .then(data => {
             if (data.success) {
-                data.token = token
-                Storage.setItem('user', data)
+                Storage.setItem('accesstoken', token)
                 return data
             }
             throw 'wrong token'

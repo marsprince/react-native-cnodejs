@@ -11,13 +11,14 @@ var {
     Text,
     View,
     TouchableHighlight,
+    TouchableOpacity,
     PixelRatio,
     Image
     } = React;
 
 var ImageCircle=require('./ImageCircle')
 import {getCategory} from "../util/cnodeUtil"
-
+import CommentHtml from "./htmlRender/CommentHtml"
 /*moment*/
 import moment from "moment"
 import zh_cn from "moment/locale/zh-cn.js"
@@ -25,43 +26,19 @@ moment.locale('zh-cn',zh_cn)
 
 var styles = StyleSheet.create({
     row:{
-        paddingLeft:10,
-        paddingRight:10,
-        flex:1,
+        paddingLeft:15,
+        paddingRight:15,
+        paddingTop:10,
         backgroundColor: 'white',
+        flexDirection:'row',
     },
     separator:{
         height: 1 / PixelRatio.get(),
         backgroundColor: '#bbbbbb',
     },
-    titleRow:{
-        flex:1,
-        marginTop:10,
-        flexDirection:'row',
-    },
-    category:{
-        flex:1,
-        borderRadius:10,
-        marginBottom:5
-    },
-    title:{
-        flex:8,
-        marginLeft:10,
-    },
     categoryText:{
         fontSize: 14,
-        marginTop:2,
         textAlign:'center',
-    },
-    titleText:{
-        fontSize: 16,
-        fontWeight: '500',
-        textAlign:'left'
-    },
-    infoRow:{
-        height:40,
-        marginBottom:10,
-        flexDirection:'row',
     },
     avatar:{
         flex:1,
@@ -76,17 +53,36 @@ var styles = StyleSheet.create({
         flexDirection:'row',
     },
     authorText:{
-        flex:3,
-        fontSize: 14,
-        color: '#888888',
-        lineHeight: 20,
-    },
-    countText:{
         flex:1,
         fontSize: 14,
         color: '#888888',
         lineHeight: 20,
-        textAlign:'right',
+    },
+    timeText:{
+        flex:2,
+        fontSize: 14,
+        color: '#888888',
+        lineHeight: 20,
+    },
+    topicText:{
+        flex:1,
+        fontSize: 14,
+        lineHeight: 20,
+    },
+    webView:{
+        paddingLeft:15,
+        paddingRight:15,
+        flex:1
+    },
+    topic:{
+        marginLeft:15,
+        marginRight:15,
+        marginBottom:15,
+        paddingTop:10,
+        paddingBottom:10,
+        paddingRight:10,
+        paddingLeft:10,
+        backgroundColor: 'lightgray',
     }
 });
 
@@ -106,9 +102,8 @@ class MessageRow extends Component{
         return (
             <View>
                 <View style={styles.row}>
-                    <View style={styles.infoRow}>
                         <View style={styles.avatar}>
-                            <ImageCircle url={topic.author.avatar_url.startsWith("http")?topic.author.avatar_url:"http:"+topic.author.avatar_url}
+                            <ImageCircle url={message.author.avatar_url.startsWith("http")?message.author.avatar_url:"http:"+message.author.avatar_url}
                                          width={40} height={40} borderRadius={20}>
                             </ImageCircle>
                         </View>
@@ -116,30 +111,29 @@ class MessageRow extends Component{
                         <View style={styles.info}>
                             <View style={styles.author}>
                                 <Text style={styles.authorText}>
-                                    {topic.author.loginname}
+                                    {message.author.loginname}
                                 </Text>
-                                <View style={[styles.category,{backgroundColor:((topic.top || topic.good)?"lightgreen":"lightgray")}]}>
-                                    <Text style={styles.categoryText}>
-                                        {topic.top?"置顶":(topic.good?"精华":getCategory(topic.tab))}
-                                    </Text>
-                                </View>
+                                <Text style={[styles.authorText,{textAlign:'right'}]}>
+                                    {moment(message.reply.create_at).startOf('hour').fromNow()}
+                                </Text>
                             </View>
                             <View style={styles.author}>
                                 <Text style={styles.timeText}>
-                                    发布于:{moment(topic.create_at).startOf('hour').fromNow()}
-                                </Text>
-                                <Text style={styles.countText}>
-                                    {topic.visit_count}次浏览
+                                    鍦ㄥ洖澶嶄腑@浜嗘偍
                                 </Text>
                             </View>
                         </View>
-                    </View>
                 </View>
                 <View style={styles.webView}>
-                    <CommentHtml content={topic.content} router={this.props.router}>
+                    <CommentHtml content={message.reply.content} router={this.props.router}>
 
                     </CommentHtml>
                 </View>
+                <TouchableOpacity activeOpacity={1} style={styles.topic} onPress={this._onPress.bind(this,message.topic.id)}>
+                    <Text style={styles.topicText}>
+                        {message.topic.title}
+                    </Text>
+                </TouchableOpacity>
                 <View style={styles.separator} />
             </View>
         )

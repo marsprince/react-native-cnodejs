@@ -21,33 +21,43 @@ var MessageListView=require('../components/MessageListView');
 //var ScrollableTabView = Platform.OS=="android"?require("./ScrollableTabViewAndroid/ViewPager"):require('react-native-scrollable-tab-view');
 var ScrollableTabView=require('react-native-scrollable-tab-view')
 var DefaultTabBar=require("../components/DefaultTabBar")
-
-var cnodeUtil=require('../util/cnodeUtil')
+var NavigationTitleBar=require("./../components/ToolBar/TopicToolBar");
 
 class Message extends Component{
     constructor(porps) {
         super(porps)
-        this.state={
-            selectedTab:0,
-        }
+    }
+    _onChangeTab(){
+
+    }
+    _genRows(){
+
+    }
+
+    componentDidMount() {
+        this._genRows();
     }
 
     render() {
 
         return (
-            <View style={styles.container}>
-                <ScrollableTabView edgeHitWidth={deviceWidth/2} renderTabBar={() => <DefaultTabBar />} style={{flex:1}} >
-                    <View tabLabel='Î´¶ÁÐÅÏ¢'>
-                        <MessageListView router={this.props.router} tab={tab['tab']} isRead={false}>
+            <View style={{flex:1}}>
+                <NavigationTitleBar text="æ¶ˆæ¯" router={this.props.router}>
+                </NavigationTitleBar>
+                <View style={styles.container}>
+                    <ScrollableTabView onChangeTab={this._onChangeTab.bind(this)} edgeHitWidth={deviceWidth/2} renderTabBar={() => <DefaultTabBar />} style={{flex:1}} >
+                        <View tabLabel='æœªè¯»ä¿¡æ¯' style={{flex:1}}>
+                            <MessageListView router={this.props.router} state={this.props.state} actions={this.props.state} isRead={false}>
 
-                        </MessageListView>
-                    </View>
-                    <View tabLabel='ÒÑ¶ÁÐÅÏ¢'>
-                        <MessageListView router={this.props.router} tab={tab['tab']} isRead={true}>
+                            </MessageListView>
+                        </View>
+                        <View tabLabel='å·²è¯»ä¿¡æ¯' style={{flex:1}}>
+                            <MessageListView router={this.props.router} state={this.props.state} actions={this.props.state} isRead={true}>
 
-                        </MessageListView>
-                    </View>
-                </ScrollableTabView>
+                            </MessageListView>
+                        </View>
+                    </ScrollableTabView>
+                </View>
             </View>
         );
     }

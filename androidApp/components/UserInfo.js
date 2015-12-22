@@ -87,13 +87,21 @@ class UserInfo extends Component{
        this.props.actions.logout()
     }
 
+    _userInfo(){
+        this.props.router.toUser({
+            loginname:this.props.state.userState.userData.loginname
+        })
+    }
+
     _loginRender()
     {
         const userData=this.props.state.userState.userData
         return(
             <View style={styles.userInfo}>
-                <Image source={{uri:userData.avatar_url}} style={styles.userAvatar}>
-                </Image>
+                <TouchableOpacity activeOpacity={1} onPress={this._userInfo.bind(this)} style={{flex:1}}>
+                    <Image source={{uri:userData.avatar_url}} style={styles.userAvatar}>
+                    </Image>
+                </TouchableOpacity>
                 <View style={{flex:1,flexDirection:'row'}}>
                     <View style={{flex:3}}>
                         <Text style={styles.textLogin}>

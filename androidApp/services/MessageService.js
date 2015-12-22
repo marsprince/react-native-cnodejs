@@ -21,7 +21,6 @@ var req = {}
 
 req.get = function (token) {
     let apiUrl = config.domain + config.apiPath + '/messages' + '?accesstoken=' + token
-
     return request.get(apiUrl)
         .then((data)=>data.data)
         .then((messages)=> {

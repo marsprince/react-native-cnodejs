@@ -30,6 +30,9 @@ Storage.multiGet = function (keys) {
             })
         })
 }
+Storage.multiSet = function (keys) {
+    return AsyncStorage.multiSet(keys)
+}
 
 Storage.multiRemove = function (keys) {
     return AsyncStorage.multiRemove(keys)

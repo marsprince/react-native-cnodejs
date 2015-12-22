@@ -138,7 +138,8 @@ exports.loadUser=function loadUser(){
                 {
                     dispatch({
                         type: types.LOAD_USER_SUCCESS,
-                        results: results
+                        results: results[1][1],
+                        accesstoken:results[0][1]
                     })
                 }
                 else{

@@ -53,7 +53,7 @@ class HtmlContent extends Component {
             let authorName = url.replace(/^\/user\//, '')
 
             router.toUser({
-                userName: authorName
+                loginname: authorName
             })
         }
 
@@ -71,7 +71,7 @@ class HtmlContent extends Component {
                 let userName = url.replace(/^https?:\/\/cnodejs\.org\/user\//, '')
 
                 return router.toUser({
-                    userName: userName
+                    loginname: userName
                 })
             }
             openUrl(url)
