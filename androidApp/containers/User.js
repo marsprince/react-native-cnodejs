@@ -86,14 +86,31 @@ class User extends Component{
         let {userInfo}=this.state
         return (
             <View style={{flex:1}}>
-                <View>
-                    <Image source={require('../../image/user_detail_header_bg.png')}  style={{width:deviceWidth,height:deviceHeight/3,resizeMode :'stretch'}}>
-                    </Image>
-                    <View style={styles.userInfo}>
-                        <ImageCircle url={userInfo.avatar_url} height={40} width={40}>
+                <Image source={require('../../image/user_detail_header_bg.png')}  style={{width:deviceWidth,height:deviceHeight/3}}>
+                    <View style={styles.avatar}>
+                        <ImageCircle url={userInfo.avatar_url} height={deviceHeight/8} width={deviceHeight/8} borderRadius={deviceHeight/16}>
                         </ImageCircle>
+                        <Text style={styles.loginname}>
+                            {userInfo.loginname}
+                        </Text>
+                        <Text style={styles.githubUsername}>
+                            {userInfo.githubUsername+'@github.com'}
+                        </Text>
                     </View>
-                </View>
+                    <View style={styles.info}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.regTime}>
+                                注册时间：{userInfo.score}
+                            </Text>
+                        </View>
+                        <View style={{flex:1}}>
+                            <Text style={styles.score}>
+                                积分：{userInfo.score}
+                            </Text>
+                        </View>
+                    </View>
+                </Image>
+
 
                 <View style={styles.container}>
                     <ScrollableTabView onChangeTab={this._onChangeTab.bind(this)} edgeHitWidth={deviceWidth/2} renderTabBar={() => <DefaultTabBar />} style={{flex:1}} >
@@ -145,9 +162,38 @@ var styles = StyleSheet.create({
         flexDirection:"row",
         paddingLeft:10,
     },
-    userInfo:{
-        position:'absolute',
-        top:0,
+    avatar:{
+        flex:4,
+        paddingTop:10,
+        alignItems:'center',
+    },
+    info:{
+        justifyContent:'center',
+        paddingRight:10,
+        paddingLeft:10,
+        flex:1,
+        flexDirection:'row',
+    },
+    regTime:{
+        textAlign:'left',
+        fontSize: 14,
+        lineHeight: 20,
+    },
+    score:{
+        textAlign:'right',
+        fontSize: 14,
+        lineHeight: 20,
+    },
+    loginname:{
+        fontSize: 18,
+        lineHeight: 24,
+    },
+    githubUsername:{
+        fontSize: 18,
+        lineHeight: 24,
+        textDecorationLine:'underline',
+        textDecorationStyle:'solid',
+        fontWeight:'bold'
     }
 });
 

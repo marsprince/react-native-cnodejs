@@ -49,7 +49,7 @@ class Router {
         this.push(props, {
             component: User,
             name: 'user',
-            sceneConfig: customFloatFromRight
+            sceneConfig: basePushFromRight
         })
     }
 
