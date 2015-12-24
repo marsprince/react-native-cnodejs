@@ -30,12 +30,8 @@ class Message extends Component{
     _onChangeTab(){
 
     }
-    _genRows(){
-
-    }
-
     componentDidMount() {
-        this._genRows();
+        this.props.actions.loadAccessToken()
     }
 
     render() {

@@ -130,6 +130,22 @@ exports.clear = function () {
     }
 }
 
+exports.loadAccessToken=function(){
+    return dispatch=>{
+        UserService.req.loadToken()
+        .then(results=>{
+                dispatch({
+                    type: types.LOAD_TOKEN_SUCCESS,
+                    accesstoken:results
+                })
+            })
+        .catch(err=>{
+
+            })
+        .done()
+    }
+}
+
 exports.loadUser=function loadUser(){
     return dispatch=> {
         UserService.req.loadUser()
@@ -138,8 +154,7 @@ exports.loadUser=function loadUser(){
                 {
                     dispatch({
                         type: types.LOAD_USER_SUCCESS,
-                        results: results[1][1],
-                        accesstoken:results[0][1]
+                        results: results
                     })
                 }
                 else{

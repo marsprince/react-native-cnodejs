@@ -4,6 +4,9 @@ var request = require('./Request')
 
 var storage = {}
 
+storage.logout=function(){
+    return Storage.multiRemove(['userInfo','accesstoken'])
+}
 
 storage.clearUserInfo = function () {
     return Storage.removeItem('userInfo')
@@ -38,7 +41,7 @@ storage.multiGet=function()
 var req = {}
 
 req.loadUser=function() {
-    return storage.multiGet()
+    return storage.getUserInfo()
 }
 
 req.getLoginUserInfo = function (user) {
@@ -83,6 +86,10 @@ req.checkToken = function (token) {
             }
             throw 'wrong token'
         })
+}
+
+req.loadToken=function(){
+    return Storage.getItem('accesstoken')
 }
 
 exports.storage = storage

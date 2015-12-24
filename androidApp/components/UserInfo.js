@@ -123,7 +123,7 @@ class UserInfo extends Component{
     {
         const userState=this.props.state.userState
         console.warn(userState.isLogin)
-        if(userState.isLogin && userState.userData)
+        if(userState.isLogin)
         {
             return this._loginRender()
         }

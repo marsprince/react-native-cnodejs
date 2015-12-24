@@ -43,9 +43,15 @@ export default function userReducer(state = initialState, action={}) {
             }
         case types.LOGOUT:
             return{
+                ...state,
                 isLogin:false,
                 userData:null,
                 err:null
+            }
+        case types.LOAD_TOKEN_SUCCESS:
+            return{
+                ...state,
+                accesstoken:action.accesstoken
             }
         default :
             return state
