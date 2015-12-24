@@ -122,8 +122,8 @@ class UserInfo extends Component{
     render()
     {
         const userState=this.props.state.userState
-        console.log(userState)
-        if(userState.isLogin)
+        console.warn(userState.isLogin)
+        if(userState.isLogin && userState.userData)
         {
             return this._loginRender()
         }
