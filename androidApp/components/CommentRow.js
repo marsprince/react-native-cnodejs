@@ -85,12 +85,18 @@ class CommentRow extends Component{
         super(props);
     }
     _upPress(){
-
+        //console.warn(Object.keys(this.props.state.topicState))
+        if(this.props.state.userState.accesstoken)
+        {
+            this.props.actions.upComment(this.props.reply.id,this.props.state.userState.accesstoken)
+        }
     }
 
     render()
     {
-        var {reply,row,replyOnePress} =this.props;//https://cnodejs.org/api/v1/topics
+        const {reply,row,replyOnePress} =this.props;
+        const {topicState}=this.props.state
+        console.warn(reply.ups.indexOf(this.props.state.userState.accesstoken)!==-1)
         return (
             <View style={{flex:1}}>
                 <View style={styles.row}>
@@ -113,7 +119,7 @@ class CommentRow extends Component{
 
                     <View style={styles.action}>
                         <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:2,alignItems :'center'}} onPress={this._upPress.bind(this)}>
-                                <Icon name="thumb-up" size={25} color="#000000" style={{flex:1,paddingTop:5}}/>
+                                <Icon name="thumb-up" size={25} color={(reply.ups.indexOf(this.props.state.userState.accesstoken)!==-1)?'green':"#000000" } style={{flex:1,paddingTop:5}}/>
                         </TouchableHighlight>
                         <Text style={[styles.agreeText,{flex:1}]}>
                             {reply.ups.length}

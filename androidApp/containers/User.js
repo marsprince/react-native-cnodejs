@@ -7,6 +7,8 @@ var UserService = require('../services/UserService')
 var deviceWidth = require('Dimensions').get('window').width;
 var deviceHeight=require('Dimensions').get('window').height
 
+var Icon = require('react-native-vector-icons/MaterialIcons');
+
 import UserRow from '../components/UserRow.js'
 import DefaultTabBar from '../components/DefaultTabBar'
 import ImageCircle from '../components/ImageCircle.js'
@@ -66,7 +68,12 @@ class User extends Component{
                 })
             })
     }
-
+    _onPress()
+    {
+        if (this.props.router && this.props.router.length > 1) {
+            this.props.router.pop();
+        }
+    }
     _renderRow(topic, sectionId, rowId, highlightRow) {
         return (
             <UserRow
@@ -111,6 +118,9 @@ class User extends Component{
                     </View>
                 </Image>
 
+                <TouchableHighlight onPress={this._onPress.bind(this)}  style={styles.backArrow}>
+                        <Icon name="arrow-back" size={30} color="#000000" style={styles.back}/>
+                </TouchableHighlight>
 
                 <View style={styles.container}>
                     <ScrollableTabView onChangeTab={this._onChangeTab.bind(this)} edgeHitWidth={deviceWidth/2} renderTabBar={() => <DefaultTabBar />} style={{flex:1}} >
@@ -164,7 +174,7 @@ var styles = StyleSheet.create({
     },
     avatar:{
         flex:4,
-        paddingTop:10,
+        paddingTop:20,
         alignItems:'center',
     },
     info:{
@@ -194,6 +204,14 @@ var styles = StyleSheet.create({
         textDecorationLine:'underline',
         textDecorationStyle:'solid',
         fontWeight:'bold'
+    },
+    backArrow:{
+        position:'absolute',
+        left:5,
+        top:0
+    },
+    back:{
+        marginTop:-7,
     }
 });
 

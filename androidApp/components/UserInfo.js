@@ -61,6 +61,7 @@ class UserInfo extends Component{
 
     componentDidMount(){
        this.props.actions.loadUser()
+        this.props.actions.loadAccessToken()
     }
 
     _login(){
@@ -122,7 +123,6 @@ class UserInfo extends Component{
     render()
     {
         const userState=this.props.state.userState
-        console.warn(userState.isLogin)
         if(userState.isLogin)
         {
             return this._loginRender()

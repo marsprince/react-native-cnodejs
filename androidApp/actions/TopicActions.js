@@ -35,3 +35,21 @@ exports.updateTopicsByTab = function (topics, tab) {
         tab: tab
     }
 }
+
+
+exports.upComment=function upComment(replyId,token){
+    return dispatch=>{
+        TopicService.req.upComment(replyId,token)
+            .then(results=> {
+                dispatch({
+                    type: types.UP_COMMENT_SUCCESS,
+                    replyId: replyId,
+                    isUp:results
+                })
+            })
+            .catch(err=> {
+
+            })
+            .done()
+    }
+}

@@ -86,6 +86,8 @@ class TopicInfoListView extends Component {
                 reply={reply}
                 row={parseInt(rowId)+1}
                 router={this.props.router}
+                state={this.props.state}
+                actions={this.props.actions}
                 replyOnePress={this._replyOnePress.bind(this,reply)}
                 >
             </CommentRow>
