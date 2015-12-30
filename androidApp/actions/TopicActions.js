@@ -43,8 +43,7 @@ exports.upComment=function upComment(replyId,token){
             .then(results=> {
                 dispatch({
                     type: types.UP_COMMENT_SUCCESS,
-                    replyId: replyId,
-                    isUp:results
+                    upResult:{replyId:replyId,isUp:results}
                 })
             })
             .catch(err=> {

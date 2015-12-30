@@ -61,6 +61,7 @@ class UserInfo extends Component{
 
     componentDidMount(){
        this.props.actions.loadUser()
+        this.props.actions.loadUserId()
         this.props.actions.loadAccessToken()
     }
 

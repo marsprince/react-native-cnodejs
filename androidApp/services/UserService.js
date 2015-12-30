@@ -81,6 +81,7 @@ req.checkToken = function (token) {
     })
         .then(data => {
             if (data.success) {
+                Storage.setItem('userId', data.id)
                 Storage.setItem('accesstoken', token)
                 return data
             }
@@ -90,6 +91,9 @@ req.checkToken = function (token) {
 
 req.loadToken=function(){
     return Storage.getItem('accesstoken')
+}
+req.loadUserId=function(){
+    return Storage.getItem('userId')
 }
 
 exports.storage = storage

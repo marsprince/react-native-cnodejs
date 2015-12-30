@@ -146,6 +146,22 @@ exports.loadAccessToken=function(){
     }
 }
 
+exports.loadUserId=function(){
+    return dispatch=>{
+        UserService.req.loadUserId()
+            .then(results=>{
+                dispatch({
+                    type: types.LOAD_USERID_SUCCESS,
+                    userId:results
+                })
+            })
+            .catch(err=>{
+
+            })
+            .done()
+    }
+}
+
 exports.loadUser=function loadUser(){
     return dispatch=> {
         UserService.req.loadUser()

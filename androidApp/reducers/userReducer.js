@@ -53,6 +53,11 @@ export default function userReducer(state = initialState, action={}) {
                 ...state,
                 accesstoken:action.accesstoken
             }
+        case types.LOAD_USERID_SUCCESS:
+            return{
+                ...state,
+                userId:action.userId
+            }
         default :
             return state
     }
