@@ -91,11 +91,23 @@ class CommentRow extends Component{
         }
     }
 
+    componentDidUpdate()
+    {
+
+    }
+
+
     render()
     {
         const {reply,row,replyOnePress} =this.props;
         const {userId}=this.props.state.userState
-        console.warn(Object.keys(this.props.state.topicState))
+        const {upArray}=this.props.state.topicState
+        let isUp=reply.ups.indexOf(userId)!==-1
+        for(let i=0;i<upArray.length;i++)
+        {
+            if(Object.keys(upArray[i]).indexOf(reply.id)!==-1) isUp=upArray[i][reply.id]
+        }
+        console.warn('isup '+upArray[1])
         return (
             <View style={{flex:1}}>
                 <View style={styles.row}>
@@ -118,7 +130,7 @@ class CommentRow extends Component{
 
                     <View style={styles.action}>
                         <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:2,alignItems :'center'}} onPress={this._upPress.bind(this)}>
-                                <Icon name="thumb-up" size={25} color={(reply.ups.indexOf(userId)!==-1 || this.props.state.topicState[reply.id])?'green':"#000000" } style={{flex:1,paddingTop:5}}/>
+                                <Icon name="thumb-up" size={25} color={isUp?'green':"#000000" } style={{flex:1,paddingTop:5}}/>
                         </TouchableHighlight>
                         <Text style={[styles.agreeText,{flex:1}]}>
                             {reply.ups.length}
