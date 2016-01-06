@@ -17,7 +17,7 @@ var {
 var Userinfo=require('./../components/UserInfo')
 var SimpleRow=require('./../components/SimpleRow')
 var TopicListView=require('./../components/TopicListView')
-import {alertDialog} from '../components/alertModule/alert'
+import {alertLogin} from '../components/alertModule/alertLogin'
 
 var styles = StyleSheet.create({
     refresh:{
@@ -53,7 +53,7 @@ class NavigationList extends Component{
             this.props.router.toMessage()
         }
         else{
-            alertDialog()
+            alertLogin(this.props.router)
         }
     }
 

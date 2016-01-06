@@ -3,7 +3,6 @@ var UserService = require('../services/UserService')
 var TopicService = require('../services/TopicService')
 var MessageService = require('../services/MessageService')
 var Storage = require('../services/Storage')
-import {alertDialog} from '../components/alertModule/alert'
 import React,{DeviceEventEmitter} from "react-native"
 
 function getUser(user) {
@@ -188,9 +187,3 @@ exports.loadUser=function loadUser(){
     }
 }
 
-exports.openLoginModal=function openLoginModal(route){
-    alertDialog()
-    DeviceEventEmitter.addListener('positiveButtonClick', function(e: Event) {
-       route.toLogin()
-    });
-}

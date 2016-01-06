@@ -17,7 +17,7 @@ var {
 var Scroll=require('./../components/ScrollableTabView');
 var NavigationList=require('./NavigationList');
 var MainScreenToolBar=require('./../components/ToolBar/MainScreenToolBar')
-import {alertDialog} from './../components/alertModule/alert'
+import {alertLogin} from './../components/alertModule/alertLogin'
 
 var DRAWER_WIDTH_LEFT =  require('Dimensions').get('window').width  / 4;
 var styles = StyleSheet.create({
@@ -37,9 +37,6 @@ class Home extends Component{
     }
     componentDidMount()
     {
-        DeviceEventEmitter.addListener('positiveButtonClick', ()=>{
-            this.props.router.toLogin()
-        });
     }
 
     _writeTopic(){
@@ -48,7 +45,7 @@ class Home extends Component{
             this.props.router.toWriteTopic()
         }
         else{
-            alertDialog()
+            alertLogin(this.props.router)
         }
 
     }

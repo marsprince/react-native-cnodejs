@@ -85,8 +85,7 @@ class UserInfo extends Component{
         )
     }
     _logout(){
-       // alertLogout()
-       this.props.actions.logout()
+        alertLogout(this.props.actions)
     }
 
     _userInfo(){

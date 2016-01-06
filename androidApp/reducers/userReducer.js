@@ -46,6 +46,7 @@ export default function userReducer(state = initialState, action={}) {
                 ...state,
                 isLogin:false,
                 userData:null,
+                accesstoken:null,
                 err:null
             }
         case types.LOAD_TOKEN_SUCCESS:

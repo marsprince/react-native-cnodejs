@@ -27,7 +27,7 @@ var {
 var NavigationTitleBar=require("./../components/ToolBar/TopicToolBar");
 var TopicInfoRow=require("./../components/TopicInfoRow")
 import CommentRow from './../components/CommentRow'
-import {alertDialog} from './../components/alertModule/alert.ios'
+import {alertLogin} from './../components/alertModule/alertLogin'
 
 import Loading from './../components/Loading.js'
 import Error from './../components/Error.js'
@@ -118,7 +118,7 @@ class TopicInfoListView extends Component {
            //reply
         }
         else{
-            alertDialog()
+            alertLogin(this.props.router)
         }
     }
 

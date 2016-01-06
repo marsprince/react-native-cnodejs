@@ -20,6 +20,7 @@ var ImageCircle=require('./ImageCircle')
 
 import CommentHtml from "./htmlRender/CommentHtml.js"
 var Icon=require("react-native-vector-icons/MaterialIcons")
+import {alertLogin} from './../components/alertModule/alertLogin'
 
 /*moment*/
 import moment from "moment"
@@ -93,7 +94,6 @@ class CommentRow extends Component{
     }
     _upPress(){
 
-        console.warn(this.props.state.userState.accesstoken)
         if(this.props.state.userState.accesstoken)
         {
             this.setState({
@@ -101,6 +101,9 @@ class CommentRow extends Component{
                 upLength:this.state.isUp?this.state.upLength-1:this.state.upLength+1
             })
             this.props.actions.upComment(this.props.reply.id,this.props.state.userState.accesstoken)
+        }
+        else{
+            alertLogin(this.props.router)
         }
 
     }

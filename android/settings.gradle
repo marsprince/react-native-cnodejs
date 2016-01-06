@@ -1,11 +1,9 @@
 rootProject.name = 'cnodejs'
 
 include ':app'
-include ':ReactNativeBarcodescanner', ':app'
+
+include ':ReactNativeBarcodescanner'
 project(':ReactNativeBarcodescanner').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-barcodescanner/android')
 
 include ':react-native-vector-icons'
 project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
-
-include ':AlertAndroid'
-project(':AlertAndroid').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-materialdialog-android')
