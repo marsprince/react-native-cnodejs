@@ -26,15 +26,16 @@ class BarCode extends Component{
         }
     }
     componentDidUpdate(){
+        console.warn('update')
         if(this.props.state.userState.isLogin)
         {
-            this.props.router.pop()
+            this.props.router.popToTop()
         }
     }
 
     _barcodeReceived(e) {
         this.props.actions.checkToken(e.data)
-        this.props.router.popToTop()
+       // this.props.router.popToTop()
     }
 
     render() {

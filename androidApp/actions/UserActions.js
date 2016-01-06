@@ -115,7 +115,7 @@ exports.unLikeTopic = function (id) {
 
 
 exports.logout = function () {
-    UserService.storage.clearUserInfo()
+    UserService.storage.logout()
     return {
         type: types.LOGOUT
     }

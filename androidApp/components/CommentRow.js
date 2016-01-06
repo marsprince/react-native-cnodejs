@@ -12,7 +12,8 @@ var {
     View,
     TouchableHighlight,
     PixelRatio,
-    Image
+    Image,
+    ToastAndroid
     } = React;
 
 var ImageCircle=require('./ImageCircle')
@@ -83,16 +84,24 @@ var styles = StyleSheet.create({
 class CommentRow extends Component{
     constructor(props) {
         super(props);
-    }
-    _upPress(){
-        if(this.props.state.userState.accesstoken)
-        {
-            this.props.actions.upComment(this.props.reply.id,this.props.state.userState.accesstoken)
+        const {reply} =this.props;
+        const {userId}=this.props.state.userState
+        this.state={
+            isUp:reply.ups.indexOf(userId)!==-1,
+            upLength:reply.ups.length
         }
     }
+    _upPress(){
 
-    componentDidUpdate()
-    {
+        console.warn(this.props.state.userState.accesstoken)
+        if(this.props.state.userState.accesstoken)
+        {
+            this.setState({
+                isUp:!this.state.isUp,
+                upLength:this.state.isUp?this.state.upLength-1:this.state.upLength+1
+            })
+            this.props.actions.upComment(this.props.reply.id,this.props.state.userState.accesstoken)
+        }
 
     }
 
@@ -100,14 +109,7 @@ class CommentRow extends Component{
     render()
     {
         const {reply,row,replyOnePress} =this.props;
-        const {userId}=this.props.state.userState
-        const {upArray}=this.props.state.topicState
-        let isUp=reply.ups.indexOf(userId)!==-1
-        for(let i=0;i<upArray.length;i++)
-        {
-            if(Object.keys(upArray[i]).indexOf(reply.id)!==-1) isUp=upArray[i][reply.id]
-        }
-        console.warn('isup '+upArray[1])
+
         return (
             <View style={{flex:1}}>
                 <View style={styles.row}>
@@ -130,10 +132,10 @@ class CommentRow extends Component{
 
                     <View style={styles.action}>
                         <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:2,alignItems :'center'}} onPress={this._upPress.bind(this)}>
-                                <Icon name="thumb-up" size={25} color={isUp?'green':"#000000" } style={{flex:1,paddingTop:5}}/>
+                                <Icon name="thumb-up" size={25} color={this.state.isUp?'green':"#000000" } style={{flex:1,paddingTop:5}}/>
                         </TouchableHighlight>
                         <Text style={[styles.agreeText,{flex:1}]}>
-                            {reply.ups.length}
+                            {this.state.upLength}
                         </Text>
                         <TouchableHighlight activeOpacity={1} underlayColor='lightgray' style={{flex:2,alignItems :'center'}} onPress={()=>replyOnePress()}>
                                 <Icon name="reply" size={25} color="#000000" style={{flex:1,paddingTop:5}}/>

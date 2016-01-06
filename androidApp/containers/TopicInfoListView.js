@@ -79,6 +79,7 @@ class TopicInfoListView extends Component {
         })
     }
 
+
     _renderRow(reply, sectionId, rowId, highlightRow) {
         return (
             <CommentRow

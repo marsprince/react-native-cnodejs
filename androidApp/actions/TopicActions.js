@@ -50,6 +50,11 @@ exports.upComment=function upComment(replyId,token){
             .catch(err=> {
 
             })
-            .done()
+    }
+}
+
+exports.setUpSuccessFalse=function setCommentFalse(){
+    return {
+        type: types.UP_COMMENT_FAILED
     }
 }
