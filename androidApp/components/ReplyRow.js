@@ -13,7 +13,7 @@ var {
     TextInput,
     Dimensions
     } = React;
-import {Button} from 'mrn'
+import {Button} from 'react-native-material-design'
 var styles = StyleSheet.create({
     row:{
         backgroundColor: '#EDEEF2',

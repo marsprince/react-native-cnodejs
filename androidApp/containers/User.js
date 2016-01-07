@@ -211,7 +211,7 @@ var styles = StyleSheet.create({
         top:0
     },
     back:{
-        marginTop:-7,
+        marginTop:7,
     }
 });
 

@@ -73,7 +73,7 @@ var styles = StyleSheet.create({
         fontSize: 20,
         color: '#888888',
         lineHeight:26,
-        marginTop:10
+        //marginTop:10
     },
     webView:{
         paddingLeft:15,

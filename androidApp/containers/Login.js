@@ -19,7 +19,7 @@ var {
 
 var Icon = require('react-native-vector-icons/MaterialIcons');
 var deviceWidth = require('Dimensions').get('window').width;
-import {Button} from 'mrn'
+import {Button} from 'react-native-material-design'
 
 var styles = StyleSheet.create({
     navBar:{

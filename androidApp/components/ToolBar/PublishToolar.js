@@ -16,7 +16,7 @@ var {
     } = React;
 
 var Icon = require('react-native-vector-icons/MaterialIcons');
-import {Button} from 'mrn'
+import {Button} from 'react-native-material-design'
 var styles = StyleSheet.create({
     navBar:{
         backgroundColor: '#2C2C2C',
@@ -33,7 +33,7 @@ var styles = StyleSheet.create({
         textAlign:'left',
     },
     back:{
-        marginTop:-7,
+        marginTop: 7,
     }
 });
 

@@ -33,10 +33,10 @@ var styles = StyleSheet.create({
         textAlign:'left',
     },
     back:{
-        marginTop:-7,
+        marginTop:7,
     },
     write:{
-        marginTop:-7,
+        marginTop:7,
     }
 });
 

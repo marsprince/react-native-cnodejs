@@ -21,7 +21,7 @@ var UserActions=require('../actions/UserActions')
 
 import { connect } from '../../node_modules/react-redux/native';
 import { getLoginUserFromStorage } from '../actions/UserActions.js';
-import {Button} from 'mrn'
+import {Button} from 'react-native-material-design'
 import {alertLogout} from './alertModule/alertLogout'
 
 var styles = StyleSheet.create({

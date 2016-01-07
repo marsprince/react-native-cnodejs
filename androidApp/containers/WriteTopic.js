@@ -15,7 +15,7 @@ import React,{
     from 'react-native';
 
 var NavBar=require('./../components/ToolBar/PublishToolar')
-import  {RadioButtonGroup,RadioButton,Button } from 'mrn'
+import  {RadioButtonGroup,RadioButton,Button } from 'react-native-material-design'
 import { connect } from '../../node_modules/react-redux/native';
 import { checkToken } from '../actions/UserActions.js';
 import {getCategory} from '../util/cnodeUtil.js'
@@ -70,7 +70,7 @@ class WriteTopic extends Component{
                                      <View style={{flex:3}}>
                                          <RadioButton value={index.toString()}
                                                       checked={index==this.state.selectedLabel?true:false}
-                                                      onCheck={index=>this.setState({selectedLabel:index})}/>
+                                                      onSelect={index=>this.setState({selectedLabel:index})}/>
                                      </View>
                                      <Text style={{flex:2,marginTop:18,paddingLeft:15}}>
                                          {getCategory(value)}
@@ -102,22 +102,5 @@ var styles = StyleSheet.create({
         //borderColor:'blue'
     }
 });
-
-function mapStateToProps(state) {
-    return {
-        user: state.user
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        checkToken: () => dispatch(checkToken())
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(WriteTopic);
 
 module.exports=WriteTopic
