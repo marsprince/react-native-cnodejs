@@ -16,11 +16,11 @@ var {
     ToastAndroid
     } = React;
 
-var ImageCircle=require('./ImageCircle')
+var ImageCircle=require('./../ImageCircle')
 
-import CommentHtml from "./htmlRender/CommentHtml.js"
+import CommentHtml from "./../htmlRender/CommentHtml.js"
 var Icon=require("react-native-vector-icons/MaterialIcons")
-import {alertLogin} from './../components/alertModule/alertLogin'
+import {alertLogin} from './../alertModule/alertLogin'
 
 /*moment*/
 import moment from "moment"

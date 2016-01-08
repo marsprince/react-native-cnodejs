@@ -15,28 +15,9 @@ var {
     TouchableOpacity,
     } = React;
 
-var SimpleRow=require('./../components/SimpleRow')
+var SimpleRow=require('./../components/rowModule/SimpleRow')
 var NavBar=require('./../components/ToolBar/BasicToolBar')
-import SettingsRow from "./../components/SettingsRow.js"
-var styles = StyleSheet.create({
-    refresh:{
-        width: 136,
-        height: 136,
-        position:'absolute',
-        top:100,
-        left:100,
-
-        borderWidth: 10,
-        borderRadius: 10,
-        //borderColor: 'cyan',
-
-        //borderRightWidth:24,
-        borderRightColor:'black',
-        //borderRightColor:'#03ade0',
-        //borderRightColor :  '#transparent',
-
-    }
-});
+import SettingsRow from "./../components/rowModule/SettingsRow.js"
 
 class Settings extends Component{
     constructor(props) {
@@ -75,6 +56,7 @@ class Settings extends Component{
                         </SettingsRow>
                     )
                 }):null}
+
             </View>
         )
     }

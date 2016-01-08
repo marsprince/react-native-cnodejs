@@ -9,7 +9,7 @@ var deviceHeight=require('Dimensions').get('window').height
 
 var Icon = require('react-native-vector-icons/MaterialIcons');
 
-import UserRow from '../components/UserRow.js'
+import UserRow from '../components/rowModule/UserRow.js'
 import DefaultTabBar from '../components/DefaultTabBar'
 import ImageCircle from '../components/ImageCircle.js'
 var {

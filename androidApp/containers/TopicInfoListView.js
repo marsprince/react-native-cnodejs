@@ -25,13 +25,13 @@ var {
     } = React
 
 var NavigationTitleBar=require("./../components/ToolBar/TopicToolBar");
-var TopicInfoRow=require("./../components/TopicInfoRow")
-import CommentRow from './../components/CommentRow'
+var TopicInfoRow=require("./../components/rowModule/TopicInfoRow")
+import CommentRow from './../components/rowModule/CommentRow'
 import {alertLogin} from './../components/alertModule/alertLogin'
 
 import Loading from './../components/Loading.js'
 import Error from './../components/Error.js'
-import ReplyRow from './../components/ReplyRow.js'
+import ReplyRow from './../components/rowModule/ReplyRow.js'
 
 class TopicInfoListView extends Component {
     constructor(porps) {
@@ -39,10 +39,11 @@ class TopicInfoListView extends Component {
         var replyDs = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
         this.state = {
             replyDs: replyDs,
-            topicDs:null,
+            topicDs:null, //topic
             isLoading: true,
             isReady:false,
-            replyContent:"",
+            replyContent:"",//content
+            replyId:[],//replyId
             defaultValue:"",
             hasTopic:true
         }

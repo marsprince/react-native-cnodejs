@@ -14,25 +14,24 @@ var {
     PixelRatio
     } = React;
 
-import Switch from "./SwitchModule/Switch"
+import Switch from "./../SwitchModule/Switch"
 var styles = StyleSheet.create({
     row:{
-        height:40,
         backgroundColor: 'white',
     },
     textRow:{
         flex:5,
         justifyContent: 'center',
         paddingHorizontal: 15,
-        paddingVertical: 8,
+        paddingVertical: 10,
     },
     text:{
-        fontSize: 14,
-        lineHeight: 20,
+        fontSize: 18,
+        lineHeight: 24,
     },
     subtext:{
-        fontSize: 10,
-        lineHeight: 16,
+        fontSize: 12,
+        lineHeight: 18,
     },
     separator:{
         height: 1 / PixelRatio.get(),
@@ -40,7 +39,7 @@ var styles = StyleSheet.create({
     },
     actions:{
         flex:1,
-        justifyContent: 'center',
+        paddingVertical: 10,
         alignItems:'center',
     }
 });

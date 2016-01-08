@@ -15,7 +15,7 @@ var {
     } = React;
 
 var Userinfo=require('./../components/UserInfo')
-var SimpleRow=require('./../components/SimpleRow')
+var SimpleRow=require('./../components/rowModule/SimpleRow')
 var TopicListView=require('./../components/TopicListView')
 import {alertLogin} from '../components/alertModule/alertLogin'
 

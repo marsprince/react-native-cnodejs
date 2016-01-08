@@ -16,15 +16,15 @@ var {
     Image
     } = React;
 
-var ImageCircle=require('./ImageCircle')
-import {getCategory} from "../util/cnodeUtil"
+var ImageCircle=require('./../ImageCircle')
+import {getCategory} from "../../util/cnodeUtil"
 
 /*moment*/
 import moment from "moment"
 import zh_cn from "moment/locale/zh-cn.js"
 moment.locale('zh-cn',zh_cn)
 
-import CommentHtml from "./htmlRender/CommentHtml.js"
+import CommentHtml from "./../htmlRender/CommentHtml.js"
 
 var styles = StyleSheet.create({
     row:{

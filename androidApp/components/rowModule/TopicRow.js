@@ -16,8 +16,8 @@ var {
     Image
     } = React;
 
-var ImageCircle=require('./ImageCircle')
-import {getCategory} from "../util/cnodeUtil"
+var ImageCircle=require('./../ImageCircle')
+import {getCategory} from "../../util/cnodeUtil"
 
 /*moment*/
 import moment from "moment"

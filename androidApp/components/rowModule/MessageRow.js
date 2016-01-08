@@ -16,9 +16,9 @@ var {
     Image
     } = React;
 
-var ImageCircle=require('./ImageCircle')
-import {getCategory} from "../util/cnodeUtil"
-import CommentHtml from "./htmlRender/CommentHtml"
+var ImageCircle=require('./../ImageCircle')
+import {getCategory} from "../../util/cnodeUtil"
+import CommentHtml from "./../htmlRender/CommentHtml"
 /*moment*/
 import moment from "moment"
 import zh_cn from "moment/locale/zh-cn.js"

@@ -12,7 +12,7 @@ var {
     }=React
 
 var NavBar=require('./../components/ToolBar/BasicToolBar');
-var SimpleRow=require('./../components/SimpleRow');
+var SimpleRow=require('./../components/rowModule/SimpleRow');
 
 class About extends Component{
     constructor(props) {

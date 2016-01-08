@@ -6,7 +6,7 @@ var React = require('react-native')
 var moment = require('moment')
 
 var MessageService = require('../services/MessageService')
-var MessageRow = require('./MessageRow')
+var MessageRow = require('./rowModule/MessageRow')
 
 var window = require('../util/window')
 

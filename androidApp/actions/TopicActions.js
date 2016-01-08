@@ -58,3 +58,19 @@ exports.setUpSuccessFalse=function setCommentFalse(){
         type: types.UP_COMMENT_FAILED
     }
 }
+
+exports.reply=function reply(topicId, content, token, replyId)
+{
+    return dispatch=>{
+        TopicService.req.reply(topicId, content, token, replyId)
+            .then(results=> {
+
+                ({
+                    type: types.REPLY_SUCCESS,
+                })
+            })
+            .catch(err=> {
+
+            })
+    }
+}

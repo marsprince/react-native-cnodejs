@@ -91,28 +91,6 @@ exports.checkToken = function (token) {
     }
 }
 
-
-exports.likeTopic = function (topic) {
-    return {
-        type: types.LIKE_TOPIC,
-        topic: {
-            id: topic.id,
-            author: topic.author,
-            title: topic.title,
-            last_reply_at: topic.last_reply_at
-        }
-    }
-}
-
-
-exports.unLikeTopic = function (id) {
-    return {
-        type: types.UN_LIKE_TOPIC,
-        id: id
-    }
-}
-
-
 exports.logout = function () {
     UserService.storage.logout()
     return {
