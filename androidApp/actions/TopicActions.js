@@ -64,9 +64,13 @@ exports.reply=function reply(topicId, content, token, replyId)
     return dispatch=>{
         TopicService.req.reply(topicId, content, token, replyId)
             .then(results=> {
-
+                dispatch
                 ({
                     type: types.REPLY_SUCCESS,
+                })
+                dispatch
+                ({
+                    type: types.REPLY_SET_FALSE,
                 })
             })
             .catch(err=> {

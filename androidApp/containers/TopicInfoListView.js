@@ -21,9 +21,10 @@ var {
     Image,
     ListView,
     TouchableHighlight,
-    InteractionManager
+    InteractionManager,
+    ToastAndroid
     } = React
-
+var dismissKeyboard = require('dismissKeyboard');
 var NavigationTitleBar=require("./../components/ToolBar/TopicToolBar");
 var TopicInfoRow=require("./../components/rowModule/TopicInfoRow")
 import CommentRow from './../components/rowModule/CommentRow'
@@ -43,7 +44,7 @@ class TopicInfoListView extends Component {
             isLoading: true,
             isReady:false,
             replyContent:"",//content
-            replyId:[],//replyId
+            replyId:"",//replyId
             defaultValue:"",
             hasTopic:true
         }
@@ -79,6 +80,13 @@ class TopicInfoListView extends Component {
             this._genRows()
         })
     }
+    componentDidUpdate(){
+        if(this.props.state.topicState.replySuccess)
+        {
+            ToastAndroid.show("回复成功！",ToastAndroid.SHORT)
+            dismissKeyboard();
+        }
+    }
 
 
     _renderRow(reply, sectionId, rowId, highlightRow) {
@@ -97,7 +105,8 @@ class TopicInfoListView extends Component {
     }
     _replyOnePress(reply){
         this.setState({
-            defaultValue:this.state.replyContent?"@"+reply.author.loginname+" "+this.state.replyContent:"@"+reply.author.loginname+" "
+            defaultValue:this.state.replyContent?"@"+reply.author.loginname+" "+this.state.replyContent:"@"+reply.author.loginname+" ",
+            replyId:reply.id
         })
     }
     _onChangeText(value){
@@ -116,7 +125,8 @@ class TopicInfoListView extends Component {
     _onPress(){
         if(this.props.state.userState.isLogin)
         {
-           //reply
+           const {topicDs,replyContent,replyId}=this.state
+           this.props.actions.reply(topicDs.id,replyContent,this.props.state.userState.accesstoken,replyId)//reply
         }
         else{
             alertLogin(this.props.router)
