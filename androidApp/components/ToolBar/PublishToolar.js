@@ -12,11 +12,12 @@ var {
     Text,
     View,
     Image,
-    TouchableHighlight
+    TouchableHighlight,
+    TouchableOpacity
     } = React;
 
 var Icon = require('react-native-vector-icons/MaterialIcons');
-import {Button} from 'react-native-material-design'
+import BasicButton from '../buttonModule/BasicButton'
 var styles = StyleSheet.create({
     navBar:{
         backgroundColor: '#2C2C2C',
@@ -34,7 +35,11 @@ var styles = StyleSheet.create({
     },
     back:{
         marginTop: 7,
-    }
+    },
+    replyButton:{
+        flex:1,
+        marginVertical:8,
+    },
 });
 
 class PublishToolar extends Component{
@@ -64,8 +69,9 @@ class PublishToolar extends Component{
                         {this.props.text}
                     </Text>
                 </View>
-                <View style={{flex:1, marginTop:5,marginLeft:10}}>
-                    <Button value="发布"  primary={'googleBlue'} disabled={disabled}/>
+                <View style={styles.replyButton}>
+                    <BasicButton value="回复" disabled={disabled}>
+                    </BasicButton>
                 </View>
             </View>
         )

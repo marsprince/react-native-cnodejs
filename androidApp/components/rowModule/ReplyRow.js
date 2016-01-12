@@ -16,17 +16,34 @@ var {
 import {Button} from 'react-native-material-design'
 var styles = StyleSheet.create({
     row:{
-        backgroundColor: '#EDEEF2',
-        paddingHorizontal: 15,
-        paddingVertical: 8,
+        paddingHorizontal: 5,
+        paddingVertical: 5,
         flex:1,
         height:60,
         flexDirection:'row',
         position:'absolute',
         bottom:0,
         right:0,
-        left:0
+        left:0,
+        borderTopWidth:1,
+        borderTopColor:'#bbbbbb'
     },
+    replyButton:{
+        flex:1,
+        borderWidth:1,
+        marginTop:5,
+        borderRadius:5,
+        borderColor:'#bbbbbb'
+    },
+    textInput:{
+        marginTop:5,
+        marginRight:5,
+        borderWidth:1,
+        borderColor:'#bbbbbb',
+        borderRadius:5,
+        flex:6,
+        justifyContent:'center'
+    }
 });
 
 var deviceWidth = Dimensions.get('window').width;
@@ -40,11 +57,11 @@ class ReplyRow extends Component{
         var {text,onPress,onChangeText}=this.props;
         return (
                 <View style={styles.row} >
-                    <View style={{flex:6,justifyContent:'center'}}>
-                        <TextInput multiline={true} defaultValue = {text} onChangeText={(value)=>onChangeText(value)}placeholder="说点什么吧" style={{ borderColor: 'gray', borderWidth: 1}}>
+                    <View style={styles.textInput}>
+                        <TextInput multiline={true} defaultValue = {text} onChangeText={(value)=>onChangeText(value)} placeholder="说点什么吧" style={{ borderWidth: 5}}>
                         </TextInput>
                     </View>
-                    <View style={{flex:1,paddingTop:5}}>
+                    <View style={styles.replyButton}>
                         <Button value="回复"  primary={'googleBlue'} onPress={()=>onPress()}/>
                     </View>
                 </View>

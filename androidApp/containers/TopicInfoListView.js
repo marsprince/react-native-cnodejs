@@ -123,6 +123,11 @@ class TopicInfoListView extends Component {
     }
 
     _onPress(){
+        if(!this.state.replyContent || this.state.replyContent==="")
+        {
+            ToastAndroid.show("回复内容不能为空！",ToastAndroid.SHORT)
+            return ;
+        }
         if(this.props.state.userState.isLogin)
         {
            const {topicDs,replyContent,replyId}=this.state
