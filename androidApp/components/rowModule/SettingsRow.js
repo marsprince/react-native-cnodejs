@@ -1,5 +1,6 @@
 /**
  * Created by liujia on 2015/12/4.
+ * a row with two line and a switch
  */
 
 'use strict';

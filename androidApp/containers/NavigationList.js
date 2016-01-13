@@ -15,7 +15,7 @@ var {
     } = React;
 
 var Userinfo=require('./../components/UserInfo')
-var SimpleRow=require('./../components/rowModule/SimpleRow')
+import MenuRow from '../components/rowModule/MenuRow'
 var TopicListView=require('./../components/TopicListView')
 import {alertLogin} from '../components/alertModule/alertLogin'
 
@@ -66,12 +66,12 @@ class NavigationList extends Component{
             <View style={{flex:1}}>
                 <Userinfo router={this.props.router} state={this.props.state} actions={this.props.actions}>
                 </Userinfo>
-                <SimpleRow text="消息" onPress={this._onPressMessage.bind(this)} router={this.props.router}>
-                </SimpleRow>
-                <SimpleRow text="设置" onPress={this._onPressSettings.bind(this)} router={this.props.router}>
-                </SimpleRow>
-                <SimpleRow text="关于" onPress={this._onPressAbout.bind(this)} router={this.props.router}>
-                </SimpleRow>
+                <MenuRow text="消息" icon="message" onPress={this._onPressMessage.bind(this)} router={this.props.router}>
+                </MenuRow>
+                <MenuRow text="设置" icon="settings" onPress={this._onPressSettings.bind(this)} router={this.props.router}>
+                </MenuRow>
+                <MenuRow text="关于" icon="info" onPress={this._onPressAbout.bind(this)} router={this.props.router}>
+                </MenuRow>
             </View>
         )
     }

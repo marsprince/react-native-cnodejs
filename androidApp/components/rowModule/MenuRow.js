@@ -1,7 +1,8 @@
 /**
- * Created by liujia on 2015/11/2.
- *a simple row with sepeator
+ * Created by mars on 2016/1/13.
+ * a row with a left icon
  */
+
 'use strict';
 
 var React = require('react-native');
@@ -13,6 +14,8 @@ var {
     TouchableOpacity,
     PixelRatio,
     } = React;
+
+var Icon = require('react-native-vector-icons/MaterialIcons');
 
 var styles = StyleSheet.create({
     row:{
@@ -30,26 +33,32 @@ var styles = StyleSheet.create({
     },
     textRow:{
         flex:1,
-        justifyContent:'center',
+        flexDirection:'row',
         paddingHorizontal: 15,
         paddingVertical: 10,
-    }
+    },
+
 });
 
-class SimpleRow extends Component{
+class MenuRow extends Component{
     constructor(props) {
         super(props);
     }
     render()
     {
-        var {text,onPress}=this.props;
+        var {text,onPress,icon}=this.props;
         return (
             <TouchableOpacity style={styles.row} onPress={()=>onPress?onPress():null}>
                 <View style={{flex:1}}>
                     <View style={styles.textRow}>
-                        <Text style={styles.text}>
-                            {text}
-                        </Text>
+                        <View style={{flex:1,justifyContent:'center'}}>
+                            <Icon name={icon} size={20} style={styles.back}/>
+                        </View>
+                        <View style={{flex:5,justifyContent:'center'}}>
+                            <Text style={styles.text}>
+                                {text}
+                            </Text>
+                        </View>
                     </View>
                     <View style={styles.separator} />
                 </View>
@@ -58,4 +67,4 @@ class SimpleRow extends Component{
     }
 }
 
-module.exports=SimpleRow
+module.exports=MenuRow

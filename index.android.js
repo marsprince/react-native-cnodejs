@@ -1,29 +1,17 @@
-var React = require('react-native')
-
-var {
+import React,
+    {
     Component,
-    AppRegistry,
-    View,
-    Image,
-    Navigator,
-    Text,
-    StyleSheet
-    } = React
+    AppRegistry
+    } from 'react-native'
 
-var Example=require('./example/containers/app');
-var Cnode=require('./androidApp/containers/app');
+import App from './androidApp/containers/app'
 
 class Noder extends Component {
 
-  componentDidMount() {
-    //UserService.storage.saveUser(user)
-    //UserService.storage.clearUser()
-  }
-
   render() {
     return (
-        <Cnode>
-        </Cnode>
+        <App>
+        </App>
     )
   }
 }
