@@ -6,7 +6,8 @@ var types = require('../actions/ActionTypes')
 
 var initialState = {
    upSuccess:false,
-   replySuccess:false
+   replySuccess:false,
+   publishSuccess:false
 }
 
 export default function configReducer(state = initialState, action={}) {
@@ -30,6 +31,16 @@ export default function configReducer(state = initialState, action={}) {
             return {
                 ...state,
                 replySuccess:false
+            }
+        case types.PUBLISH_SUCCESS:
+            return {
+                ...state,
+                publishSuccess:true
+            }
+        case types.PUBLISH_SET_FALSE:
+            return {
+                ...state,
+                publishSuccess:false
             }
         default :
             return state

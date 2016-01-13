@@ -78,3 +78,23 @@ exports.reply=function reply(topicId, content, token, replyId)
             })
     }
 }
+
+exports.publish=function publish(title, tab, content, token)
+{
+    return dispatch=>{
+        TopicService.req.publish(title, tab, content, token)
+            .then(results=> {
+                dispatch
+                ({
+                    type: types.PUBLISH_SUCCESS,
+                })
+                dispatch
+                ({
+                    type: types.PUBLISH_SET_FALSE,
+                })
+            })
+            .catch(err=> {
+                console.warn(err)
+            })
+    }
+}

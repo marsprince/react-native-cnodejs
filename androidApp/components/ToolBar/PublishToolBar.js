@@ -18,6 +18,7 @@ var {
 
 var Icon = require('react-native-vector-icons/MaterialIcons');
 import BasicButton from '../buttonModule/BasicButton'
+
 var styles = StyleSheet.create({
     navBar:{
         backgroundColor: '#2C2C2C',
@@ -56,7 +57,7 @@ class PublishToolar extends Component{
 
     render()
     {
-        const {disabled} =this.props
+        const {disabled,onPress} =this.props
         return (
             <View style={styles.navBar}>
                 <TouchableHighlight onPress={this._onPress.bind(this)}>
@@ -70,7 +71,7 @@ class PublishToolar extends Component{
                     </Text>
                 </View>
                 <View style={styles.replyButton}>
-                    <BasicButton value="回复" disabled={disabled}>
+                    <BasicButton value="发布" disabled={disabled} onPress={onPress}>
                     </BasicButton>
                 </View>
             </View>
