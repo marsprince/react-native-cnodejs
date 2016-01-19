@@ -1,0 +1,72 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		5EDD47CF1C4E6D7E00037FFC /* CNodeJs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CNodeJs; path = ..; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		5EDD47C81C4E6D6900037FFC = {
+			isa = PBXGroup;
+			children = (
+				5EDD47CF1C4E6D7E00037FFC /* CNodeJs */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		5EDD47C91C4E6D6900037FFC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 5EDD47CC1C4E6D6900037FFC /* Build configuration list for PBXProject "CnodeJs" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5EDD47C81C4E6D6900037FFC;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		5EDD47CD1C4E6D6900037FFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		5EDD47CE1C4E6D6900037FFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5EDD47CC1C4E6D6900037FFC /* Build configuration list for PBXProject "CnodeJs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5EDD47CD1C4E6D6900037FFC /* Debug */,
+				5EDD47CE1C4E6D6900037FFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5EDD47C91C4E6D6900037FFC /* Project object */;
+}
