@@ -8,7 +8,6 @@ var {
     DeviceEventEmitter,
     Component,
     Dimensions,
-    DrawerLayoutAndroid,
     StyleSheet,
     View,
     Text,
@@ -18,6 +17,7 @@ var Scroll=require('./../components/ScrollableTabView');
 var NavigationList=require('./NavigationList');
 var MainScreenToolBar=require('./../components/ToolBar/MainScreenToolBar')
 import {alertLogin} from './../components/alertModule/alertLogin'
+import DrawerLayout from 'react-native-drawer-layout'
 
 var DRAWER_WIDTH_LEFT =  require('Dimensions').get('window').width  / 4;
 var styles = StyleSheet.create({
@@ -73,14 +73,14 @@ class Home extends Component{
     render()
     {
         return (
-            <DrawerLayoutAndroid
-                drawerPosition={DrawerLayoutAndroid.positions.Left}
+            <DrawerLayout
+                drawerPosition={DrawerLayout.positions.Left}
                 drawerWidth={Dimensions.get('window').width - DRAWER_WIDTH_LEFT}
                 keyboardDismissMode="on-drag"
                 ref={(drawer) => { this.drawer = drawer; }}
                 renderNavigationView={this._renderNavigationView.bind(this)}>
                 {this._renderNavigation()}
-            </DrawerLayoutAndroid>
+            </DrawerLayout>
         );
     }
 }
