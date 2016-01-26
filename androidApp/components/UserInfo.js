@@ -21,7 +21,7 @@ var UserActions=require('../actions/UserActions')
 
 import { connect } from '../../node_modules/react-redux/native';
 import { getLoginUserFromStorage } from '../actions/UserActions.js';
-import {Button} from 'react-native-material-design'
+import Button from 'apsl-react-native-button'
 import {alertLogout} from './alertModule/alertLogout'
 
 var styles = StyleSheet.create({
@@ -113,7 +113,9 @@ class UserInfo extends Component{
                         </Text>
                     </View>
                     <View style={{flex:1}}>
-                        <Button value="注销" primary={'googleBlue'}  onPress={this._logout.bind(this)}/>
+                        <Button style={{backgroundColor: 'blue'}} textStyle={{fontSize: 20}}  onPress={this._logout.bind(this)}>
+                            注销
+                            </Button>
                     </View>
                 </View>
             </View>
