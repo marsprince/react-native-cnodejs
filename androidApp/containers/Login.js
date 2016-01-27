@@ -39,7 +39,15 @@ var styles = StyleSheet.create({
         textAlign:'left',
     },
     back:{
-        marginTop:-7,
+        marginTop:7,
+    },
+    loginButton:{
+        flex:1,
+        borderWidth:2,
+        borderRadius:10,
+        borderColor:'lightGreen',
+        marginHorizontal:5,
+        marginTop:5
     }
 });
 
@@ -102,10 +110,10 @@ class Login extends Component{
                     </TextInput>
                 </View>
                 <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1,borderWidth:1,borderColor:'lightGreen'}}>
+                    <View style={styles.loginButton}>
                         <BasicButton value="扫描二维码"  onPress={this._onPressBarcode.bind(this)} />
                     </View>
-                    <View style={{flex:1,borderWidth:1,borderColor:'lightGreen'}}>
+                    <View style={styles.loginButton}>
                         <BasicButton value="登录" onPress={this._onPressLogin.bind(this)} disabled={this.state.loginDisabled}/>
                     </View>
                 </View>

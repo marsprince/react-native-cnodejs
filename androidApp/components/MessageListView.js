@@ -22,7 +22,7 @@ var {
     ListView,
     TouchableHighlight,
     TouchableOpacity,
-    ToastAndroid
+    InteractionManager
     } = React
 
 import Loading from "./Loading.js";
@@ -61,7 +61,10 @@ class MessageListView extends Component {
     }
 
     componentDidMount() {
-        this._genRows();
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({isReady: true});
+            this._genRows()
+        })
     }
 
     _renderRow(message, sectionId, rowId, highlightRow) {

@@ -12,7 +12,8 @@ import React,{
 
 var styles = StyleSheet.create({
     textStyle:{
-        margin:10
+        margin:10,
+        textAlign:'center'
     },
 });
 

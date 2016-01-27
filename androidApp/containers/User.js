@@ -1,6 +1,5 @@
 // React-Native Module
 var React = require('react-native')
-var moment = require('moment')
 var ScrollableTabView = require('react-native-scrollable-tab-view')
 
 var UserService = require('../services/UserService')
@@ -12,6 +11,12 @@ var Icon = require('react-native-vector-icons/MaterialIcons');
 import UserRow from '../components/rowModule/UserRow.js'
 import DefaultTabBar from '../components/DefaultTabBar'
 import ImageCircle from '../components/ImageCircle.js'
+
+/*moment*/
+import moment from "moment"
+import zh_cn from "moment/locale/zh-cn.js"
+moment.locale('zh-cn',zh_cn)
+
 var {
     View,
     StyleSheet,
@@ -107,7 +112,7 @@ class User extends Component{
                     <View style={styles.info}>
                         <View style={{flex:1}}>
                             <Text style={styles.regTime}>
-                                注册时间：{userInfo.score}
+                                注册时间：{moment(userInfo.create_at).format('YYYY-MM-DD')}
                             </Text>
                         </View>
                         <View style={{flex:1}}>

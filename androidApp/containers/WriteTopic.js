@@ -83,10 +83,10 @@ class WriteTopic extends Component{
                 <TextInput placeholder="标题" onChangeText={(value)=>this._titleOnChangeText(value)}>
                 </TextInput>
                 <View style={{flexDirection:'row',justifyContent: 'center'}}>
-                    <View style={{flex:1,paddingTop:18,paddingLeft:5}}>
+                    <View style={{flex:1,paddingTop:20,paddingLeft:10}}>
                         <Text style={styles.text}>请选择分类</Text>
                     </View>
-                     <View style={{flex:4}}>
+                     <View style={{flex:2}}>
                          <Picker valueChange={this.onSelect} valueArray={['提问','分享','招聘']}></Picker>
                      </View>
                 </View>
@@ -102,14 +102,10 @@ class WriteTopic extends Component{
 
 var styles = StyleSheet.create({
     text:{
-        textAlign:'center',
-        fontSize: 14,
-        lineHeight: 20,
+        textAlign:'left',
+        fontSize: 18,
+        lineHeight: 24,
     },
-    textInput:{
-        //borderWidth:1,
-        //borderColor:'blue'
-    }
 });
 
 module.exports=WriteTopic
