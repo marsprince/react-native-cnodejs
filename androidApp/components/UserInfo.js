@@ -12,18 +12,13 @@ import React, {
     Image,
     TouchableHighlight,
     TouchableOpacity,
-    DeviceEventEmitter
     }
     from 'react-native';
 
-var ImageCircle=require('./ImageCircle');
-var UserActions=require('../actions/UserActions')
-
 import { connect } from '../../node_modules/react-redux/native';
 import { getLoginUserFromStorage } from '../actions/UserActions.js';
-import Button from 'apsl-react-native-button'
 import {alertLogout} from './alertModule/alertLogout'
-
+import BasicButton from './buttonModule/BasicButton.js'
 var styles = StyleSheet.create({
     userInfo:{
         backgroundColor:'pink'
@@ -112,10 +107,8 @@ class UserInfo extends Component{
                             积分：{userData.score}
                         </Text>
                     </View>
-                    <View style={{flex:1}}>
-                        <Button style={{backgroundColor: 'blue'}} textStyle={{fontSize: 20}}  onPress={this._logout.bind(this)}>
-                            注销
-                            </Button>
+                    <View style={{flex:1,alignItems:'center',paddingBottom:10}}>
+                        <BasicButton onPress={this._logout.bind(this)} value="注销"></BasicButton>
                     </View>
                 </View>
             </View>

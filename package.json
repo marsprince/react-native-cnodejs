@@ -6,7 +6,6 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
-    "apsl-react-native-button": "^2.4.0",
     "moment": "^2.10.6",
     "query-string": "^3.0.0",
     "react-native": "^0.19.0-rc",

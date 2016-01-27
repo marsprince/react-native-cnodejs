@@ -19,7 +19,7 @@ var {
 
 var Icon = require('react-native-vector-icons/MaterialIcons');
 var deviceWidth = require('Dimensions').get('window').width;
-import {Button} from 'react-native-material-design'
+import BasicButton from '../components/buttonModule/BasicButton.js'
 
 var styles = StyleSheet.create({
     navBar:{
@@ -103,10 +103,10 @@ class Login extends Component{
                 </View>
                 <View style={{flexDirection:'row'}}>
                     <View style={{flex:1,borderWidth:1,borderColor:'lightGreen'}}>
-                        <Button value="扫描二维码" primary={'googleBlue'} onPress={this._onPressBarcode.bind(this)} />
+                        <BasicButton value="扫描二维码"  onPress={this._onPressBarcode.bind(this)} />
                     </View>
                     <View style={{flex:1,borderWidth:1,borderColor:'lightGreen'}}>
-                        <Button value="登录" primary={'googleBlue'} onPress={this._onPressLogin.bind(this)} disabled={this.state.loginDisabled}/>
+                        <BasicButton value="登录" onPress={this._onPressLogin.bind(this)} disabled={this.state.loginDisabled}/>
                     </View>
                 </View>
                 <View style={{flex:1}}>

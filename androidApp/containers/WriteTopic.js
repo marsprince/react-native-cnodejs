@@ -17,7 +17,7 @@ import React,{
 
 var dismissKeyboard = require('dismissKeyboard');
 var NavBar=require('./../components/ToolBar/PublishToolBar')
-import  {RadioButtonGroup,RadioButton,Button } from 'react-native-material-design'
+import Picker from '../components/PickerModule/Picker'
 import {getCategory} from '../util/cnodeUtil.js'
 import {alertLogin} from './../components/alertModule/alertLogin'
 
@@ -31,11 +31,13 @@ class WriteTopic extends Component{
             title:"",
             content:""
         };
+        this.onSelect=this.onSelect.bind(this)
     }
 
     componentDidMount() {
 
     }
+
     componentDidUpdate(){
         if(this.props.state.topicState.publishSuccess)
         {
@@ -68,6 +70,11 @@ class WriteTopic extends Component{
         }
     }
 
+    onSelect(index)
+    {
+        this.setState({selectedLabel:index})
+    }
+
     render() {
         return (
             <View style={{flex:1}}>
@@ -79,22 +86,8 @@ class WriteTopic extends Component{
                     <View style={{flex:1,paddingTop:18,paddingLeft:5}}>
                         <Text style={styles.text}>请选择分类</Text>
                     </View>
-                     <View style={{flex:4,flexDirection:'row'}}>
-                         {this.state.label.map((value,index)=>{
-                             return(
-                                 <View key={index} style={{flex:1,flexDirection:'row'}}>
-                                     <View style={{flex:3}}>
-                                         <RadioButton value={index.toString()}
-                                                      checked={index==this.state.selectedLabel?true:false}
-                                                      onSelect={index=>this.setState({selectedLabel:index})}/>
-                                     </View>
-                                     <Text style={{flex:2,marginTop:18,paddingLeft:15}}>
-                                         {getCategory(value)}
-                                     </Text>
-
-                                 </View>
-                             )
-                         })}
+                     <View style={{flex:4}}>
+                         <Picker valueChange={this.onSelect} valueArray={['提问','分享','招聘']}></Picker>
                      </View>
                 </View>
                 <View style={styles.textInput}>

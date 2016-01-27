@@ -17,7 +17,7 @@ var {
     } = React;
 
 var Icon = require('react-native-vector-icons/MaterialIcons');
-import BasicButton from '../buttonModule/BasicButton'
+import PublishButton from '../buttonModule/PublishButton'
 
 var styles = StyleSheet.create({
     navBar:{
@@ -71,8 +71,8 @@ class PublishToolar extends Component{
                     </Text>
                 </View>
                 <View style={styles.replyButton}>
-                    <BasicButton value="发布" disabled={disabled} onPress={onPress}>
-                    </BasicButton>
+                    <PublishButton value="发布" disabled={disabled} onPress={onPress}>
+                    </PublishButton>
                 </View>
             </View>
         )

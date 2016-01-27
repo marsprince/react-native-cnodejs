@@ -13,7 +13,7 @@ var {
     TextInput,
     Dimensions
     } = React;
-import {Button} from 'react-native-material-design'
+import BasicButton from '../buttonModule/BasicButton.js'
 var styles = StyleSheet.create({
     row:{
         paddingHorizontal: 5,
@@ -62,7 +62,7 @@ class ReplyRow extends Component{
                         </TextInput>
                     </View>
                     <View style={styles.replyButton}>
-                        <Button value="回复"  primary={'googleBlue'} onPress={()=>onPress()}/>
+                        <BasicButton value="回复" onPress={()=>onPress()}/>
                     </View>
                 </View>
         )
