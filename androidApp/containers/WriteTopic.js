@@ -80,7 +80,7 @@ class WriteTopic extends Component{
             <View style={{flex:1}}>
                 <NavBar text="发布话题" router={this.props.router} disabled={this.state.writeDisabled} onPress={this._publishButtonPress.bind(this)}>
                 </NavBar>
-                <TextInput placeholder="标题" onChangeText={(value)=>this._titleOnChangeText(value)}>
+                <TextInput style={{height:56}} placeholder="标题" onChangeText={(value)=>this._titleOnChangeText(value)}>
                 </TextInput>
                 <View style={{flexDirection:'row',justifyContent: 'center'}}>
                     <View style={{flex:1,paddingTop:20,paddingLeft:10}}>
@@ -91,7 +91,7 @@ class WriteTopic extends Component{
                      </View>
                 </View>
                 <View style={styles.textInput}>
-                    <TextInput placeholder="说点什么吧..." multiline={true} onChangeText={(value)=>this._contentOnChangeText(value)}>
+                    <TextInput style={{height:56}} placeholder="说点什么吧..." multiline={true} onChangeText={(value)=>this._contentOnChangeText(value)}>
                     </TextInput>
                 </View>
 

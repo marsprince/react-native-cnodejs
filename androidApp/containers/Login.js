@@ -106,7 +106,7 @@ class Login extends Component{
                 </View>
 
                 <View>
-                    <TextInput placeholder ='Access Token:' onChangeText={value=>this._onChangeText(value)}>
+                    <TextInput style={{height:56}} placeholder ='Access Token:' onChangeText={value=>this._onChangeText(value)}>
                     </TextInput>
                 </View>
                 <View style={{flexDirection:'row'}}>
