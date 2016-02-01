@@ -11,7 +11,10 @@ var {
     Text,
     View,
     TextInput,
-    Dimensions
+    Dimensions,
+    DeviceEventEmitter,
+    LayoutAnimation,
+    Platform
     } = React;
 import BasicButton from '../buttonModule/BasicButton.js'
 var styles = StyleSheet.create({
@@ -22,7 +25,6 @@ var styles = StyleSheet.create({
         height:60,
         flexDirection:'row',
         position:'absolute',
-        bottom:0,
         right:0,
         left:0,
         borderTopWidth:1,
@@ -51,12 +53,29 @@ var deviceWidth = Dimensions.get('window').width;
 class ReplyRow extends Component{
     constructor(props) {
         super(props);
+        this.state={
+            bottom:0
+        }
+    }
+    componentDidMount(){
+        if(Platform.OS==="ios")
+        {
+            DeviceEventEmitter.addListener('keyboardWillShow', e => {
+                LayoutAnimation.configureNext(LayoutAnimation.create(
+                    e.duration,
+                    LayoutAnimation.Types[e.easing]
+                ));
+                this.setState({
+                    bottom: e.endCoordinates.height
+                });
+            });
+        }
     }
     render()
     {
         var {text,onPress,onChangeText}=this.props;
         return (
-                <View style={styles.row} >
+                <View style={[styles.row,{bottom:this.state.bottom}]}>
                     <View style={styles.textInput}>
                         <TextInput multiline={true} defaultValue = {text} onChangeText={(value)=>onChangeText(value)} placeholder="说点什么吧" style={{ borderWidth: 5,height:56}}>
                         </TextInput>

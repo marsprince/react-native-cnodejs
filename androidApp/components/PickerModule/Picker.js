@@ -4,12 +4,11 @@
 
 import React,{
     Component,
-    PickerAndroid
+    Picker
     } from "react-native"
 
-const Item = PickerAndroid.Item;
-
-class Picker extends Component{
+const Item = Picker.Item;
+class PickerModule extends Component{
     constructor(porps) {
         super(porps);
         this.state={
@@ -29,17 +28,16 @@ class Picker extends Component{
     {
         const {valueArray,...props}=this.props
         return(
-            <PickerAndroid  onSelect={this.onSelect} style={{width: 100, height: 56}} mode="dropdown" {...props}>
+            <Picker mode="dropdown" onValueChange={this.onSelect}  selectedValue={this.state.selectIndex}  {...this.props}>
                 {valueArray.map((value,i) => (
                     <Item
                         value={i.toString()}
-                        text={value}
-                        selected={i==this.state.selectIndex}
+                        label={value}
                         />
                 ))}
-            </PickerAndroid>
+            </Picker>
         )
     }
 }
 
-module.exports = Picker;
+module.exports = PickerModule;

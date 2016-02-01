@@ -17,7 +17,7 @@ import React,{
 
 var dismissKeyboard = require('dismissKeyboard');
 var NavBar=require('./../components/ToolBar/PublishToolBar')
-import Picker from '../components/PickerModule/Picker'
+import PickerModule from '../components/PickerModule/Picker'
 import {getCategory} from '../util/cnodeUtil.js'
 import {alertLogin} from './../components/alertModule/alertLogin'
 
@@ -87,7 +87,7 @@ class WriteTopic extends Component{
                         <Text style={styles.text}>请选择分类</Text>
                     </View>
                      <View style={{flex:2}}>
-                         <Picker valueChange={this.onSelect} valueArray={['提问','分享','招聘']}></Picker>
+                         <PickerModule valueChange={this.onSelect} valueArray={['提问','分享','招聘']}></PickerModule>
                      </View>
                 </View>
                 <View style={styles.textInput}>
