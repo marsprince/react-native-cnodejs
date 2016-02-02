@@ -4,10 +4,14 @@
 
 import React,{
     Component,
-    Picker
+    Picker,
+    PickerIOS,
+    Platform
     } from "react-native"
 
-const Item = Picker.Item;
+const PickerNative=Platform.OS=="ios"?PickerIOS:Picker;
+const Item =PickerNative.Item;
+
 class PickerModule extends Component{
     constructor(porps) {
         super(porps);
@@ -28,14 +32,14 @@ class PickerModule extends Component{
     {
         const {valueArray,...props}=this.props
         return(
-            <Picker mode="dropdown" onValueChange={this.onSelect}  selectedValue={this.state.selectIndex}  {...this.props}>
+            <PickerNative mode="dropdown" onValueChange={this.onSelect}  selectedValue={this.state.selectIndex}  {...this.props}>
                 {valueArray.map((value,i) => (
                     <Item
                         value={i.toString()}
                         label={value}
                         />
                 ))}
-            </Picker>
+            </PickerNative>
         )
     }
 }

@@ -170,7 +170,7 @@ class TopicInfoListView extends Component {
 
                 <ListView
                     ref={view => {this._listView = view}}
-                    style={{backgroundColor:'rgba(255,255,255,1)',marginBottom:60}}
+                    style={{backgroundColor:'white',marginBottom:60}}
                     //onScroll={()=>onScroll()}
                     showsVerticalScrollIndicator={true}
                     initialListSize={10}

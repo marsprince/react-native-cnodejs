@@ -19,6 +19,7 @@ var {
 import BasicButton from '../buttonModule/BasicButton.js'
 var styles = StyleSheet.create({
     row:{
+        backgroundColor:'white',
         paddingHorizontal: 5,
         paddingVertical: 5,
         flex:1,
@@ -56,21 +57,46 @@ class ReplyRow extends Component{
         this.state={
             bottom:0
         }
+        this.keyboardWillShow=this.keyboardWillShow.bind(this)
+        this.keyboardWillHide=this.keyboardWillHide.bind(this)
     }
+    
     componentDidMount(){
         if(Platform.OS==="ios")
         {
-            DeviceEventEmitter.addListener('keyboardWillShow', e => {
-                LayoutAnimation.configureNext(LayoutAnimation.create(
-                    e.duration,
-                    LayoutAnimation.Types[e.easing]
-                ));
-                this.setState({
-                    bottom: e.endCoordinates.height
-                });
-            });
+            DeviceEventEmitter.addListener('keyboardWillShow',this.keyboardWillShow)
+            DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
         }
     }
+    
+    componentWillUnmount(){
+        if(Platform.OS==="ios")
+        {
+            DeviceEventEmitter.removeAllListeners('keyboardWillShow')
+            DeviceEventEmitter.removeAllListeners('keyboardWillHide');
+        }
+    }
+    
+    keyboardWillShow(e){
+        LayoutAnimation.configureNext(LayoutAnimation.create(
+            e.duration,
+            LayoutAnimation.Types[e.easing]
+        ));
+        this.setState({
+                      bottom: e.endCoordinates.height
+                      });
+    }
+    
+    keyboardWillHide(e){
+        LayoutAnimation.configureNext(LayoutAnimation.create(
+            e.duration,
+            LayoutAnimation.Types[e.easing]
+            ));
+        this.setState({
+                      bottom: 0
+                      });
+    }
+    
     render()
     {
         var {text,onPress,onChangeText}=this.props;
