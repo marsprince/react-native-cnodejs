@@ -103,7 +103,7 @@ class ReplyRow extends Component{
         return (
                 <View style={[styles.row,{bottom:this.state.bottom}]}>
                     <View style={styles.textInput}>
-                        <TextInput multiline={true} defaultValue = {text} onChangeText={(value)=>onChangeText(value)} placeholder="说点什么吧" style={{ borderWidth: 5,height:56}}>
+                <TextInput multiline={true} defaultValue = {text} onChangeText={(value)=>onChangeText(value)} placeholder="说点什么吧" style={{ borderWidth: Platform.OS=='ios'?1:5,height:56}}>
                         </TextInput>
                     </View>
                     <View style={styles.replyButton}>
